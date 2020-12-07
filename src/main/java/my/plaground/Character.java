@@ -45,11 +45,18 @@ public class  Character {
 
     public Character(CharacterType type, int power) {
         this(type);
-        this.power = power;
+       this.setPower(power);
     }
 
     public int getPower() {
         return power;
+    }
+
+    public void setPower(int power){
+        if(power <= 0)
+            throw new RuntimeException("Invalid power");
+
+        this.power = power;
     }
 
     public int getHp() {
@@ -80,5 +87,13 @@ public class  Character {
 
     public int empoweredDamage() {
         return this.attackDamage() * this.power;
+    }
+
+    public void receiveDamage(int damage) {
+        this.hp -= damage;
+    }
+
+    public int totalDamage() {
+        return this.empoweredDamage();
     }
 }

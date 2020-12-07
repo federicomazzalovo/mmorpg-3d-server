@@ -63,7 +63,7 @@ class CharacterTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = { -1, 0, 1, 2 })
+    @ValueSource(ints = { 1, 2 })
     public void ensure_that_paladin_empowered_damage_is_valid(int power){
         Character character = new Character(Character.CharacterType.Paladin, power);
         int empoweredDamage = character.empoweredDamage();
@@ -73,7 +73,7 @@ class CharacterTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = { -1, 0, 1, 2 })
+    @ValueSource(ints = {  1, 2 })
     public void ensure_that_rogue_empowered_damage_is_valid(int power){
         Character character = new Character(Character.CharacterType.Rogue, power);
         int empoweredDamage = character.empoweredDamage();
@@ -83,12 +83,46 @@ class CharacterTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = { -1, 0, 1, 2 })
+    @ValueSource(ints = { 1, 2 })
     public void ensure_that_wizard_empowered_damage_is_valid(int power){
         Character character = new Character(Character.CharacterType.Wizard, power);
         int empoweredDamage = character.empoweredDamage();
 
         assertTrue(empoweredDamage >= (13 * character.getPower()));
         assertTrue(empoweredDamage <= (16 * character.getPower()));
+    }
+
+
+    @ParameterizedTest
+    @ValueSource(ints = { -1, 0 })
+    public void ensure_that_paladin_with_invalid_power_throws_exception(int power){
+        assertThrows(
+            RuntimeException.class,
+            () -> {
+                Character character = new Character(Character.CharacterType.Paladin, power);
+                int empoweredDamage = character.empoweredDamage();
+            });
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = { -1, 0 })
+    public void ensure_that_rogue_with_invalid_power_throws_exception(int power){
+        assertThrows(
+                RuntimeException.class,
+                () -> {
+                    Character character = new Character(Character.CharacterType.Rogue, power);
+                    int empoweredDamage = character.empoweredDamage();
+                });
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = { -1, 0 })
+    public void ensure_that_wizard_with_invalid_power_throws_exception(int power){
+        assertThrows(
+                RuntimeException.class,
+                () -> {
+                    Character character = new Character(Character.CharacterType.Wizard, power);
+                    int empoweredDamage = character.empoweredDamage();
+                });
     }
 }

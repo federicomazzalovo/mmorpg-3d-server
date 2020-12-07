@@ -1,10 +1,11 @@
 #  Code Kata - Simple RPG
 
 ## TODO
-* define damage ranges for each character // es 5-8
-* define max hp for each character // es 100
-* define max resistance for each character // es 2
-##
+* Review HP logic
+* Add fight logic
+
+
+## Req
 
 The simple RPG game you're implementing allows to simulate the battle between 2 different characters to define the winner.
 
