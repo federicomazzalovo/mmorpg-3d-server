@@ -1,6 +1,10 @@
 package my.plaground;
 
-public class Character {
+import java.util.Random;
+
+public class  Character {
+
+    private Random random;
 
     public enum CharacterType {
         Paladin,
@@ -18,19 +22,19 @@ public class Character {
         switch (type) {
             case Paladin:
                 this.hp = 150;
-                this.power = 2;
+                this.power = 1;
                 this.resistance = 4;
                 break;
 
             case Rogue:
                 this.hp = 120;
-                this.power = 4;
+                this.power = 1;
                 this.resistance = 3;
                 break;
 
             case Wizard:
                 this.hp = 100;
-                this.power = 4;
+                this.power = 1;
                 this.resistance = 2;
                 break;
 
@@ -55,5 +59,19 @@ public class Character {
 
     public CharacterType getType() {
         return type;
+    }
+
+    public int attackDamage() {
+        Random random = new Random();
+        switch (this.type){
+            case Paladin:
+                return random.nextInt(8 - 5) + 5;
+            case Rogue:
+                return random.nextInt(12 - 9) + 9;
+            case Wizard:
+                return random.nextInt(16 - 13) + 13;
+            default:
+                throw new RuntimeException();
+        }
     }
 }
