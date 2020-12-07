@@ -1,5 +1,11 @@
 #  Code Kata - Simple RPG
 
+## TODO
+* define damage ranges for each character // es 5-8
+* define max hp for each character // es 100
+* define max resistance for each character // es 2
+##
+
 The simple RPG game you're implementing allows to simulate the battle between 2 different characters to define the winner.
 
 There are 3 types of characters: Paladins, Rogues, and Wizards. Paladins are stronger than Rogues, which are stronger than Wizards, which themselves are stronger than Paladins.
