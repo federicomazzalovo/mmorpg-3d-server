@@ -1,6 +1,8 @@
 package my.plaground;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -60,4 +62,33 @@ class CharacterTest {
         assertTrue( damage >= 13 && damage <= 16, "not in range");
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = { -1, 0, 1, 2 })
+    public void ensure_that_paladin_empowered_damage_is_valid(int power){
+        Character character = new Character(Character.CharacterType.Paladin, power);
+        int empoweredDamage = character.empoweredDamage();
+
+        assertTrue(empoweredDamage >= (5 * character.getPower()));
+        assertTrue(empoweredDamage <= (8 * character.getPower()));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = { -1, 0, 1, 2 })
+    public void ensure_that_rogue_empowered_damage_is_valid(int power){
+        Character character = new Character(Character.CharacterType.Rogue, power);
+        int empoweredDamage = character.empoweredDamage();
+
+        assertTrue(empoweredDamage >= (9 * character.getPower()));
+        assertTrue(empoweredDamage <= (12 * character.getPower()));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = { -1, 0, 1, 2 })
+    public void ensure_that_wizard_empowered_damage_is_valid(int power){
+        Character character = new Character(Character.CharacterType.Wizard, power);
+        int empoweredDamage = character.empoweredDamage();
+
+        assertTrue(empoweredDamage >= (13 * character.getPower()));
+        assertTrue(empoweredDamage <= (16 * character.getPower()));
+    }
 }

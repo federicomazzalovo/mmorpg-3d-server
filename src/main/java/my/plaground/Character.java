@@ -4,8 +4,6 @@ import java.util.Random;
 
 public class  Character {
 
-    private Random random;
-
     public enum CharacterType {
         Paladin,
         Rogue,
@@ -45,6 +43,11 @@ public class  Character {
         this.type = type;
     }
 
+    public Character(CharacterType type, int power) {
+        this(type);
+        this.power = power;
+    }
+
     public int getPower() {
         return power;
     }
@@ -73,5 +76,9 @@ public class  Character {
             default:
                 throw new RuntimeException();
         }
+    }
+
+    public int empoweredDamage() {
+        return this.attackDamage() * this.power;
     }
 }
