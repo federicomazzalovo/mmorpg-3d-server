@@ -1,9 +1,8 @@
 #  Code Kata - Simple RPG
 
 ## TODO
-* Review HP logic
-* Add fight logic
-
+* Check for refactoring
+* Continue with additional rules
 
 ## Req
 
