@@ -154,6 +154,19 @@ class CharacterTest {
         int initialHp = character.getHp();
         character.receiveDamage(-10);
 
-        assertTrue(character.getHp() == initialHp);
+        assertEquals(initialHp, character.getHp());
+    }
+
+    @Test public void
+    ensure_that_dead_char_not_inflict_damage() {
+        Character paladin = new Character(Character.CharacterType.Paladin);
+        Character rogue = new Character(Character.CharacterType.Rogue);
+        int initRougeHp = rogue.getHp();
+        // Kill paladin
+        paladin.receiveDamage(1000);
+
+        paladin.attack(rogue);
+
+        assertEquals(initRougeHp, rogue.getHp());
     }
 }

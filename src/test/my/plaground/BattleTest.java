@@ -58,4 +58,22 @@ class BattleTest {
 
         assertTrue(paladin.getHp() >= (paladinInitialHp - ((16 * 1.5) / 4)) && paladin.getHp() <= (paladinInitialHp - ((13 * 1.5) / 4)));
     }
+
+
+    @Test public void
+    ensure_that_at_least_one_char_dies_after_long_fight() {
+        Character paladin = new Character(Character.CharacterType.Paladin);
+        Character rogue = new Character(Character.CharacterType.Rogue);
+
+        Battle battle = new Battle(rogue, paladin);
+        int counter = 0;
+        double maxCounter = rogue.getHp() / ((5 * 1.5) / rogue.getResistance());
+        do {
+            battle.fight();
+            counter++;
+        }while ( paladin.isAlive() && rogue.isAlive() && counter < maxCounter );
+
+        assertTrue(paladin.isDead() || rogue.isDead());
+    }
+
 }

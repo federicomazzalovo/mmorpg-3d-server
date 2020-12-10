@@ -117,6 +117,9 @@ public class  Character {
     }
 
     public void attack(Character enemy) {
+        if(this.isDead())
+            return;
+
         double totalDamage = (this.empoweredDamage() * this.getSpecialDamage(enemy.getType())) / enemy.getResistance();
         enemy.receiveDamage(totalDamage);
     }
