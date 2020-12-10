@@ -8,8 +8,8 @@ class BattleTest {
 
     @Test public void
     when_fight_happens_life_points_decrease() {
-        Character wizard = new Character(Character.CharacterType.Paladin);
-        Character paladin = new Character(Character.CharacterType.Wizard);
+        Character wizard = new Paladin();
+        Character paladin = new Wizard();
         int wizardInitHp = wizard.getHp();
         int paladinInitHp = paladin.getHp();
 
@@ -22,8 +22,8 @@ class BattleTest {
 
     @Test public void
     ensure_paladin_inflicts_50_percent_more_dmg_to_rogue(){
-        Character paladin = new Character(Character.CharacterType.Paladin);
-        Character rogue = new Character(Character.CharacterType.Rogue);
+        Character paladin = new Paladin();
+        Character rogue = new Rogue();
 
         int rogueInitialHp = rogue.getHp();
 
@@ -35,8 +35,8 @@ class BattleTest {
 
     @Test public void
     ensure_rogue_inflicts_50_percent_more_dmg_to_wizard(){
-        Character rogue = new Character(Character.CharacterType.Rogue);
-        Character wizard = new Character(Character.CharacterType.Wizard);
+        Character rogue = new Rogue();
+        Character wizard = new Wizard();
 
         int wizardInitialHp = wizard.getHp();
 
@@ -48,8 +48,8 @@ class BattleTest {
 
     @Test public void
     ensure_wizard_inflicts_50_percent_more_dmg_to_paladin(){
-        Character wizard = new Character(Character.CharacterType.Wizard);
-        Character paladin = new Character(Character.CharacterType.Paladin);
+        Character wizard = new Wizard();
+        Character paladin = new Paladin();
 
         int paladinInitialHp = paladin.getHp();
 
@@ -62,8 +62,8 @@ class BattleTest {
 
     @Test public void
     ensure_that_at_least_one_char_dies_after_long_fight() {
-        Character paladin = new Character(Character.CharacterType.Paladin);
-        Character rogue = new Character(Character.CharacterType.Rogue);
+        Character paladin = new Paladin();
+        Character rogue = new Rogue();
 
         Battle battle = new Battle(rogue, paladin);
         int counter = 0;
