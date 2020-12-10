@@ -132,4 +132,28 @@ class CharacterTest {
         character.receiveDamage(1000);
         assertTrue(character.getHp() >= 0);
     }
+
+    @Test public void
+    ensure_char_dead_if_hps_zero(){
+        Character character = new Character(Character.CharacterType.Paladin, 1);
+        character.receiveDamage(1000);
+        assertTrue(character.isDead());
+    }
+
+    @Test public void
+    ensure_char_alive_if_hps_greater_than_zero(){
+        Character character = new Character(Character.CharacterType.Paladin, 1);
+        character.receiveDamage(149);
+        assertTrue(character.isAlive());
+    }
+
+    @Test public void
+    ensure_negative_damage_is_ignored(){
+        Character character = new Character(Character.CharacterType.Paladin, 1);
+
+        int initialHp = character.getHp();
+        character.receiveDamage(-10);
+
+        assertTrue(character.getHp() == initialHp);
+    }
 }

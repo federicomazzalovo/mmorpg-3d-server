@@ -14,6 +14,14 @@ public class  Character {
             Wizard, Paladin
     );
 
+    public boolean isDead() {
+        return this.hp == 0;
+    }
+
+    public boolean isAlive() {
+        return this.hp > 0;
+    }
+
     public enum CharacterType {
         Paladin,
         Rogue,
@@ -100,8 +108,10 @@ public class  Character {
     }
 
     public void receiveDamage(double damage) {
-        this.hp -= damage;
+        if(damage <= 0)
+            return;
 
+        this.hp -= damage;
         if (this.hp <= 0)
             this.hp = 0;
     }
@@ -116,5 +126,6 @@ public class  Character {
                ? 1.5
                : 1;
     }
+
 
 }

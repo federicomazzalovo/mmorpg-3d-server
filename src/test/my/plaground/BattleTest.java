@@ -25,10 +25,37 @@ class BattleTest {
         Character paladin = new Character(Character.CharacterType.Paladin);
         Character rogue = new Character(Character.CharacterType.Rogue);
 
+        int rogueInitialHp = rogue.getHp();
+
         Battle battle = new Battle(paladin, rogue);
         battle.fight();
 
-        assertTrue(rogue.getHp() >= 116 && rogue.getHp() <= 117.5);
+        assertTrue(rogue.getHp() >= (rogueInitialHp - ((8 * 1.5) / 3)) && rogue.getHp() <= (rogueInitialHp - ((5 * 1.5) / 3)));
     }
 
+    @Test public void
+    ensure_rogue_inflicts_50_percent_more_dmg_to_wizard(){
+        Character rogue = new Character(Character.CharacterType.Rogue);
+        Character wizard = new Character(Character.CharacterType.Wizard);
+
+        int wizardInitialHp = wizard.getHp();
+
+        Battle battle = new Battle(rogue, wizard);
+        battle.fight();
+
+        assertTrue(wizard.getHp() >= (wizardInitialHp - ((12 * 1.5) / 2)) && wizard.getHp() <= (wizardInitialHp - ((9 * 1.5) / 2)));
+    }
+
+    @Test public void
+    ensure_wizard_inflicts_50_percent_more_dmg_to_paladin(){
+        Character wizard = new Character(Character.CharacterType.Wizard);
+        Character paladin = new Character(Character.CharacterType.Paladin);
+
+        int paladinInitialHp = paladin.getHp();
+
+        Battle battle = new Battle(wizard, paladin);
+        battle.fight();
+
+        assertTrue(paladin.getHp() >= (paladinInitialHp - ((16 * 1.5) / 4)) && paladin.getHp() <= (paladinInitialHp - ((13 * 1.5) / 4)));
+    }
 }
