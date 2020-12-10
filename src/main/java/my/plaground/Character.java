@@ -91,9 +91,12 @@ public class  Character {
 
     public void receiveDamage(int damage) {
         this.hp -= damage;
+
+        if (this.hp <= 0)
+            this.hp = 0;
     }
 
-    public int totalDamage() {
-        return this.empoweredDamage();
+    public void attack(Character enemy) {
+        enemy.receiveDamage(this.empoweredDamage());
     }
 }

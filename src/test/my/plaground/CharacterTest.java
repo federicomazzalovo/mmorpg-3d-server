@@ -125,4 +125,11 @@ class CharacterTest {
                     int empoweredDamage = character.empoweredDamage();
                 });
     }
+
+    @Test public void
+    ensure_that_hps_not_negative(){
+        Character character = new Character(Character.CharacterType.Paladin, 1);
+        character.receiveDamage(1000);
+        assertTrue(character.getHp() >= 0);
+    }
 }

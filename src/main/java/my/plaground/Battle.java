@@ -11,8 +11,8 @@ public class Battle {
     }
 
     public void fight() {
-        characterOne.receiveDamage(characterTwo.totalDamage());
-        characterTwo.receiveDamage(characterOne.totalDamage());
+        characterOne.attack(characterTwo);
+        characterTwo.attack(characterOne);
     }
 
 }
