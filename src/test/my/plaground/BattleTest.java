@@ -28,6 +28,7 @@ class BattleTest {
         Battle battle = new Battle(paladin, rogue);
         battle.fight();
 
-        assertTrue(rogue.getHp() >= 108 && rogue.getHp() <= 112.5);
+        assertTrue(rogue.getHp() >= 116 && rogue.getHp() <= 117.5);
     }
+
 }

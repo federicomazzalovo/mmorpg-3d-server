@@ -1,8 +1,18 @@
 package my.plaground;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
+import static my.plaground.Character.CharacterType.*;
+
 public class  Character {
+
+    private final Map<CharacterType, CharacterType> typeVersusWeak = Map.of(
+            Paladin, Rogue,
+            Rogue, Wizard,
+            Wizard, Paladin
+    );
 
     public enum CharacterType {
         Paladin,
@@ -12,8 +22,8 @@ public class  Character {
 
     private int hp;
     private int power;
-    private int resistance;
-    private CharacterType type;
+    private final int resistance;
+    private final CharacterType type;
 
     public Character(CharacterType type) {
 
@@ -89,7 +99,7 @@ public class  Character {
         return this.attackDamage() * this.power;
     }
 
-    public void receiveDamage(int damage) {
+    public void receiveDamage(double damage) {
         this.hp -= damage;
 
         if (this.hp <= 0)
@@ -97,6 +107,14 @@ public class  Character {
     }
 
     public void attack(Character enemy) {
-        enemy.receiveDamage(this.empoweredDamage());
+        double totalDamage = (this.empoweredDamage() * this.getSpecialDamage(enemy.getType())) / enemy.getResistance();
+        enemy.receiveDamage(totalDamage);
     }
+
+    private double getSpecialDamage(CharacterType enemyType) {
+       return this.typeVersusWeak.get(this.type) == enemyType
+               ? 1.5
+               : 1;
+    }
+
 }
