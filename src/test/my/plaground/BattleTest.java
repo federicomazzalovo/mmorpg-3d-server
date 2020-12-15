@@ -10,8 +10,8 @@ class BattleTest {
     when_fight_happens_life_points_decrease() {
         Character wizard = new Paladin();
         Character paladin = new Wizard();
-        int wizardInitHp = wizard.getHp();
-        int paladinInitHp = paladin.getHp();
+        double wizardInitHp = wizard.getHp();
+        double paladinInitHp = paladin.getHp();
 
         Battle battle = new Battle(paladin, wizard);
         battle.fight();
@@ -25,7 +25,7 @@ class BattleTest {
         Character paladin = new Paladin();
         Character rogue = new Rogue();
 
-        int rogueInitialHp = rogue.getHp();
+        double rogueInitialHp = rogue.getHp();
 
         Battle battle = new Battle(paladin, rogue);
         battle.fight();
@@ -38,7 +38,7 @@ class BattleTest {
         Character rogue = new Rogue();
         Character wizard = new Wizard();
 
-        int wizardInitialHp = wizard.getHp();
+        double wizardInitialHp = wizard.getHp();
 
         Battle battle = new Battle(rogue, wizard);
         battle.fight();
@@ -51,7 +51,7 @@ class BattleTest {
         Character wizard = new Wizard();
         Character paladin = new Paladin();
 
-        int paladinInitialHp = paladin.getHp();
+        double paladinInitialHp = paladin.getHp();
 
         Battle battle = new Battle(wizard, paladin);
         battle.fight();

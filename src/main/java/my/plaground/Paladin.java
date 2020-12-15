@@ -2,7 +2,7 @@ package my.plaground;
 
 import java.util.Random;
 
-public class Paladin extends Character{
+public class Paladin extends Character {
 
     public Paladin() {
       this(1);

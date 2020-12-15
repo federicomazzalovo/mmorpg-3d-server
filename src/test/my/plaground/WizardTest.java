@@ -44,24 +44,22 @@ class WizardTest {
                 });
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = { 0, 10, 20 })
-    public void increase_hp_by_percentage(int percentage) {
+    @Test
+    public void increase_hp_by_percentage() {
         Wizard wizard = new Wizard();
-        int initialHps = wizard.getHp();
-        wizard.increaseHpByPercentage(percentage);
+        wizard.increaseHpByPercentage(20);
 
-        assertEquals(initialHps + (initialHps * (percentage / 100)), wizard.getHp());
+        assertEquals(120, wizard.getHp());
     }
 
-    @Disabled
     @Test
-    public void ensure_increase_hp_by_invalid_percent_is_ignored()
-    {
+    public void ensure_increase_hp_by_invalid_percent_is_ignored() {
         Wizard wizard = new Wizard();
-        int initialHps = wizard.getHp();
+        double initialHps = wizard.getHp();
         wizard.increaseHpByPercentage(-10);
 
         assertEquals(initialHps, wizard.getHp());
     }
+
+
 }

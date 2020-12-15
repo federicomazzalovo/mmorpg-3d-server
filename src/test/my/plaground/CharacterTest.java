@@ -33,7 +33,7 @@ class CharacterTest {
     ensure_negative_damage_is_ignored(){
         Character character = new Paladin(1);
 
-        int initialHp = character.getHp();
+        double initialHp = character.getHp();
         character.receiveDamage(-10);
 
         assertEquals(initialHp, character.getHp());
@@ -43,7 +43,7 @@ class CharacterTest {
     ensure_that_dead_char_not_inflict_damage() {
         Character paladin = new Paladin();
         Character rogue = new Rogue();
-        int initRougeHp = rogue.getHp();
+        double initRougeHp = rogue.getHp();
         // Kill paladin
         paladin.receiveDamage(1000);
 

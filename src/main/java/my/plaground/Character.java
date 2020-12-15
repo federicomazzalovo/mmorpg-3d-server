@@ -2,11 +2,9 @@ package my.plaground;
 
 public abstract class Character {
 
-
-    protected int hp;
+    protected double hp;
     protected int power;
     protected int resistance;
-
 
     public int getPower() {
         return power;
@@ -19,7 +17,7 @@ public abstract class Character {
         this.power = power;
     }
 
-    public int getHp() {
+    public double getHp() {
         return hp;
     }
 
