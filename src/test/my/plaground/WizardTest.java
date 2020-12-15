@@ -61,5 +61,14 @@ class WizardTest {
         assertEquals(initialHps, wizard.getHp());
     }
 
+    @Disabled
+    @Test
+    public void ensure_hps_increase_by_correct_percentage_on_attack(){
+        Wizard wizard = new Wizard(new ProgrammedRandomOccurrenceMocked());
+        Paladin paladin = new Paladin();
+        wizard.attack(paladin);
+
+        assertEquals(110, wizard.getHp());
+    }
 
 }

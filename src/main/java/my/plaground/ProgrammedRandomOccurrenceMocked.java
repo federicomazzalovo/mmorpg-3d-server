@@ -5,6 +5,6 @@ public class ProgrammedRandomOccurrenceMocked
 
     @Override
     public int getRandomPercentage() {
-        return 0;
+        return 100;
     }
 }
