@@ -1,8 +1,9 @@
 #  Code Kata - Simple RPG
 
 ## TODO
-* Check for refactoring
-* Continue with additional rules
+
+* Continue with  special abilities for Rouge and Paladins
+* Check for refactoring 
 
 ## Req
 
