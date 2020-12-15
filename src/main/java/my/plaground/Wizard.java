@@ -4,22 +4,17 @@ import java.util.Random;
 
 public class Wizard extends Character {
 
-    public Wizard(ProgrammedRandomOccurrenceInterface proc){
-        super(proc);
-    }
-
-    public Wizard(int power, ProgrammedRandomOccurrenceInterface proc){
-        super(power, proc);
-    }
-
-    public Wizard(int power){
-        super(power);
-    }
-
     public Wizard() {
+        this(new ProgrammedRandomOccurrence());
+    }
+
+    public Wizard(ProgrammedRandomOccurrenceInterface proc){
+        this.proc = proc;
         this.hp = 100;
         this.resistance = 2;
+        this.setPower(1);
     }
+
 
     @Override
     public int attackDamage() {
@@ -35,15 +30,25 @@ public class Wizard extends Character {
         return 1;
     }
 
-    public void increaseHpByPercentage(int percentage) {
+    public void increaseHpByPercentage(double percentage) {
         if(percentage < 0)
             return;
 
-        this.hp += this.hp * ((double)percentage / 100);
+        this.hp += this.hp * (percentage / 100.0);
     }
 
     @Override
     protected void procAbility() {
         super.procAbility();
+
+        if(!canProc())
+            return;
+
+        this.increaseHpByPercentage(10.0);
     }
+
+    private boolean canProc() {
+        return proc.getRandomPercentage() <= 20;
+    }
+
 }

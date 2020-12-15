@@ -7,30 +7,6 @@ public abstract class Character {
     protected int resistance;
     protected ProgrammedRandomOccurrenceInterface proc;
 
-    public Character()
-    {
-        this.proc = new ProgrammedRandomOccurrence();
-        this.setPower(1);
-    }
-
-    public Character(int power, ProgrammedRandomOccurrenceInterface proc)
-    {
-        this.proc = proc;
-        this.setPower(power);
-    }
-
-    public Character(int power)
-    {
-        this.proc = new ProgrammedRandomOccurrence();
-        this.setPower(power);
-    }
-
-    public Character(ProgrammedRandomOccurrenceInterface proc)
-    {
-        this.proc = proc;
-        this.setPower(1);
-    }
-
     public int getPower() {
         return power;
     }

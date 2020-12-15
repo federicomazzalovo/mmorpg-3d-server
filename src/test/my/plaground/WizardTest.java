@@ -27,7 +27,8 @@ class WizardTest {
     @ParameterizedTest
     @ValueSource(ints = { 1, 2 })
     public void ensure_that_wizard_empowered_damage_is_valid(int power){
-        Character character = new Wizard(power);
+        Character character = new Wizard();
+        character.setPower(power);
         int empoweredDamage = character.empoweredDamage();
 
         assertTrue(empoweredDamage >= (13 * character.getPower()));
@@ -40,7 +41,8 @@ class WizardTest {
         assertThrows(
                 RuntimeException.class,
                 () -> {
-                    Character character = new Wizard(power);
+                    Character character = new Wizard();
+                    character.setPower(power);
                 });
     }
 
@@ -61,7 +63,6 @@ class WizardTest {
         assertEquals(initialHps, wizard.getHp());
     }
 
-    @Disabled
     @Test
     public void ensure_hps_increase_by_correct_percentage_on_attack(){
         Wizard wizard = new Wizard(new ProgrammedRandomOccurrenceMocked());
