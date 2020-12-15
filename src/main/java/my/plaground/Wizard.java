@@ -28,4 +28,7 @@ public class Wizard extends Character {
         return 1;
     }
 
+    public void increaseHpByPercentage(int percentage){
+        this.hp += this.hp * (percentage / 100);
+    }
 }
