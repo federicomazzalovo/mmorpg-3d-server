@@ -32,7 +32,7 @@ public class Wizard extends Character {
 
 
     @Override
-    protected double calculateTotalDamage(Character enemy) {
+    public double calculateTotalDamage(Character enemy) {
         double totalDamage = super.calculateTotalDamage(enemy);
         if(canProc())
             this.increaseHpByPercentage(10.0);
@@ -45,11 +45,6 @@ public class Wizard extends Character {
             return;
 
         this.hp += this.hp * (percentage / 100.0);
-    }
-
-    @Override
-    protected void procDefendAbility() {
-
     }
 
     private boolean canProc() {

@@ -8,6 +8,16 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RogueTest {
+
+    public static class RoguePROCMocked
+            implements ProgrammedRandomOccurrenceInterface {
+
+        @Override
+        public int getRandomPercentage() {
+            return 20;
+        }
+    }
+
     @Test
     public void is_new_rogue_successfully_initialized() {
         Character character = new Rogue();
@@ -48,13 +58,13 @@ class RogueTest {
 
 
     @Test
-    @Disabled
     public void ensure_that_have_20_perc_chance_double_damages_each_attack() {
-        Character rogue = new Rogue();
+        Character rogue = new Rogue(new RoguePROCMocked());
         Character paladin = new Paladin();
 
-        rogue.attack(paladin);
+        double normalDamage = (rogue.empoweredDamage() * rogue.getSpecialDamage(paladin)) / paladin.getResistance();
+        double doubledDamage = rogue.calculateTotalDamage(paladin);
 
-
+        assertEquals(doubledDamage, normalDamage * 2);
     }
 }

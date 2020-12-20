@@ -30,12 +30,16 @@ public class Rogue extends Character {
     }
 
     @Override
-    protected void procAttackAbility() {
+    public double calculateTotalDamage(Character enemy) {
+        double damage = super.calculateTotalDamage(enemy);
+
+        if(this.canProc())
+            damage = damage * 2;
+
+        return damage;
     }
 
-    @Override
-    protected void procDefendAbility() {
-
+    private boolean canProc() {
+        return proc.getRandomPercentage() <= 20;
     }
-
 }

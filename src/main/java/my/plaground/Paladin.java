@@ -29,13 +29,12 @@ public class Paladin extends Character {
         return 1;
     }
 
-
     @Override
-    protected void procDefendAbility() {
-        if(!canProc())
-            return;
+    protected double calculateReceivedDamage(double damage) {
+        if (canProc())
+            this.doubleResistance();
 
-        this.doubleResistance();
+        return super.calculateReceivedDamage(damage);
     }
 
     private void doubleResistance() {

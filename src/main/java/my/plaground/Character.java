@@ -48,12 +48,11 @@ public abstract class Character {
         if(this.isDead())
             return;
 
-        double totalDamage = calculateTotalDamage(enemy);
+        double totalDamage = this.calculateTotalDamage(enemy);
         enemy.defend(totalDamage);
     }
 
-    protected double calculateTotalDamage(Character enemy) {
-
+    public double calculateTotalDamage(Character enemy) {
         return (this.empoweredDamage() * this.getSpecialDamage(enemy)) / enemy.getResistance();
     }
 
@@ -61,16 +60,12 @@ public abstract class Character {
         if(damage <= 0)
             return;
 
-        procDefendAbility();
-
-        this.hp -= damage;
+        this.hp -= this.calculateReceivedDamage(damage);
         if (this.hp <= 0)
             this.hp = 0;
     }
 
-    protected  void procAttackAbility(){
-
+    protected double calculateReceivedDamage(double damage) {
+        return damage;
     }
-
-    protected abstract void procDefendAbility();
 }
