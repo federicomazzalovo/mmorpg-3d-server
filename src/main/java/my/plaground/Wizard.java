@@ -39,8 +39,6 @@ public class Wizard extends Character {
 
     @Override
     protected void procAbility() {
-        super.procAbility();
-
         if(!canProc())
             return;
 

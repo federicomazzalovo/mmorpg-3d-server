@@ -28,4 +28,8 @@ public class Rogue extends Character {
         return 1;
     }
 
+    @Override
+    protected void procAbility() {
+    }
+
 }

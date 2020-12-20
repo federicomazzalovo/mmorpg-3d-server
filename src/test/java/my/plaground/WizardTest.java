@@ -1,12 +1,20 @@
 package my.plaground;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 class WizardTest {
+
+    public static class WizardPROCMocked
+            implements ProgrammedRandomOccurrenceInterface {
+
+        @Override
+        public int getRandomPercentage() {
+            return 20;
+        }
+    }
 
     @Test
     public void is_new_wizard_successfully_initialized() {
@@ -65,11 +73,10 @@ class WizardTest {
 
     @Test
     public void ensure_hps_increase_by_correct_percentage_on_attack(){
-        Wizard wizard = new Wizard(new ProgrammedRandomOccurrenceMocked());
+        Wizard wizard = new Wizard(new WizardPROCMocked());
         Paladin paladin = new Paladin();
         wizard.attack(paladin);
 
         assertEquals(110, wizard.getHp());
     }
-
 }

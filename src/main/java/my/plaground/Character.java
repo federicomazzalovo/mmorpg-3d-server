@@ -62,6 +62,5 @@ public abstract class Character {
         enemy.receiveDamage(totalDamage);
     }
 
-    protected void procAbility(){
-    }
+    protected abstract void procAbility();
 }

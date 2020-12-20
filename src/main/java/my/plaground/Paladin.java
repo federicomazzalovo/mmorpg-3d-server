@@ -5,13 +5,14 @@ import java.util.Random;
 public class Paladin extends Character {
 
     public Paladin() {
-      this(1);
+        this(new ProgrammedRandomOccurrence());
     }
 
-    public Paladin(int power) {
+    public Paladin(ProgrammedRandomOccurrenceInterface proc) {
+        this.proc = proc;
         this.hp = 150;
-        this.setPower(power);
         this.resistance = 4;
+        this.setPower(1);
     }
 
     @Override
@@ -28,4 +29,19 @@ public class Paladin extends Character {
         return 1;
     }
 
+    @Override
+    protected void procAbility() {
+        if(!canProc())
+            return;
+
+        this.doubleResistance();
+    }
+
+    private void doubleResistance() {
+        this.resistance += this.resistance * 2;
+    }
+
+    private boolean canProc() {
+        return proc.getRandomPercentage() <= 20;
+    }
 }
