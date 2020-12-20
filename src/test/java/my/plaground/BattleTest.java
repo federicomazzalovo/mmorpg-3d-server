@@ -6,19 +6,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BattleTest {
 
-    @Test public void
-    when_fight_happens_life_points_decrease() {
-        Character wizard = new Paladin();
-        Character paladin = new Wizard();
-        double wizardInitHp = wizard.getHp();
-        double paladinInitHp = paladin.getHp();
-
-        Battle battle = new Battle(paladin, wizard);
-        battle.fight();
-
-        assertTrue( wizard.getHp() < wizardInitHp);
-        assertTrue( paladin.getHp() < paladinInitHp);
-    }
 
     @Test public void
     ensure_paladin_inflicts_50_percent_more_dmg_to_rogue(){
@@ -35,15 +22,14 @@ class BattleTest {
 
     @Test public void
     ensure_rogue_inflicts_50_percent_more_dmg_to_wizard(){
-        Character rogue = new Rogue();
-        Character wizard = new Wizard();
+        Character rogue = new Rogue(new my.plaground.RogueTest.RogueRandomDataMocked());
+        Character wizard = new Wizard(new my.plaground.WizardTest.WizardRandomDataMocked());
 
         double wizardInitialHp = wizard.getHp();
 
-        Battle battle = new Battle(rogue, wizard);
-        battle.fight();
+        rogue.attack(wizard);
 
-        assertTrue(wizard.getHp() >= (wizardInitialHp - ((12 * 1.5) / 2)) && wizard.getHp() <= (wizardInitialHp - ((9 * 1.5) / 2)));
+        assertTrue(wizard.getHp() <= (wizardInitialHp - ((9 * 1.5) / 2) * 2));
     }
 
     @Test public void

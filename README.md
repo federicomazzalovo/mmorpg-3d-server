@@ -2,8 +2,10 @@
 
 ## TODO
 
-* Continue with  special abilities for Rouge and Paladins
 * Check for refactoring 
+* Check auto inflict damage 
+* Check other Iteration  step 
+
 
 ## Req
 

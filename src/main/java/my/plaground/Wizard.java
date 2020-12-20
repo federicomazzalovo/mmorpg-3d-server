@@ -1,15 +1,13 @@
 package my.plaground;
 
-import java.util.Random;
-
 public class Wizard extends Character {
 
     public Wizard() {
-        this(new ProgrammedRandomOccurrence());
+        this(new RandomDataGenerator());
     }
 
-    public Wizard(ProgrammedRandomOccurrenceInterface proc){
-        this.proc = proc;
+    public Wizard(RandomDataGeneratorInterface proc){
+        this.randomDataGenerator = proc;
         this.hp = 100;
         this.resistance = 2;
         this.setPower(1);
@@ -18,8 +16,7 @@ public class Wizard extends Character {
 
     @Override
     public int attackDamage() {
-        Random random = new Random();
-        return random.nextInt(16 - 13) + 13;
+        return randomDataGenerator.getRandomValueRange(13,16);
     }
 
     @Override
@@ -48,7 +45,7 @@ public class Wizard extends Character {
     }
 
     private boolean canProc() {
-        return proc.getRandomPercentage() <= 20;
+        return randomDataGenerator.getRandomPercentage() <= 20;
     }
 
 }

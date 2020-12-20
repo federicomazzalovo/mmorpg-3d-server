@@ -1,15 +1,13 @@
 package my.plaground;
 
-import java.util.Random;
-
 public class Paladin extends Character {
 
     public Paladin() {
-        this(new ProgrammedRandomOccurrence());
+        this(new RandomDataGenerator());
     }
 
-    public Paladin(ProgrammedRandomOccurrenceInterface proc) {
-        this.proc = proc;
+    public Paladin(RandomDataGeneratorInterface proc) {
+        this.randomDataGenerator = proc;
         this.hp = 150;
         this.resistance = 4;
         this.setPower(1);
@@ -17,8 +15,7 @@ public class Paladin extends Character {
 
     @Override
     public int attackDamage() {
-        Random random = new Random();
-        return random.nextInt(8 - 5) + 5;
+        return randomDataGenerator.getRandomValueRange(5,8);
     }
 
     @Override
@@ -42,6 +39,6 @@ public class Paladin extends Character {
     }
 
     private boolean canProc() {
-        return proc.getRandomPercentage() <= 20;
+        return randomDataGenerator.getRandomPercentage() <= 20;
     }
 }

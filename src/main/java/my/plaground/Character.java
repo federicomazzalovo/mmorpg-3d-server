@@ -5,7 +5,7 @@ public abstract class Character {
     protected double hp;
     protected int power;
     protected int resistance;
-    protected ProgrammedRandomOccurrenceInterface proc;
+    protected RandomDataGeneratorInterface randomDataGenerator;
 
     public int getPower() {
         return power;

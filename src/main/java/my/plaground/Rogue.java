@@ -5,11 +5,11 @@ import java.util.Random;
 public class Rogue extends Character {
 
     public Rogue() {
-        this(new ProgrammedRandomOccurrence());
+        this(new RandomDataGenerator());
     }
 
-    public Rogue(ProgrammedRandomOccurrenceInterface proc) {
-        this.proc = proc;
+    public Rogue(RandomDataGeneratorInterface randomDataGenerator) {
+        this.randomDataGenerator = randomDataGenerator;
         this.hp = 120;
         this.setPower(1);
         this.resistance = 3;
@@ -17,8 +17,7 @@ public class Rogue extends Character {
 
     @Override
     public int attackDamage() {
-        Random random = new Random();
-        return random.nextInt(12 - 9) + 9;
+        return randomDataGenerator.getRandomValueRange(9,12);
     }
 
     @Override
@@ -40,6 +39,6 @@ public class Rogue extends Character {
     }
 
     private boolean canProc() {
-        return proc.getRandomPercentage() <= 20;
+        return randomDataGenerator.getRandomPercentage() <= 20;
     }
 }
