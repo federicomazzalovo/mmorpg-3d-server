@@ -29,8 +29,9 @@ public class Paladin extends Character {
         return 1;
     }
 
+
     @Override
-    protected void procAbility() {
+    protected void procDefendAbility() {
         if(!canProc())
             return;
 
@@ -38,7 +39,7 @@ public class Paladin extends Character {
     }
 
     private void doubleResistance() {
-        this.resistance += this.resistance * 2;
+        this.resistance = this.resistance * 2;
     }
 
     private boolean canProc() {

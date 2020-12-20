@@ -57,7 +57,6 @@ class PaladinTest {
     }
 
     @Test
-    @Disabled
     public void ensure_resistance_doubles_when_defends(){
         Paladin paladin = new Paladin(new PaladinPROCMocked());
         Wizard wizard = new Wizard();

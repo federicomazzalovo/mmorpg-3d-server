@@ -35,14 +35,6 @@ public abstract class Character {
         return this.attackDamage() * this.power;
     }
 
-    public void receiveDamage(double damage) {
-        if(damage <= 0)
-            return;
-
-        this.hp -= damage;
-        if (this.hp <= 0)
-            this.hp = 0;
-    }
 
     public boolean isDead() {
         return this.hp == 0;
@@ -56,11 +48,29 @@ public abstract class Character {
         if(this.isDead())
             return;
 
-        procAbility();
-
-        double totalDamage = (this.empoweredDamage() * this.getSpecialDamage(enemy)) / enemy.getResistance();
-        enemy.receiveDamage(totalDamage);
+        double totalDamage = calculateTotalDamage(enemy);
+        enemy.defend(totalDamage);
     }
 
-    protected abstract void procAbility();
+    protected double calculateTotalDamage(Character enemy) {
+
+        return (this.empoweredDamage() * this.getSpecialDamage(enemy)) / enemy.getResistance();
+    }
+
+    public void defend(double damage) {
+        if(damage <= 0)
+            return;
+
+        procDefendAbility();
+
+        this.hp -= damage;
+        if (this.hp <= 0)
+            this.hp = 0;
+    }
+
+    protected  void procAttackAbility(){
+
+    }
+
+    protected abstract void procDefendAbility();
 }

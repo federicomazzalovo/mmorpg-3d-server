@@ -5,12 +5,13 @@ import java.util.Random;
 public class Rogue extends Character {
 
     public Rogue() {
-        this(1);
+        this(new ProgrammedRandomOccurrence());
     }
 
-    public Rogue(int power){
+    public Rogue(ProgrammedRandomOccurrenceInterface proc) {
+        this.proc = proc;
         this.hp = 120;
-        this.setPower(power);
+        this.setPower(1);
         this.resistance = 3;
     }
 
@@ -22,14 +23,19 @@ public class Rogue extends Character {
 
     @Override
     public double getSpecialDamage(Character enemy) {
-        if(enemy instanceof Wizard)
+        if (enemy instanceof Wizard)
             return 1.5;
 
         return 1;
     }
 
     @Override
-    protected void procAbility() {
+    protected void procAttackAbility() {
+    }
+
+    @Override
+    protected void procDefendAbility() {
+
     }
 
 }

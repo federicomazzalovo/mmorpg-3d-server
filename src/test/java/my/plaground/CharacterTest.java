@@ -1,8 +1,6 @@
 package my.plaground;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -11,21 +9,21 @@ class CharacterTest {
     @Test public void
     ensure_that_hps_not_negative(){
         Character character = new Paladin();
-        character.receiveDamage(1000);
+        character.defend(1000);
         assertTrue(character.getHp() >= 0);
     }
 
     @Test public void
     ensure_char_dead_if_hps_zero(){
         Character character = new Paladin();
-        character.receiveDamage(1000);
+        character.defend(1000);
         assertTrue(character.isDead());
     }
 
     @Test public void
     ensure_char_alive_if_hps_greater_than_zero(){
         Character character = new Paladin();
-        character.receiveDamage(149);
+        character.defend(149);
         assertTrue(character.isAlive());
     }
 
@@ -34,7 +32,7 @@ class CharacterTest {
         Character character = new Paladin();
 
         double initialHp = character.getHp();
-        character.receiveDamage(-10);
+        character.defend(-10);
 
         assertEquals(initialHp, character.getHp());
     }
@@ -45,7 +43,7 @@ class CharacterTest {
         Character rogue = new Rogue();
         double initRougeHp = rogue.getHp();
         // Kill paladin
-        paladin.receiveDamage(1000);
+        paladin.defend(1000);
 
         paladin.attack(rogue);
 

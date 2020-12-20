@@ -1,5 +1,6 @@
 package my.plaground;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -20,13 +21,14 @@ class RogueTest {
     public void ensure_that_rogue_damage_is_valid() {
         Character character = new Rogue();
         int damage = character.attackDamage();
-        assertTrue( damage >= 9 && damage <= 12, "not in range");
+        assertTrue(damage >= 9 && damage <= 12, "not in range");
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {  1, 2 })
-    public void ensure_that_rogue_empowered_damage_is_valid(int power){
-        Character character =new Rogue(power);
+    @ValueSource(ints = {1, 2})
+    public void ensure_that_rogue_empowered_damage_is_valid(int power) {
+        Character character = new Rogue();
+        character.setPower(power);
         int empoweredDamage = character.empoweredDamage();
 
         assertTrue(empoweredDamage >= (9 * character.getPower()));
@@ -34,13 +36,25 @@ class RogueTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = { -1, 0 })
-    public void ensure_that_rogue_with_invalid_power_throws_exception(int power){
+    @ValueSource(ints = {-1, 0})
+    public void ensure_that_rogue_with_invalid_power_throws_exception(int power) {
         assertThrows(
                 RuntimeException.class,
                 () -> {
-                    Character character = new Rogue(power);
-                    int empoweredDamage = character.empoweredDamage();
+                    Character character = new Rogue();
+                    character.setPower(power);
                 });
+    }
+
+
+    @Test
+    @Disabled
+    public void ensure_that_have_20_perc_chance_double_damages_each_attack() {
+        Character rogue = new Rogue();
+        Character paladin = new Paladin();
+
+        rogue.attack(paladin);
+
+
     }
 }
