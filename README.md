@@ -2,10 +2,10 @@
 
 ## TODO
 
-* Check for refactoring 
-* Check auto inflict damage 
-* Check other Iteration  step 
+* Check for refactoring
 
+## Notes
+* We decided that characters can heal other characters instead of just themselves
 
 ## Req
 

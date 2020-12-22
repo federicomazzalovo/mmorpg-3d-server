@@ -32,7 +32,7 @@ class WizardTest {
     @Test
     public void is_new_wizard_successfully_initialized() {
         assertEquals(100, wizard.getHp());
-        assertEquals(1, wizard.getPower());
+        assertEquals(1, wizard.getLevel());
         assertEquals(2, wizard.getResistance());
     }
 
@@ -45,11 +45,11 @@ class WizardTest {
     @ParameterizedTest
     @ValueSource(ints = { 1, 2 })
     public void ensure_that_wizard_empowered_damage_is_valid(int power){
-        wizard.setPower(power);
+        wizard.setLevel(power);
         int empoweredDamage = wizard.empoweredDamage();
 
-        assertTrue(empoweredDamage >= (13 * wizard.getPower()));
-        assertTrue(empoweredDamage <= (16 * wizard.getPower()));
+        assertTrue(empoweredDamage >= (13 * wizard.getLevel()));
+        assertTrue(empoweredDamage <= (16 * wizard.getLevel()));
     }
 
     @ParameterizedTest
@@ -57,15 +57,8 @@ class WizardTest {
     public void ensure_that_wizard_with_invalid_power_throws_exception(int power){
         assertThrows(
                 RuntimeException.class,
-                () -> wizard.setPower(power)
+                () -> wizard.setLevel(power)
         );
-    }
-
-    @Test
-    public void increase_hp_by_percentage() {
-        wizard.increaseHpByPercentage(20);
-
-        assertEquals(120, wizard.getHp());
     }
 
     @Test
@@ -78,10 +71,14 @@ class WizardTest {
 
     @Test
     public void ensure_hps_increase_by_correct_percentage_on_attack(){
-         Paladin paladin = new Paladin();
+        Paladin paladin = new Paladin();
+        wizard.defend(30);
+        double remainingHps = wizard.getHp();
+
         wizard.attack(paladin);
 
-        assertEquals(110, wizard.getHp());
+        double tenPercentHps = remainingHps * 0.1;
+        assertEquals(wizard.getHp(), (remainingHps + tenPercentHps));
     }
 
     @Test

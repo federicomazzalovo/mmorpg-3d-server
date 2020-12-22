@@ -10,7 +10,7 @@ public class Rogue extends Character {
         this.randomDataGenerator = randomDataGenerator;
         this.hp = 120;
         this.initHp = hp;
-        this.setPower(1);
+        this.setLevel(1);
         this.resistance = 3;
     }
 
@@ -30,7 +30,6 @@ public class Rogue extends Character {
     @Override
     public double calculateTotalDamage(Character enemy) {
         double damage = super.calculateTotalDamage(enemy);
-
         if (this.canProc())
             damage = damage * 2;
 

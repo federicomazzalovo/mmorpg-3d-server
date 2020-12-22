@@ -11,7 +11,7 @@ public class Wizard extends Character {
         this.hp = 100;
         this.initHp = hp;
         this.resistance = 2;
-        this.setPower(1);
+        this.setLevel(1);
     }
 
 
@@ -47,7 +47,7 @@ public class Wizard extends Character {
         if(percentage < 0)
             return;
 
-        this.hp += this.hp * (percentage / 100.0);
+        this.getHealed(this.hp * (percentage / 100.0));
     }
 
     private boolean canProc() {

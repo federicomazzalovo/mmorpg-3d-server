@@ -6,19 +6,19 @@ public abstract class Character {
 
     protected double initHp;
     protected double hp;
-    protected int power;
+    protected int level;
     protected int resistance;
     protected RandomDataGeneratorInterface randomDataGenerator;
 
-    public int getPower() {
-        return power;
+    public int getLevel() {
+        return level;
     }
 
-    protected void setPower(int power) {
-        if (power <= 0)
+    protected void setLevel(int level) {
+        if (level <= 0)
             throw new RuntimeException("Invalid power");
 
-        this.power = power;
+        this.level = level;
     }
 
     public double getHp() {
@@ -34,15 +34,13 @@ public abstract class Character {
         return resistance;
     }
 
-
     protected abstract double getSpecialDamage(Character enemy);
 
     public abstract int attackDamage();
 
     public int empoweredDamage() {
-        return this.attackDamage() * this.power;
+        return this.attackDamage() * this.level;
     }
-
 
     public boolean isDead() {
         return this.hp == 0;
@@ -53,7 +51,7 @@ public abstract class Character {
     }
 
     public void attack(Character enemy) {
-        if (this.isDead())
+        if (this.isDead() || this.equals(enemy))
             return;
 
         double totalDamage = this.calculateTotalDamage(enemy);
@@ -78,6 +76,9 @@ public abstract class Character {
     }
 
     public void heal(Character target) {
+        if(this.isDead() || target.isDead())
+            return;
+
         double hps = this.calculateHealingHps();
         target.getHealed(hps);
     }

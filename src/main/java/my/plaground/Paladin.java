@@ -11,7 +11,7 @@ public class Paladin extends Character {
         this.hp = 150;
         this.initHp = hp;
         this.resistance = 4;
-        this.setPower(1);
+        this.setLevel(1);
     }
 
     @Override

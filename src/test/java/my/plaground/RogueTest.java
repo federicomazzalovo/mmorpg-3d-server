@@ -32,7 +32,7 @@ class RogueTest {
     @Test
     public void is_new_rogue_successfully_initialized() {
         assertEquals(120, character.getHp());
-        assertEquals(1, character.getPower());
+        assertEquals(1, character.getLevel());
         assertEquals(3, character.getResistance());
     }
 
@@ -45,11 +45,11 @@ class RogueTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 2})
     public void ensure_that_rogue_empowered_damage_is_valid(int power) {
-        character.setPower(power);
+        character.setLevel(power);
         int empoweredDamage = character.empoweredDamage();
 
-        assertTrue(empoweredDamage >= (9 * character.getPower()));
-        assertTrue(empoweredDamage <= (12 * character.getPower()));
+        assertTrue(empoweredDamage >= (9 * character.getLevel()));
+        assertTrue(empoweredDamage <= (12 * character.getLevel()));
     }
 
     @ParameterizedTest
@@ -58,7 +58,7 @@ class RogueTest {
         assertThrows(
                 RuntimeException.class,
                 () -> {
-                    character.setPower(power);
+                    character.setLevel(power);
                 });
     }
 

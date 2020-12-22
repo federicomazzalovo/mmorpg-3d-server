@@ -32,7 +32,7 @@ class PaladinTest {
     @Test
     public void is_new_paladin_successfully_initialized() {
         assertEquals(150, this.character.getHp());
-        assertEquals(1, character.getPower());
+        assertEquals(1, character.getLevel());
         assertEquals(4, character.getResistance());
     }
 
@@ -45,11 +45,11 @@ class PaladinTest {
     @ParameterizedTest
     @ValueSource(ints = { 1, 2 })
     public void ensure_that_paladin_empowered_damage_is_valid(int power){
-        character.setPower(power);
+        character.setLevel(power);
         int empoweredDamage = character.empoweredDamage();
 
-        assertTrue(empoweredDamage >= (5 * character.getPower()));
-        assertTrue(empoweredDamage <= (8 * character.getPower()));
+        assertTrue(empoweredDamage >= (5 * character.getLevel()));
+        assertTrue(empoweredDamage <= (8 * character.getLevel()));
     }
 
     @ParameterizedTest
@@ -58,7 +58,7 @@ class PaladinTest {
         assertThrows(
                 RuntimeException.class,
                 () -> {
-                    character.setPower(power);
+                    character.setLevel(power);
                 });
     }
 
