@@ -1,7 +1,5 @@
 package my.plaground;
 
-import java.util.Random;
-
 public class Rogue extends Character {
 
     public Rogue() {
@@ -11,13 +9,14 @@ public class Rogue extends Character {
     public Rogue(RandomDataGeneratorInterface randomDataGenerator) {
         this.randomDataGenerator = randomDataGenerator;
         this.hp = 120;
+        this.initHp = hp;
         this.setPower(1);
         this.resistance = 3;
     }
 
     @Override
     public int attackDamage() {
-        return randomDataGenerator.getRandomValueRange(9,12);
+        return randomDataGenerator.getRandomValueRange(9, 12);
     }
 
     @Override
@@ -32,7 +31,7 @@ public class Rogue extends Character {
     public double calculateTotalDamage(Character enemy) {
         double damage = super.calculateTotalDamage(enemy);
 
-        if(this.canProc())
+        if (this.canProc())
             damage = damage * 2;
 
         return damage;

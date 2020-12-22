@@ -9,6 +9,7 @@ public class Wizard extends Character {
     public Wizard(RandomDataGeneratorInterface proc){
         this.randomDataGenerator = proc;
         this.hp = 100;
+        this.initHp = hp;
         this.resistance = 2;
         this.setPower(1);
     }
@@ -39,7 +40,7 @@ public class Wizard extends Character {
 
     @Override
     protected double calculateHealingHps() {
-        return 0;
+        return randomDataGenerator.getRandomValueRange(1,4);
     }
 
     public void increaseHpByPercentage(double percentage) {

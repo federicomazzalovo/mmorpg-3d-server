@@ -1,7 +1,10 @@
 package my.plaground;
 
+import static java.lang.Math.*;
+
 public abstract class Character {
 
+    protected double initHp;
     protected double hp;
     protected int power;
     protected int resistance;
@@ -11,8 +14,8 @@ public abstract class Character {
         return power;
     }
 
-    protected void setPower(int power){
-        if(power <= 0)
+    protected void setPower(int power) {
+        if (power <= 0)
             throw new RuntimeException("Invalid power");
 
         this.power = power;
@@ -20,6 +23,11 @@ public abstract class Character {
 
     public double getHp() {
         return hp;
+    }
+
+
+    public double getInitHp() {
+        return initHp;
     }
 
     public int getResistance() {
@@ -45,7 +53,7 @@ public abstract class Character {
     }
 
     public void attack(Character enemy) {
-        if(this.isDead())
+        if (this.isDead())
             return;
 
         double totalDamage = this.calculateTotalDamage(enemy);
@@ -57,7 +65,7 @@ public abstract class Character {
     }
 
     public void defend(double damage) {
-        if(damage <= 0)
+        if (damage <= 0)
             return;
 
         this.hp -= this.calculateReceivedDamage(damage);
@@ -69,14 +77,14 @@ public abstract class Character {
         return damage;
     }
 
-    public void heal(Character target){
+    public void heal(Character target) {
         double hps = this.calculateHealingHps();
         target.getHealed(hps);
     }
 
-     protected abstract double calculateHealingHps();
+    protected abstract double calculateHealingHps();
 
-    protected void getHealed(double hps){
-        this.hp += hps;
+    protected void getHealed(double hps) {
+        this.hp = min(this.hp + hps, this.initHp);
     }
 }
