@@ -3,10 +3,12 @@
 ## TODO
 
 * Check for refactoring
+* Do "Iteration Three" chapter
 
 ## Notes
 * We decided that characters can heal other characters instead of just themselves
-
+   * WONT DO - A Character can only Heal itself.
+  
 ## Req
 
 The simple RPG game you're implementing allows to simulate the battle between 2 different characters to define the winner.

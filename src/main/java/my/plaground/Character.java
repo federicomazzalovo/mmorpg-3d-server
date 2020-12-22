@@ -59,7 +59,13 @@ public abstract class Character {
     }
 
     public double calculateTotalDamage(Character enemy) {
-        return (this.empoweredDamage() * this.getSpecialDamage(enemy)) / enemy.getResistance();
+        double totalDamage = (this.empoweredDamage() * this.getSpecialDamage(enemy)) / enemy.getResistance();
+        if(enemy.level - this.level >= 5 )
+            totalDamage *= 0.5;
+        else if(this.level - enemy.level >= 5)
+            totalDamage += totalDamage *  0.5;
+
+        return totalDamage;
     }
 
     public void defend(double damage) {

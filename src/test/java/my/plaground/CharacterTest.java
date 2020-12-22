@@ -108,4 +108,32 @@ class CharacterTest {
 
 
 
+    @Test public void
+    ensure_that_dmg_is_reduce_by_50_perc_if_enemy_too_many_level_above() {
+        Character paladin = new Paladin(new my.plaground.PaladinTest.PaladinRandomDataMocked());
+
+        Character rogue = new Rogue(new my.plaground.RogueTest.RogueRandomDataMocked());;
+
+        double sameLevelDamage = paladin.calculateTotalDamage(rogue);
+
+        rogue.setLevel(6);
+        double diffLevelDamage = paladin.calculateTotalDamage(rogue);
+
+        assertEquals(sameLevelDamage  * 0.5, diffLevelDamage);
+    }
+
+    @Test public void
+    ensure_that_dmg_is_increase_by_50_perc_if_enemy_too_many_level_below() {
+        Character paladin = new Paladin(new my.plaground.PaladinTest.PaladinRandomDataMocked());
+
+        Character rogue = new Rogue(new my.plaground.RogueTest.RogueRandomDataMocked());;
+
+        double sameLevelDamage = paladin.calculateTotalDamage(rogue);
+
+        paladin.setLevel(6);
+        double diffLevelDamage = paladin.calculateTotalDamage(rogue);
+
+        assertEquals(sameLevelDamage  + (sameLevelDamage * 0.5), diffLevelDamage / paladin.getLevel() );
+    }
+
 }
