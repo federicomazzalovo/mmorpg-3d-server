@@ -38,6 +38,11 @@ public class Rogue extends Character {
         return damage;
     }
 
+    @Override
+    protected double calculateHealingHps() {
+        return 0;
+    }
+
     private boolean canProc() {
         return randomDataGenerator.getRandomPercentage() <= 20;
     }

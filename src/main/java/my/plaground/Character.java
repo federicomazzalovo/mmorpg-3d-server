@@ -68,4 +68,15 @@ public abstract class Character {
     protected double calculateReceivedDamage(double damage) {
         return damage;
     }
+
+    public void heal(Character target){
+        double hps = this.calculateHealingHps();
+        target.getHealed(hps);
+    }
+
+     protected abstract double calculateHealingHps();
+
+    protected void getHealed(double hps){
+        this.hp += hps;
+    }
 }

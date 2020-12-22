@@ -49,4 +49,16 @@ class CharacterTest {
 
         assertEquals(initRougeHp, rogue.getHp());
     }
+
+    @Test public void
+    ensure_that_hps_increase_when_healed(){
+        Character paladin = new Paladin();
+        Character rogue = new Rogue();
+
+        paladin.attack(rogue);
+        double remainingHps = rogue.getHp();
+        paladin.heal(rogue);
+
+        assertTrue(rogue.getHp() > remainingHps);
+    }
 }

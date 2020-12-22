@@ -37,6 +37,11 @@ public class Wizard extends Character {
         return totalDamage;
     }
 
+    @Override
+    protected double calculateHealingHps() {
+        return 0;
+    }
+
     public void increaseHpByPercentage(double percentage) {
         if(percentage < 0)
             return;

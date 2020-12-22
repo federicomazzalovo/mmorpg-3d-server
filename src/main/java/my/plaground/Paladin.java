@@ -34,6 +34,11 @@ public class Paladin extends Character {
         return super.calculateReceivedDamage(damage);
     }
 
+    @Override
+    protected double calculateHealingHps() {
+        return 1;
+    }
+
     private void doubleResistance() {
         this.resistance = this.resistance * 2;
     }
