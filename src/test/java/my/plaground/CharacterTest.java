@@ -163,4 +163,62 @@ class CharacterTest {
 
         assertEquals(paladin.getInitHp(), paladin.getHp());
     }
+
+    @Test public void
+    ensure_new_character_can_join_faction(){
+        Character paladin = new Paladin(new my.plaground.PaladinTest.PaladinRandomDataMocked());
+
+        Faction faction = new Faction();
+        paladin.joinFaction(faction);
+
+        assertEquals(faction, paladin.faction);
+    }
+
+    @Test public void
+    ensure_character_cannot_join_faction_if_already_belongs_to_faction(){
+        Character paladin = new Paladin(new my.plaground.PaladinTest.PaladinRandomDataMocked());
+
+        Faction faction1 = new Faction();
+        paladin.joinFaction(faction1);
+
+        Faction faction2 = new Faction();
+        paladin.joinFaction(faction2);
+
+        assertEquals(faction1, paladin.faction);
+    }
+
+    @Test public void
+    ensure_character_leaves_faction_when_requested(){
+        Character paladin = new Paladin(new my.plaground.PaladinTest.PaladinRandomDataMocked());
+
+        Faction faction = new Faction();
+        paladin.joinFaction(faction);
+
+        paladin.leaveFaction();
+
+        assertEquals(null, paladin.faction);
+    }
+
+    @Test public void
+    ensure_same_faction_characters_are_allies(){
+        Character paladin1 = new Paladin(new my.plaground.PaladinTest.PaladinRandomDataMocked());
+        Character paladin2 = new Paladin(new my.plaground.PaladinTest.PaladinRandomDataMocked());
+
+        Faction faction = new Faction();
+        paladin1.joinFaction(faction);
+        paladin2.joinFaction(faction);
+
+        assertTrue(paladin1.isAlly(paladin2));
+    }
+
+    @Test public void
+    ensure_different_faction_characters_are_not_allies(){
+        Character paladin1 = new Paladin(new my.plaground.PaladinTest.PaladinRandomDataMocked());
+        Character paladin2 = new Paladin(new my.plaground.PaladinTest.PaladinRandomDataMocked());
+
+        Faction faction1 = new Faction();
+        paladin1.joinFaction(faction1);
+
+        assertFalse(paladin1.isAlly(paladin2));
+    }
 }

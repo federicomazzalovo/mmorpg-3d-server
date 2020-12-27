@@ -8,11 +8,8 @@ public abstract class Character {
     protected double hp;
     protected int level;
     protected int resistance;
-
-
     protected double maxRange;
-
-
+    protected Faction faction;
     protected Position position;
     protected RandomDataGeneratorInterface randomDataGenerator;
 
@@ -112,5 +109,20 @@ public abstract class Character {
 
     public void setPosition(Position position) {
         this.position = position;
+    }
+
+    public void joinFaction(Faction faction){
+        if(this.faction != null)
+            return;
+
+        this.faction = faction;
+    }
+
+    public void leaveFaction(){
+        this.faction = null;
+    }
+
+    public boolean isAlly(Character character){
+        return this.faction != null && this.faction.equals(character.faction);
     }
 }
