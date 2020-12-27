@@ -4,6 +4,7 @@ package my.plaground;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import static my.plaground.Position.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CharacterTest {
@@ -136,15 +137,30 @@ class CharacterTest {
         assertEquals(sameLevelDamage  + (sameLevelDamage * 0.5), diffLevelDamage / paladin.getLevel() );
     }
 
-    @Disabled
     @Test public void
-    ensure_character_can_attack_if_enemy_is_at_range(){
+    ensure_character_can_attack_if_enemy_in_range(){
         Character paladin = new Paladin(new my.plaground.PaladinTest.PaladinRandomDataMocked());
         Character wizard = new Wizard(new my.plaground.WizardTest.WizardRandomDataMocked());
 
-        Position paladinPosition = paladin.getPosition();
-        Position wizardPosition = wizard.getPosition();
+        paladin.setPosition(at(10,0));
+        wizard.setPosition(at(5,0));
 
 
+        wizard.attack(paladin);
+
+        assertTrue(paladin.getHp() < paladin.getInitHp());
+    }
+
+    @Test public void
+    ensure_character_cannot_attack_if_enemy_not_in_range(){
+        Character paladin = new Paladin(new my.plaground.PaladinTest.PaladinRandomDataMocked());
+        Character wizard = new Wizard(new my.plaground.WizardTest.WizardRandomDataMocked());
+
+        paladin.setPosition(at(100,0));
+        wizard.setPosition(at(5,0));
+
+        wizard.attack(paladin);
+
+        assertEquals(paladin.getInitHp(), paladin.getHp());
     }
 }

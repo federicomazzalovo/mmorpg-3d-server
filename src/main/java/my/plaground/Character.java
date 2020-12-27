@@ -8,7 +8,11 @@ public abstract class Character {
     protected double hp;
     protected int level;
     protected int resistance;
+
+
     protected double maxRange;
+
+
     protected Position position;
     protected RandomDataGeneratorInterface randomDataGenerator;
 
@@ -30,6 +34,7 @@ public abstract class Character {
     public double getInitHp() {
         return initHp;
     }
+
 
     public int getResistance() {
         return resistance;
@@ -57,6 +62,10 @@ public abstract class Character {
 
     public void attack(Character enemy) {
         if (this.isDead() || this.equals(enemy))
+            return;
+
+        double enemyDistance = this.position.distanceFrom(enemy.getPosition());
+        if(enemyDistance > maxRange)
             return;
 
         double totalDamage = this.calculateTotalDamage(enemy);
@@ -98,5 +107,10 @@ public abstract class Character {
 
     protected void getHealed(double hps) {
         this.hp = min(this.hp + hps, this.initHp);
+    }
+
+
+    public void setPosition(Position position) {
+        this.position = position;
     }
 }

@@ -11,7 +11,7 @@ public class Wizard extends Character {
         this.hp = 100;
         this.initHp = hp;
         this.resistance = 2;
-        this.maxRange = 15;
+        this.maxRange = 20;
         this.position = Position.at(0,0);
         this.setLevel(1);
     }
