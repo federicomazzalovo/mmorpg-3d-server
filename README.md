@@ -3,12 +3,12 @@
 ## TODO
 
 * Check for refactoring
-* Do "Iteration Four" chapter
+* Do "Iteration Five" chapter
 
 ## Notes
 * We decided that characters can heal other characters instead of just themselves
    * WONT DO - A Character can only Heal itself.
-* We asssume that a character can join one faction at a time
+* We assume that a character can join one faction at a time
   
 ## Req
 
