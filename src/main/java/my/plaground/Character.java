@@ -8,6 +8,8 @@ public abstract class Character {
     protected double hp;
     protected int level;
     protected int resistance;
+    protected double maxRange;
+    protected Position position;
     protected RandomDataGeneratorInterface randomDataGenerator;
 
     public int getLevel() {
@@ -25,13 +27,16 @@ public abstract class Character {
         return hp;
     }
 
-
     public double getInitHp() {
         return initHp;
     }
 
     public int getResistance() {
         return resistance;
+    }
+
+    public Position getPosition() {
+        return position;
     }
 
     protected abstract double getSpecialDamage(Character enemy);

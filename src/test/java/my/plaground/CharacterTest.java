@@ -136,4 +136,15 @@ class CharacterTest {
         assertEquals(sameLevelDamage  + (sameLevelDamage * 0.5), diffLevelDamage / paladin.getLevel() );
     }
 
+    @Disabled
+    @Test public void
+    ensure_character_can_attack_if_enemy_is_at_range(){
+        Character paladin = new Paladin(new my.plaground.PaladinTest.PaladinRandomDataMocked());
+        Character wizard = new Wizard(new my.plaground.WizardTest.WizardRandomDataMocked());
+
+        Position paladinPosition = paladin.getPosition();
+        Position wizardPosition = wizard.getPosition();
+
+
+    }
 }

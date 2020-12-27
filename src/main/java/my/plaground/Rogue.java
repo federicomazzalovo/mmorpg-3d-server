@@ -10,8 +10,10 @@ public class Rogue extends Character {
         this.randomDataGenerator = randomDataGenerator;
         this.hp = 120;
         this.initHp = hp;
-        this.setLevel(1);
+        this.maxRange = 1;
         this.resistance = 3;
+        this.position = Position.at(0,0);
+        this.setLevel(1);
     }
 
     @Override
