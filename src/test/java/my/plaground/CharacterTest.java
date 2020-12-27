@@ -57,7 +57,9 @@ class CharacterTest {
     ensure_that_hps_increase_when_healed(){
         Character paladin = new Paladin(new my.plaground.PaladinTest.PaladinRandomDataMocked());
         Character rogue = new Rogue(new my.plaground.RogueTest.RogueRandomDataMocked());
-
+        Faction faction = new Faction();
+        paladin.joinFaction(faction);
+        rogue.joinFaction(faction);
         paladin.attack(rogue);
         double remainingHps = rogue.getHp();
         paladin.heal(rogue);
@@ -196,7 +198,7 @@ class CharacterTest {
 
         paladin.leaveFaction();
 
-        assertEquals(null, paladin.faction);
+        assertNull(paladin.faction);
     }
 
     @Test public void
@@ -221,4 +223,38 @@ class CharacterTest {
 
         assertFalse(paladin1.isAlly(paladin2));
     }
+
+    @Test public void
+    ensure_that_allies_cannot_deal_damage_to_one_another() {
+        Character paladin1 = new Paladin(new my.plaground.PaladinTest.PaladinRandomDataMocked());
+        Character paladin2 = new Paladin(new my.plaground.PaladinTest.PaladinRandomDataMocked());
+
+        Faction faction = new Faction();
+        paladin1.joinFaction(faction);
+        paladin2.joinFaction(faction);
+
+        paladin1.attack(paladin2);
+
+        assertEquals(paladin2.getHp(), paladin2.getInitHp());
+    }
+
+    @Test public void
+    ensure_that_char_only_heal_himself_if_no_faction() {
+        Character paladin1 = new Paladin(new my.plaground.PaladinTest.PaladinRandomDataMocked());
+        Character paladin2 = new Paladin(new my.plaground.PaladinTest.PaladinRandomDataMocked());
+
+        paladin2.defend(10);
+        double remainingHpPaladin2 = paladin2.getHp();
+        paladin1.heal(paladin2);
+
+
+        paladin1.defend(10);
+        double remainingHpPaladin1 = paladin1.getHp();
+        paladin1.heal(paladin1);
+
+
+        assertTrue(paladin1.getHp() > remainingHpPaladin1);
+        assertEquals(paladin2.getHp(), remainingHpPaladin2);
+    }
+
 }

@@ -58,15 +58,19 @@ public abstract class Character {
     }
 
     public void attack(Character enemy) {
-        if (this.isDead() || this.equals(enemy))
-            return;
-
-        double enemyDistance = this.position.distanceFrom(enemy.getPosition());
-        if(enemyDistance > maxRange)
+        if (!canAttack(enemy))
             return;
 
         double totalDamage = this.calculateTotalDamage(enemy);
         enemy.defend(totalDamage);
+    }
+
+    private boolean canAttack(Character enemy) {
+        double enemyDistance = this.position.distanceFrom(enemy.getPosition());
+        return this.isAlive()
+                && enemyDistance <= maxRange
+                && !enemy.isAlly(this)
+                && !enemy.isMe(this);
     }
 
     public double calculateTotalDamage(Character enemy) {
@@ -93,11 +97,16 @@ public abstract class Character {
     }
 
     public void heal(Character target) {
-        if(this.isDead() || target.isDead())
+        if (!canHeal(target))
             return;
 
         double hps = this.calculateHealingHps();
         target.getHealed(hps);
+    }
+
+    private boolean canHeal(Character target) {
+        return      (this.isAlive() && target.isAlive())
+                &&  (this.isMe(target) || target.isAlly(this));
     }
 
     protected abstract double calculateHealingHps();
@@ -124,5 +133,10 @@ public abstract class Character {
 
     public boolean isAlly(Character character){
         return this.faction != null && this.faction.equals(character.faction);
+    }
+
+
+    private boolean isMe(Character character){
+      return this.equals(character);
     }
 }
