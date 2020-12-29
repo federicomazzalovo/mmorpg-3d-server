@@ -2,10 +2,8 @@ package my.plaground;
 
 import static java.lang.Math.*;
 
-public abstract class Character {
+public abstract class Character extends Target {
 
-    protected double initHp;
-    protected double hp;
     protected int level;
     protected int resistance;
     protected double maxRange;
@@ -23,15 +21,6 @@ public abstract class Character {
 
         this.level = level;
     }
-
-    public double getHp() {
-        return hp;
-    }
-
-    public double getInitHp() {
-        return initHp;
-    }
-
 
     public int getResistance() {
         return resistance;
@@ -57,20 +46,20 @@ public abstract class Character {
         return this.hp > 0;
     }
 
-    public void attack(Character enemy) {
-        if (!canAttack(enemy))
+    public void attack(Character target) {
+        if (!canAttack(target))
             return;
 
-        double totalDamage = this.calculateTotalDamage(enemy);
-        enemy.defend(totalDamage);
+        double totalDamage = this.calculateTotalDamage(target);
+        target.defend(totalDamage);
     }
 
-    private boolean canAttack(Character enemy) {
-        double enemyDistance = this.position.distanceFrom(enemy.getPosition());
+    private boolean canAttack(Character character) {
+        double enemyDistance = this.position.distanceFrom(character.getPosition());
         return this.isAlive()
                 && enemyDistance <= maxRange
-                && !enemy.isAlly(this)
-                && !enemy.isMe(this);
+                && !character.isAlly(this)
+                && !character.isMe(this);
     }
 
     public double calculateTotalDamage(Character enemy) {
@@ -81,19 +70,6 @@ public abstract class Character {
             totalDamage += totalDamage *  0.5;
 
         return totalDamage;
-    }
-
-    public void defend(double damage) {
-        if (damage <= 0)
-            return;
-
-        this.hp -= this.calculateReceivedDamage(damage);
-        if (this.hp <= 0)
-            this.hp = 0;
-    }
-
-    protected double calculateReceivedDamage(double damage) {
-        return damage;
     }
 
     public void heal(Character target) {
