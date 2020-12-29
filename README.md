@@ -3,7 +3,7 @@
 ## TODO
 
 * Check for refactoring
-* Do "Iteration Five" chapter
+* Find missing logics that can be implemented
 
 ## Notes
 * We decided that characters can heal other characters instead of just themselves
