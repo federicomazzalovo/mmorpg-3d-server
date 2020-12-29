@@ -2,8 +2,10 @@
 
 ## TODO
 
-* Check for refactoring
-* Find missing logics that can be implemented
+## CUSTOM FEATURES 
+* Add experience feature to allow characters to exp and level up
+* Add skills feature
+* Add equipments feature that increase characters stats
 
 ## Notes
 * We decided that characters can heal other characters instead of just themselves
@@ -34,7 +36,7 @@ For example, if a Wizard is attacking a Paladin, it'll deal:
 total_damage = (attack_damage * attacker_power * 1.5) / defenser_resistance
 ```
 
-Each attack is removing HPs to the defenser character, and the fight is over when at least one character dies. If one character remains alive, it's the winner of the fight.
+Each attack is removing HPs to the defender character, and the fight is over when at least one character dies. If one character remains alive, it's the winner of the fight.
 
 ## New need! Some additional rules!
 
