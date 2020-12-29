@@ -30,8 +30,8 @@ public class Rogue extends Character {
     }
 
     @Override
-    public double calculateTotalDamage(Character enemy) {
-        double damage = super.calculateTotalDamage(enemy);
+    public double calculateTotalDamage(Character target) {
+        double damage = super.calculateTotalDamage(target);
         if (this.canProc())
             damage = damage * 2;
 

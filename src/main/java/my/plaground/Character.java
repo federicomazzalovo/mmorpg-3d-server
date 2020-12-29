@@ -46,11 +46,19 @@ public abstract class Character extends Target {
         return this.hp > 0;
     }
 
-    public void attack(Character target) {
-        if (!canAttack(target))
-            return;
+    /* TODO: "Temporary Workaround" :)  REFACTOR */
+    public void attack(Target target) {
+        double totalDamage = 0;
+        if(target instanceof Character) {
+            Character character = (Character)target;
+            if (!canAttack(character))
+                return;
 
-        double totalDamage = this.calculateTotalDamage(target);
+            totalDamage =  this.calculateTotalDamage(character);
+        } else if(target instanceof Prop) {
+            Prop prop = (Prop)target;
+            totalDamage = this.calculateTotalDamage(prop);
+        }
         target.defend(totalDamage);
     }
 
@@ -62,14 +70,19 @@ public abstract class Character extends Target {
                 && !character.isMe(this);
     }
 
-    public double calculateTotalDamage(Character enemy) {
-        double totalDamage = (this.empoweredDamage() * this.getSpecialDamage(enemy)) / enemy.getResistance();
-        if(enemy.level - this.level >= 5 )
+    public double calculateTotalDamage(Character target) {
+        double totalDamage = (this.empoweredDamage() * this.getSpecialDamage(target)) / target.getResistance();
+        if(target.level - this.level >= 5 )
             totalDamage *= 0.5;
-        else if(this.level - enemy.level >= 5)
+        else if(this.level - target.level >= 5)
             totalDamage += totalDamage *  0.5;
 
         return totalDamage;
+    }
+
+    /* TODO: "Temporary Workaround" :)  REFACTOR */
+    public double calculateTotalDamage(Prop target) {
+        return  this.empoweredDamage();
     }
 
     public void heal(Character target) {

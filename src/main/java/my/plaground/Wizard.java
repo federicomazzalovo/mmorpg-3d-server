@@ -32,8 +32,8 @@ public class Wizard extends Character {
 
 
     @Override
-    public double calculateTotalDamage(Character enemy) {
-        double totalDamage = super.calculateTotalDamage(enemy);
+    public double calculateTotalDamage(Character target) {
+        double totalDamage = super.calculateTotalDamage(target);
         if(canProc())
             this.increaseHpByPercentage(10.0);
 
