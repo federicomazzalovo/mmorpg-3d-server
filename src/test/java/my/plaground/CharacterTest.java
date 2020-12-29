@@ -1,7 +1,5 @@
 package my.plaground;
 
-
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static my.plaground.Position.*;
@@ -112,10 +110,10 @@ class CharacterTest {
 
 
     @Test public void
-    ensure_that_dmg_is_reduce_by_50_perc_if_enemy_too_many_level_above() {
+    ensure_that_dmg_is_reduce_by_50_percent_if_enemy_too_many_level_above() {
         Character paladin = new Paladin(new my.plaground.PaladinTest.PaladinRandomDataMocked());
 
-        Character rogue = new Rogue(new my.plaground.RogueTest.RogueRandomDataMocked());;
+        Character rogue = new Rogue(new my.plaground.RogueTest.RogueRandomDataMocked());
 
         double sameLevelDamage = paladin.calculateTotalDamage(rogue);
 
@@ -126,10 +124,10 @@ class CharacterTest {
     }
 
     @Test public void
-    ensure_that_dmg_is_increase_by_50_perc_if_enemy_too_many_level_below() {
+    ensure_that_dmg_is_increase_by_50_percent_if_enemy_too_many_level_below() {
         Character paladin = new Paladin(new my.plaground.PaladinTest.PaladinRandomDataMocked());
 
-        Character rogue = new Rogue(new my.plaground.RogueTest.RogueRandomDataMocked());;
+        Character rogue = new Rogue(new my.plaground.RogueTest.RogueRandomDataMocked());
 
         double sameLevelDamage = paladin.calculateTotalDamage(rogue);
 

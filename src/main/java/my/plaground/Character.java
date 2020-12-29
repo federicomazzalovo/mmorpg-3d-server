@@ -46,19 +46,16 @@ public abstract class Character extends Target {
         return this.hp > 0;
     }
 
-    /* TODO: "Temporary Workaround" :)  REFACTOR */
-    public void attack(Target target) {
-        double totalDamage = 0;
-        if(target instanceof Character) {
-            Character character = (Character)target;
-            if (!canAttack(character))
-                return;
+    public void attack(Character target) {
+        if (!canAttack(target))
+            return;
 
-            totalDamage =  this.calculateTotalDamage(character);
-        } else if(target instanceof Prop) {
-            Prop prop = (Prop)target;
-            totalDamage = this.calculateTotalDamage(prop);
-        }
+        double totalDamage =  this.calculateTotalDamage(target);
+        target.defend(totalDamage);
+    }
+
+    public void attack(Prop target) {
+        double totalDamage = this.calculateTotalDamage(target);
         target.defend(totalDamage);
     }
 
@@ -80,9 +77,8 @@ public abstract class Character extends Target {
         return totalDamage;
     }
 
-    /* TODO: "Temporary Workaround" :)  REFACTOR */
     public double calculateTotalDamage(Prop target) {
-        return  this.empoweredDamage();
+        return this.empoweredDamage();
     }
 
     public void heal(Character target) {
