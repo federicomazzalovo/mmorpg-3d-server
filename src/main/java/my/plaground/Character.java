@@ -4,6 +4,7 @@ import static java.lang.Math.*;
 
 public abstract class Character extends Target {
 
+    protected int id;
     protected int level;
     protected int resistance;
     protected double maxRange;
@@ -28,6 +29,10 @@ public abstract class Character extends Target {
 
     public Position getPosition() {
         return position;
+    }
+
+    public int getId() {
+        return id;
     }
 
     protected abstract double getSpecialDamage(Character enemy);
