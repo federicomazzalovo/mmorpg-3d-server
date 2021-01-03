@@ -2,8 +2,6 @@
 
 
 # TODO - API 
-   *  Position of specific char  (player or npc) - (GET, UPDATE)
-      ** Add ID on char
    *  List of random char to spawn on map  -  (GET)
       ** Add flag to know if char is the player controlled
    *  Attack target (POST)

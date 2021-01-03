@@ -14,7 +14,7 @@ public class SimpleRpgKataApplication {
     }
 
 
-    public static List<Character> getCharacterList() {
+    public static List<Character> getMockedCharacterList() {
         Character paladin = new Paladin();
         paladin.id = 1;
         paladin.setPosition(new Position(1, 2));

@@ -4,21 +4,21 @@ package my.plaground.Controller;
 import lombok.extern.slf4j.Slf4j;
 import my.plaground.Character;
 import my.plaground.Position;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
-import static my.plaground.SimpleRpgKataApplication.getCharacterList;
+import java.util.List;
+
+import static my.plaground.SimpleRpgKataApplication.getMockedCharacterList;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/position")
-public class PositionController {
+@RequestMapping("/api/character")
+public class CharacterController {
 
-    @GetMapping("/{characterId}")
+    @GetMapping("/{characterId}/position")
     public ResponseEntity<Position> getCharacterPosition(@PathVariable Integer characterId) throws Exception {
-        Character character = getCharacterList().stream()
+        Character character = getMockedCharacterList().stream()
                 .filter(c -> c.getId() == characterId)
                 .findFirst()
                 .orElseThrow(() -> new Exception("Employee not found for this id :: " + characterId));
@@ -28,9 +28,9 @@ public class PositionController {
     }
 
 
-    @PutMapping("/{characterId}")
+    @PutMapping("/{characterId}/position")
     public ResponseEntity<Position> updateCharacterPosition(@PathVariable Integer characterId, @RequestBody Position newPosition) throws Exception {
-        Character character = getCharacterList().stream()
+        Character character = getMockedCharacterList().stream()
                 .filter(c -> c.getId() == characterId)
                 .findFirst()
                 .orElseThrow(() -> new Exception("Employee not found for this id :: " + characterId));
@@ -38,5 +38,10 @@ public class PositionController {
         character.setPosition(newPosition);
         return ResponseEntity.ok(newPosition);
 
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Character>> getCharacterList() throws Exception {
+        return ResponseEntity.ok(getMockedCharacterList());
     }
 }
