@@ -1,13 +1,13 @@
 DROP TABLE IF EXISTS Characters;
 
 CREATE TABLE Characters(
-  id INT AUTO_INCREMENT  PRIMARY KEY,
-levelValue INT,
-isPlayer BIT,
-positionX DOUBLE,
-positionY DOUBLE,
-hp DOUBLE,
-classId INT
+    id INT AUTO_INCREMENT  PRIMARY KEY,
+    levelValue INT,
+    isPlayer BIT,
+    positionX DOUBLE,
+    positionY DOUBLE,
+    hp DOUBLE,
+    classId INT
 );
 
 INSERT INTO Characters (levelValue, isPlayer, positionX, positionY, hp, classId) VALUES
