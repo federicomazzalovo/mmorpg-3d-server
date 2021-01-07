@@ -1,13 +1,13 @@
 #  Code Kata - Simple RPG
 
 
-# TODO - API 
-   *  List of random char to spawn on map  -  (GET)
-      ** Add flag to know if char is the player controlled
+# TODO 
+### API
    *  Attack target (POST)
 
+### Service 
+   *  Get Char postion (GET, UPDDATE)
 
-## TODO
 
 ## CUSTOM FEATURES 
 * Add experience feature to allow characters to exp and level up
