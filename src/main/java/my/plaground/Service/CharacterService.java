@@ -1,5 +1,6 @@
 package my.plaground.Service;
 
+import my.plaground.Position;
 import my.plaground.Repository.CharacterEntity;
 import my.plaground.Repository.CharacterRepository;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,7 @@ public class CharacterService {
         return this.repository.findAll().stream()
                     .map(this.characterFactory::getCharacter).collect(Collectors.toList());
     }
+
 
 
 }

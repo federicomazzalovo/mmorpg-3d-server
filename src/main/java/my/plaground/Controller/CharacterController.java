@@ -5,12 +5,14 @@ import lombok.extern.slf4j.Slf4j;
 import my.plaground.Character;
 import my.plaground.Position;
 import my.plaground.Service.CharacterService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 import static my.plaground.SimpleRpgKataApplication.getMockedCharacterList;
+
 
 @Slf4j
 @RestController
@@ -19,6 +21,7 @@ public class CharacterController {
 
     private final CharacterService characterService;
 
+    @Autowired
     public CharacterController(CharacterService characterService) {
         this.characterService = characterService;
     }

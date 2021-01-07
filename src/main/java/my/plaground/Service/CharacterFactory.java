@@ -11,8 +11,7 @@ public class CharacterFactory {
     public Character getCharacter(CharacterEntity entity) {
         Character instance;
 
-        switch(entity.getClassId())
-        {
+        switch (entity.getClassId()) {
             case 1:
                 instance = new Paladin();
                 break;
@@ -29,7 +28,7 @@ public class CharacterFactory {
         instance.setId(entity.getId());
         instance.setLevel(entity.getLevelValue());
         instance.setIsPlayer(entity.isPlayer());
-        instance.setPosition(Position.at(entity.getPositionX(),entity.getPositionY()));
+        instance.setPosition(Position.at(entity.getPositionx(), entity.getPositiony()));
         instance.setHp(entity.getHp());
 
         return instance;
