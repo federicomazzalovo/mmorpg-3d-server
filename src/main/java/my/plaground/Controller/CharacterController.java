@@ -4,6 +4,7 @@ package my.plaground.Controller;
 import lombok.extern.slf4j.Slf4j;
 import my.plaground.Character;
 import my.plaground.Position;
+import my.plaground.Service.CharacterService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,12 @@ import static my.plaground.SimpleRpgKataApplication.getMockedCharacterList;
 @RestController
 @RequestMapping("/api/character")
 public class CharacterController {
+
+    private final CharacterService characterService;
+
+    public CharacterController(CharacterService characterService) {
+        this.characterService = characterService;
+    }
 
     @GetMapping("/{characterId}/position")
     public ResponseEntity<Position> getCharacterPosition(@PathVariable Integer characterId) throws Exception {
@@ -42,6 +49,6 @@ public class CharacterController {
 
     @GetMapping("/all")
     public ResponseEntity<List<Character>> getCharacterList() throws Exception {
-        return ResponseEntity.ok(getMockedCharacterList());
+        return ResponseEntity.ok(this.characterService.getCharacters());
     }
 }
