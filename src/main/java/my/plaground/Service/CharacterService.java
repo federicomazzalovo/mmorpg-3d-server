@@ -27,7 +27,7 @@ public class CharacterService {
     }
 
     public Optional<Character> getCharacter(int characterId){
-        return Optional.empty();
+        return Optional.of(this.characterFactory.getCharacter(this.repository.getOne(characterId)));
     }
 
 }
