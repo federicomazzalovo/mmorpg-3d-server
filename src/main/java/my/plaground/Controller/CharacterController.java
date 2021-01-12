@@ -28,9 +28,7 @@ public class CharacterController {
 
     @GetMapping("/{characterId}/position")
     public ResponseEntity<Position> getCharacterPosition(@PathVariable Integer characterId) throws Exception {
-        Character character = getMockedCharacterList().stream()
-                .filter(c -> c.getId() == characterId)
-                .findFirst()
+        Character character = this.characterService.getCharacter(characterId)
                 .orElseThrow(() -> new Exception("Employee not found for this id :: " + characterId));
 
         return ResponseEntity.ok(character.getPosition());

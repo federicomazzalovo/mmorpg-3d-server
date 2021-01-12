@@ -6,6 +6,7 @@ import my.plaground.Repository.CharacterRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import my.plaground.Character;
 
@@ -25,6 +26,8 @@ public class CharacterService {
                     .map(this.characterFactory::getCharacter).collect(Collectors.toList());
     }
 
-
+    public Optional<Character> getCharacter(int characterId){
+        return Optional.empty();
+    }
 
 }
