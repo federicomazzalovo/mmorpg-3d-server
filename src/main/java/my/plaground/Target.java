@@ -4,6 +4,9 @@ public abstract class Target {
     protected double initHp = 0;
     protected double hp = 0;
 
+    public void setHp(double hp) {
+        this.hp = hp;
+    }
     public double getHp() {
         return hp;
     }

@@ -1,7 +1,11 @@
 #  Code Kata - Simple RPG
 
-## TODO
 
+# TODO 
+### API
+   
+### Service 
+   
 ## CUSTOM FEATURES 
 * Add experience feature to allow characters to exp and level up
 * Add skills feature

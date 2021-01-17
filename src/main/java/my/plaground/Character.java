@@ -1,21 +1,29 @@
 package my.plaground;
 
+import lombok.Data;
+
 import static java.lang.Math.*;
 
 public abstract class Character extends Target {
 
+    protected int id;
     protected int level;
     protected int resistance;
     protected double maxRange;
+    protected boolean isPlayer;
     protected Faction faction;
     protected Position position;
     protected RandomDataGeneratorInterface randomDataGenerator;
+
+    public void setIsPlayer(boolean player) {
+        isPlayer = player;
+    }
 
     public int getLevel() {
         return level;
     }
 
-    protected void setLevel(int level) {
+    public void setLevel(int level) {
         if (level <= 0)
             throw new RuntimeException("Invalid power");
 
@@ -28,6 +36,13 @@ public abstract class Character extends Target {
 
     public Position getPosition() {
         return position;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    public int getId() {
+        return id;
     }
 
     protected abstract double getSpecialDamage(Character enemy);
