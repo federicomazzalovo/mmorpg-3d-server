@@ -25,6 +25,14 @@ public class CharacterController {
         this.characterService = characterService;
     }
 
+
+
+    @GetMapping("/{characterId}")
+    public ResponseEntity<Character> getCharacter(@PathVariable Integer characterId) throws Exception {
+        Character character = this.characterService.getCharacter(characterId).orElseThrow(ResourceNotFound::new);
+        return ResponseEntity.ok(character);
+    }
+
     @GetMapping("/{characterId}/position")
     public ResponseEntity<Position> getCharacterPosition(@PathVariable Integer characterId) throws Exception {
        Character character = this.characterService.getCharacter(characterId).orElseThrow(ResourceNotFound::new);
@@ -42,14 +50,10 @@ public class CharacterController {
         return ResponseEntity.ok(this.characterService.getCharacters());
     }
 
-    @PutMapping("/{characterId}/attack/{targetId}")
-    public ResponseEntity<Boolean> attackCharacter(int characterId, int targetId){
+    @GetMapping("/{characterId}/attack/{targetId}")
+    public ResponseEntity<Boolean> attackCharacter(@PathVariable Integer characterId, @PathVariable Integer targetId){
+        characterService.attack(characterId, targetId);
         return ResponseEntity.badRequest().build();
     }
 
-    @GetMapping("/{characterId}")
-    public ResponseEntity<Character> getCharacter(@PathVariable Integer characterId) throws Exception {
-        Character character = this.characterService.getCharacter(characterId).orElseThrow(ResourceNotFound::new);
-        return ResponseEntity.ok(character);
-    }
 }

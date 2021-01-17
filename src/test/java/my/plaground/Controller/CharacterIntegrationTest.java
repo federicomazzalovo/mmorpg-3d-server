@@ -6,6 +6,7 @@ import my.plaground.Character;
 import my.plaground.Paladin;
 import my.plaground.Position;
 import my.plaground.Service.CharacterService;
+import my.plaground.Wizard;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -103,5 +104,19 @@ public class CharacterIntegrationTest {
         Paladin characterFound = this.objectMapper.readValue(jsonResult, Paladin.class);
 
         assertEquals(characterFound.getId(), 100);
+    }
+
+    @Disabled
+    @Test public void
+    ensure_that_character_in_range_can_attack_target() throws Exception {
+        MvcResult attackRequest = this.mockMvc.perform(MockMvcRequestBuilders.get("/api/character/1001/attack/1002")).andReturn();
+      //  MvcResult characterOneRequest = this.mockMvc.perform(MockMvcRequestBuilders.get("/api/character/1001")).andReturn();
+        MvcResult CharacterTwoRequest = this.mockMvc.perform(MockMvcRequestBuilders.get("/api/character/1002")).andReturn();
+
+     //   Paladin paladin = this.objectMapper.readValue(characterOneRequest.getResponse().getContentAsString(), Paladin.class);
+        Wizard wizard = this.objectMapper.readValue(CharacterTwoRequest.getResponse().getContentAsString(), Wizard.class);
+
+        //assertEquals(paladin.getHp(), 150);
+        assertTrue(wizard.getHp() <  120);
     }
 }

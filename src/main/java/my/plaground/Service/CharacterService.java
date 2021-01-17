@@ -1,5 +1,6 @@
 package my.plaground.Service;
 
+import my.plaground.Exception.ResourceNotFound;
 import my.plaground.Position;
 import my.plaground.Repository.CharacterEntity;
 import my.plaground.Repository.CharacterRepository;
@@ -43,6 +44,31 @@ public class CharacterService {
         character.setPositiony(newPosition.getY());
         CharacterEntity charSaved = this.repository.save(character);
         return  this.characterFactory.getCharacter(charSaved);
+    }
+
+    public Character updateCharacter(Character updatedCharacter) {
+        CharacterEntity character = this.repository.getOne(updatedCharacter.getId());
+        character.setPositionx(updatedCharacter.getPosition().getX());
+        character.setPositiony(updatedCharacter.getPosition().getY());
+        character.setHp(updatedCharacter.getHp());
+        character.setLevelValue(updatedCharacter.getLevel());
+        CharacterEntity charSaved = this.repository.save(character);
+        return  this.characterFactory.getCharacter(charSaved);
+    }
+
+    public void attack(int characterId, int targetId) {
+        Optional<Character> attackerFromDB = this.getCharacter(characterId);
+        Optional<Character> targetFromDB = this.getCharacter(targetId);
+
+        if(attackerFromDB.isEmpty() || targetFromDB.isEmpty())
+            throw new ResourceNotFound();
+
+        Character attacker = attackerFromDB.get();
+        Character target = targetFromDB.get();
+
+        attacker.attack(target);
+
+        this.updateCharacter(target);
     }
 
 }
