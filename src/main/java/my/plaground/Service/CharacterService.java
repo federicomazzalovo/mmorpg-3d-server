@@ -10,6 +10,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import my.plaground.Character;
 
+import javax.persistence.EntityNotFoundException;
+
 @Service
 public class CharacterService {
 
@@ -27,7 +29,20 @@ public class CharacterService {
     }
 
     public Optional<Character> getCharacter(int characterId){
-        return Optional.of(this.characterFactory.getCharacter(this.repository.getOne(characterId)));
+        try {
+            return Optional.of(this.characterFactory.getCharacter(this.repository.getOne(characterId)));
+        } catch (EntityNotFoundException e){
+            return Optional.empty();
+        }
+    }
+
+
+    public Character updatePosition(int characterId, Position newPosition) {
+        CharacterEntity character = this.repository.getOne(characterId);
+        character.setPositionx(newPosition.getX());
+        character.setPositiony(newPosition.getY());
+        CharacterEntity charSaved = this.repository.save(character);
+        return  this.characterFactory.getCharacter(charSaved);
     }
 
 }

@@ -10,17 +10,12 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -29,9 +24,7 @@ import java.util.List;
 
 import static my.plaground.Position.at;
 import static my.plaground.SimpleRpgKataApplication.getMockedCharacterList;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 
 @ExtendWith(SpringExtension.class)
@@ -57,7 +50,6 @@ public class CharacterIntegrationTest {
         Character characterToFind = new Paladin();
         characterToFind.setPosition(at(8,2));
         characterToFind.setId(100);
-        //when(service.getCharacter(1)).thenReturn(Optional.of(characterToFind));
 
         MvcResult result = this.mockMvc.perform(MockMvcRequestBuilders.get("/api/character/100/position")).andReturn();
         String jsonResult = result.getResponse().getContentAsString();
@@ -66,7 +58,17 @@ public class CharacterIntegrationTest {
         assertEquals(HttpStatus.OK.value(), result.getResponse().getStatus());
     }
 
-    @Disabled
+
+    @Test
+    public void
+    ensure_throws_exception_if_character_id_is_invalid() throws Exception {
+        MvcResult result = this.mockMvc.perform(MockMvcRequestBuilders.get("/api/character/-1/position")).andReturn();
+        String jsonResult = result.getResponse().getContentAsString();
+
+        assertEquals(HttpStatus.NOT_FOUND.value(), result.getResponse().getStatus());
+    }
+
+
     @Test public void
     ensure_that_position_is_correctly_updated() throws Exception {
         Character characterToFind = getMockedCharacterList().stream().filter(c -> c.getId() == 1).findFirst().orElse(null);
@@ -86,8 +88,6 @@ public class CharacterIntegrationTest {
 
     @Test public void
     ensure_characters_list_is_valid_and_not_empty() throws Exception {
-
-      ///  when(service.getCharacters()).thenReturn(getMockedCharacterList());
 
         MvcResult result = this.mockMvc.perform(MockMvcRequestBuilders.get("/api/character/all")).andReturn();
         String jsonResult = result.getResponse().getContentAsString();
