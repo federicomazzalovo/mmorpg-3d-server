@@ -25,8 +25,6 @@ public class CharacterController {
         this.characterService = characterService;
     }
 
-
-
     @GetMapping("/{characterId}")
     public ResponseEntity<Character> getCharacter(@PathVariable Integer characterId) throws Exception {
         Character character = this.characterService.getCharacter(characterId).orElseThrow(ResourceNotFound::new);

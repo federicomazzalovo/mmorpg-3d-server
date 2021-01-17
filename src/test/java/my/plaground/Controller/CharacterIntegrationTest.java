@@ -106,17 +106,29 @@ public class CharacterIntegrationTest {
         assertEquals(characterFound.getId(), 100);
     }
 
-    @Disabled
     @Test public void
     ensure_that_character_in_range_can_attack_target() throws Exception {
         MvcResult attackRequest = this.mockMvc.perform(MockMvcRequestBuilders.get("/api/character/1001/attack/1002")).andReturn();
-      //  MvcResult characterOneRequest = this.mockMvc.perform(MockMvcRequestBuilders.get("/api/character/1001")).andReturn();
+        MvcResult characterOneRequest = this.mockMvc.perform(MockMvcRequestBuilders.get("/api/character/1001")).andReturn();
         MvcResult CharacterTwoRequest = this.mockMvc.perform(MockMvcRequestBuilders.get("/api/character/1002")).andReturn();
 
-     //   Paladin paladin = this.objectMapper.readValue(characterOneRequest.getResponse().getContentAsString(), Paladin.class);
+        Paladin paladin = this.objectMapper.readValue(characterOneRequest.getResponse().getContentAsString(), Paladin.class);
         Wizard wizard = this.objectMapper.readValue(CharacterTwoRequest.getResponse().getContentAsString(), Wizard.class);
 
-        //assertEquals(paladin.getHp(), 150);
+        assertEquals(paladin.getHp(), 150);
         assertTrue(wizard.getHp() <  120);
+    }
+
+    @Test public void
+    ensure_that_character_not_in_range_cannot_attack_target() throws Exception {
+        MvcResult attackRequest = this.mockMvc.perform(MockMvcRequestBuilders.get("/api/character/1003/attack/1004")).andReturn();
+        MvcResult characterOneRequest = this.mockMvc.perform(MockMvcRequestBuilders.get("/api/character/1003")).andReturn();
+        MvcResult CharacterTwoRequest = this.mockMvc.perform(MockMvcRequestBuilders.get("/api/character/1004")).andReturn();
+
+        Paladin paladin = this.objectMapper.readValue(characterOneRequest.getResponse().getContentAsString(), Paladin.class);
+        Wizard wizard = this.objectMapper.readValue(CharacterTwoRequest.getResponse().getContentAsString(), Wizard.class);
+
+        assertEquals(paladin.getHp(),150);
+        assertEquals(wizard.getHp(), 120);
     }
 }

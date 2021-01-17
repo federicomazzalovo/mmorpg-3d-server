@@ -3,12 +3,9 @@
 
 # TODO 
 ### API
-   *  Attack target (POST)
-
+   
 ### Service 
-   *  Get Char postion (GET, UPDDATE)
-
-
+   
 ## CUSTOM FEATURES 
 * Add experience feature to allow characters to exp and level up
 * Add skills feature
