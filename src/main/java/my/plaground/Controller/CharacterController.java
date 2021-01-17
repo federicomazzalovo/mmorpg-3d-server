@@ -31,7 +31,6 @@ public class CharacterController {
         return ResponseEntity.ok(character.getPosition());
     }
 
-
     @PutMapping("/{characterId}/position")
     public ResponseEntity<Position> updateCharacterPosition(@PathVariable Integer characterId, @RequestBody Position newPosition) throws Exception {
         Character character = characterService.updatePosition(characterId, newPosition);
@@ -41,5 +40,16 @@ public class CharacterController {
     @GetMapping("/all")
     public ResponseEntity<List<Character>> getCharacterList() throws Exception {
         return ResponseEntity.ok(this.characterService.getCharacters());
+    }
+
+    @PutMapping("/{characterId}/attack/{targetId}")
+    public ResponseEntity<Boolean> attackCharacter(int characterId, int targetId){
+        return ResponseEntity.badRequest().build();
+    }
+
+    @GetMapping("/{characterId}")
+    public ResponseEntity<Character> getCharacter(@PathVariable Integer characterId) throws Exception {
+        Character character = this.characterService.getCharacter(characterId).orElseThrow(ResourceNotFound::new);
+        return ResponseEntity.ok(character);
     }
 }
