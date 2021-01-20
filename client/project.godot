@@ -16,7 +16,17 @@ _global_script_class_icons={
 [application]
 
 config/name="Simple-rpg-kata-client"
+run/main_scene="res://Scene/Battlefield.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
+
+[mono]
+
+debugger_agent/wait_timeout=10000
 
 [rendering]
 
