@@ -1,5 +1,7 @@
 package my.plaground;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import static java.lang.Math.*;
@@ -10,9 +12,11 @@ public abstract class Character extends Target {
     protected int level;
     protected int resistance;
     protected double maxRange;
+    @JsonProperty("isPlayer")
     protected boolean isPlayer;
     protected Faction faction;
     protected Position position;
+    @JsonIgnore
     protected RandomDataGeneratorInterface randomDataGenerator;
 
     public void setIsPlayer(boolean player) {
