@@ -11,7 +11,7 @@ public class Rogue extends Character {
         this.hp = 120;
         this.initHp = hp;
         this.resistance = 3;
-        this.maxRange = 2;
+        this.maxRange = 100;
         this.position = Position.at(0,0);
         this.setLevel(1);
     }

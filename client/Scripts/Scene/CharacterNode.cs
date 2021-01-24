@@ -4,7 +4,7 @@ using System;
 public abstract class CharacterNode : KinematicBody2D
 {
 
-	protected Character character;
+	public Character character { get; private set; }
 	public Label HpLabel { get; private set; }
 
 	public override void _Ready()

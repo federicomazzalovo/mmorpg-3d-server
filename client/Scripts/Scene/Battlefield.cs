@@ -98,4 +98,18 @@ public class Battlefield : Node2D
 			return JsonConvert.DeserializeObject<List<Character>>(json);
 		}
 	}
+
+	public CharacterNode GetSelectedTarget()
+	{
+		foreach (Node children in this.GetChildren())
+		{
+			if (children is NpcNode)
+			{
+				NpcNode npc = children as NpcNode;
+				if (npc.IsSelected)
+					return npc;
+			}
+		}
+		return null;
+	}
 }

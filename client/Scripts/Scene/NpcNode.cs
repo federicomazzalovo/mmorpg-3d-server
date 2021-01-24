@@ -3,12 +3,12 @@ using System;
 
 public class NpcNode : CharacterNode
 {
-	private bool selected;
-	public bool SetSelected
+	private bool _selected;
+	public bool IsSelected
 	{
 		get
 		{
-			return this.selected;
+			return this._selected;
 		}
 		set
 		{
@@ -17,7 +17,7 @@ public class NpcNode : CharacterNode
 			else
 				this.SelectedBorder.Hide();
 
-			this.selected = value;
+			this._selected = value;
 		}
 	}
 
@@ -34,11 +34,12 @@ public class NpcNode : CharacterNode
 
 	public void Deselect()
 	{
-		this.SetSelected = false;
+		this.IsSelected = false;
 	}
 
-	private void _on_SelectedButton_pressed()
+	public void _on_SelectedButton_pressed()
 	{
-		this.SetSelected = true;
+		this.ParentNode.DeselectAllEnemies();
+		this.IsSelected = true;
 	}
 }

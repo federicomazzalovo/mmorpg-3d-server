@@ -11,7 +11,7 @@ public class Paladin extends Character {
         this.hp = 150;
         this.initHp = hp;
         this.resistance = 4;
-        this.maxRange = 5;
+        this.maxRange = 200;
         this.position = Position.at(0,0);
         this.setLevel(1);
     }
