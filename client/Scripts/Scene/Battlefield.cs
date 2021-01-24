@@ -21,8 +21,15 @@ public class Character
 
 public class CharacterPosition
 {
-	public long X { get; set; }
-	public long Y { get; set; }
+
+	public CharacterPosition(float x, float y)
+	{
+		this.X = x;
+		this.Y = y;
+	}
+
+	public float X { get; set; }
+	public float Y { get; set; }
 }
 
 public class Battlefield : Node2D
