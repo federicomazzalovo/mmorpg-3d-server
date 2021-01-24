@@ -27,15 +27,15 @@ public class CharacterPosition
 
 public class Battlefield : Node2D
 {
-	private KinematicBody2D playerNode;
-	private KinematicBody2D genericNodeToClone;
+	private CharacterNode playerNode;
+	private CharacterNode genericNodeToClone;
 	private IEnumerable<Character> characters;
 	private Character player;
 
 	public override void _Ready()
 	{
-		this.genericNodeToClone = this.GetNode("CharacterNode") as KinematicBody2D;
-		this.playerNode = this.GetNode("PlayerNode") as KinematicBody2D;
+		this.genericNodeToClone = this.GetNode("NpcNode") as CharacterNode;
+		this.playerNode = this.GetNode("PlayerNode") as CharacterNode;
 
 		this.characters = this.RetrieveCharacters();
 		this.LoadCharacters();
@@ -51,18 +51,20 @@ public class Battlefield : Node2D
 
 	private void AddCharactersSprites()
 	{
-		this.playerNode.Position = new Vector2(this.player.Position.X, this.player.Position.Y);
+		this.playerNode.Initialize(this.player);
+
 		foreach (Character character in this.characters)
 			this.AddCharacterSprite(character);
 	}
 
 	private void AddCharacterSprite(Character character)
 	{
-		KinematicBody2D characterSprite = this.genericNodeToClone.Duplicate() as KinematicBody2D;
-		characterSprite.Position = new Vector2(character.Position.X, character.Position.Y);
-		characterSprite.Show();
-
+		CharacterNode characterSprite = this.genericNodeToClone.Duplicate() as CharacterNode;
 		this.AddChild(characterSprite);
+
+		characterSprite.Initialize(character);
+
+		characterSprite.Show();		
 	}
 
 	private List<Character> RetrieveCharacters()
