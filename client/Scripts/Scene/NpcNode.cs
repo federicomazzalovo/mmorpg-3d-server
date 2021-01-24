@@ -32,20 +32,13 @@ public class NpcNode : CharacterNode
 		this.SelectedBorder = this.GetNode("SelectedBorder") as ColorRect;
 	}
 
-	public override void _Input(InputEvent @event)
-	{
-		base._Input(@event);
-
-		if (Input.IsMouseButtonPressed((int)ButtonList.Left))
-		{
-			this.ParentNode.DeselectAllEnemies();
-			this.SetSelected = true;
-		}
-
-	}
-
 	public void Deselect()
 	{
 		this.SetSelected = false;
+	}
+
+	private void _on_SelectedButton_pressed()
+	{
+		this.SetSelected = true;
 	}
 }
