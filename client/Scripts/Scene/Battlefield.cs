@@ -24,18 +24,31 @@ public class CharacterPosition
 
 	public CharacterPosition(float x, float y)
 	{
-		this.X = x;
-		this.Y = y;
+		this.x = x;
+		this.y = y;
 	}
 
-	public float X { get; set; }
-	public float Y { get; set; }
+	public float x { get; set; }
+	public float y { get; set; }
 }
 
 public class Battlefield : Node2D
 {
 	private CharacterNode playerNode;
 	private CharacterNode genericNodeToClone;
+
+	public void DeselectAllEnemies()
+	{
+		foreach(Node children in this.GetChildren())
+		{
+			if(children is NpcNode)
+			{
+				NpcNode npc = children as NpcNode;
+				npc.Deselect();
+			}
+		}
+	}
+
 	private IEnumerable<Character> characters;
 	private Character player;
 

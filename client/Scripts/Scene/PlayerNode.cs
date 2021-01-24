@@ -37,9 +37,9 @@ public class PlayerNode : CharacterNode
 		}
 
 		if(isNavigationButtonReleased())
-        {
+		{
 			this.UpdatePosition(this.GetPosition().x, this.GetPosition().y);
-        }
+		}
 
 		// We don't need to multiply velocity by delta because "MoveAndSlide" already takes delta time into account.
 
@@ -48,22 +48,25 @@ public class PlayerNode : CharacterNode
 		MoveAndSlide(velocity, new Vector2(0, -1));
 	}
 
-    private void UpdatePosition(float x, float y)
-    {
+	private void UpdatePosition(float x, float y)
+	{
 		using (HttpClient client = new HttpClient())
 		{
 			CharacterPosition newPosition = new CharacterPosition(x, y);
 			this.character.Position = newPosition;
 			HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(newPosition));
 			httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+
+			string z = httpContent.ToString();
+
 			HttpResponseMessage response = client.PutAsync("http://localhost:8080/api/character/"+ this.character.Id + "/position", httpContent).Result;
 
 			string json = response.Content.ReadAsStringAsync().Result;
 		}
 	}
 
-    private bool isNavigationButtonReleased()
-    {
+	private bool isNavigationButtonReleased()
+	{
 		return Input.IsActionJustReleased("ui_left")
 			|| Input.IsActionJustReleased("ui_right")
 			|| Input.IsActionJustReleased("ui_up")

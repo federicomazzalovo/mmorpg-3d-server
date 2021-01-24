@@ -8,11 +8,10 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 40.0
 
-[node name="Root" type="Node2D"]
+[node name="Battlefield" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="NpcNode" type="KinematicBody2D" parent="."]
-visible = false
 script = ExtResource( 4 )
 
 [node name="Hp" type="Label" parent="NpcNode"]
@@ -33,6 +32,16 @@ texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NpcNode"]
 shape = SubResource( 1 )
+
+[node name="SelectedBorder" type="ColorRect" parent="NpcNode"]
+visible = false
+margin_left = -33.0
+margin_top = -33.0
+margin_right = 33.0
+margin_bottom = 33.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="PlayerNode" type="KinematicBody2D" parent="."]
 script = ExtResource( 3 )
