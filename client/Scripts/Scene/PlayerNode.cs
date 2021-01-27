@@ -12,10 +12,14 @@ public class PlayerNode : CharacterNode
 
 	public Battlefield ParentNode { get; private set; }
 
+	private AnimatedSprite playerSprite { get; set; }
+
+
 	public override void _Ready()
 	{
 		base._Ready();
 		this.ParentNode = this.GetNode("/root/Battlefield") as Battlefield;
+		this.playerSprite = this.GetNode("/root/Battlefield/PlayerNode/PlayerSprite") as AnimatedSprite;
 	}
 
 	public override void _PhysicsProcess(float delta)
@@ -25,7 +29,7 @@ public class PlayerNode : CharacterNode
 		HandleMovementAction();
 
 		handleAttackAction();
-
+		
 		if (isNavigationButtonReleased())
 		{
 			this.UpdatePosition(this.GetPosition().x, this.GetPosition().y);
@@ -43,6 +47,7 @@ public class PlayerNode : CharacterNode
 		if (!Input.IsKeyPressed(KEY_A))
 			return;
 
+		//playerSprite.Play("attack");
 		this.AttackEnemy();
 	}
 
@@ -50,25 +55,33 @@ public class PlayerNode : CharacterNode
 
 	private void HandleMovementAction()
 	{
+		
 		if (Input.IsActionPressed("ui_left"))
 		{
+			playerSprite.FlipH = true;
+			playerSprite.Play("walk_horizontal_facing");
 			velocity.x = -walkSpeed;
 		}
 		else if (Input.IsActionPressed("ui_right"))
 		{
+			playerSprite.FlipH = false;
+			playerSprite.Play("walk_horizontal_facing");
 			velocity.x = walkSpeed;
 		}
 		else if (Input.IsActionPressed("ui_up"))
 		{
+			playerSprite.Play("walk_up_facing");
 			velocity.y = -walkSpeed;
 		}
 		else if (Input.IsActionPressed("ui_down"))
 		{
+			playerSprite.Play("walk_down_facing");
 			velocity.y = walkSpeed;
 
 		}
 		else
 		{
+			playerSprite.Playing = false;
 			velocity.x = 0;
 			velocity.y = 0;
 		}
@@ -76,8 +89,8 @@ public class PlayerNode : CharacterNode
 
 	private void UpdatePosition(float x, float y)
 	{
-		using (HttpClient client = new HttpClient())
-		{
+        using (HttpClient client = new HttpClient())
+        {
 			CharacterPosition newPosition = new CharacterPosition(x, y);
 			this.character.Position = newPosition;
 			HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(newPosition));
