@@ -9,11 +9,12 @@ public class PlayerNode : CharacterNode
 	Vector2 velocity;
 
 	public int KEY_A = 65;
+	private bool attackStarted;
+	private int counter = 0;
 
 	public Battlefield ParentNode { get; private set; }
 
 	private AnimatedSprite playerSprite { get; set; }
-
 
 	public override void _Ready()
 	{
@@ -26,14 +27,12 @@ public class PlayerNode : CharacterNode
 	{
 		base._PhysicsProcess(delta);
 
-		HandleMovementAction();
+		this.HandlePlayerAction();
 
-		handleAttackAction();
-		
+		this.handleAttackAction();
+
 		if (isNavigationButtonReleased())
-		{
-			this.UpdatePosition(this.GetPosition().x, this.GetPosition().y);
-		}
+			this.UpdatePosition(this.Position.x, this.Position.y);
 
 		// We don't need to multiply velocity by delta because "MoveAndSlide" already takes delta time into account.
 
@@ -47,39 +46,54 @@ public class PlayerNode : CharacterNode
 		if (!Input.IsKeyPressed(KEY_A))
 			return;
 
-		//playerSprite.Play("attack");
 		this.AttackEnemy();
 	}
 
-
-
-	private void HandleMovementAction()
+	private bool moveActionPressed
 	{
-		
+		get
+		{
+			return Input.IsActionPressed("ui_up")
+				|| Input.IsActionPressed("ui_down")
+				|| Input.IsActionPressed("ui_left")
+				|| Input.IsActionPressed("ui_right");
+		}
+	}
+
+	private void HandlePlayerAction()
+	{
+		if (Input.IsActionPressed("ui_up"))
+		{
+			playerSprite.Play("walk_up_facing");
+			velocity.y = -walkSpeed;
+		}
+		if (Input.IsActionPressed("ui_down"))
+		{
+			playerSprite.Play("walk_down_facing");
+			velocity.y = walkSpeed;
+		}
 		if (Input.IsActionPressed("ui_left"))
 		{
 			playerSprite.FlipH = true;
 			playerSprite.Play("walk_horizontal_facing");
 			velocity.x = -walkSpeed;
 		}
-		else if (Input.IsActionPressed("ui_right"))
+		if (Input.IsActionPressed("ui_right"))
 		{
 			playerSprite.FlipH = false;
 			playerSprite.Play("walk_horizontal_facing");
 			velocity.x = walkSpeed;
 		}
-		else if (Input.IsActionPressed("ui_up"))
+		if(Input.IsKeyPressed(KEY_A))
 		{
-			playerSprite.Play("walk_up_facing");
-			velocity.y = -walkSpeed;
+			this.attackStarted = true;			
 		}
-		else if (Input.IsActionPressed("ui_down"))
+		if(this.attackStarted)
 		{
-			playerSprite.Play("walk_down_facing");
-			velocity.y = walkSpeed;
+			playerSprite.Play("attack");
+		}
 
-		}
-		else
+		if (!this.moveActionPressed)
 		{
 			playerSprite.Playing = false;
 			velocity.x = 0;
@@ -89,8 +103,8 @@ public class PlayerNode : CharacterNode
 
 	private void UpdatePosition(float x, float y)
 	{
-        using (HttpClient client = new HttpClient())
-        {
+		using (HttpClient client = new HttpClient())
+		{
 			CharacterPosition newPosition = new CharacterPosition(x, y);
 			this.character.Position = newPosition;
 			HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(newPosition));
@@ -125,5 +139,10 @@ public class PlayerNode : CharacterNode
 			|| Input.IsActionJustReleased("ui_right")
 			|| Input.IsActionJustReleased("ui_up")
 			|| Input.IsActionJustReleased("ui_down");
+	}
+
+	private void _on_PlayerSprite_animation_finished()
+	{
+		this.attackStarted = false;
 	}
 }
