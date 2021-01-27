@@ -8,73 +8,73 @@ public class PlayerNode : CharacterNode
 	const int walkSpeed = 200;
 	Vector2 velocity;
 
-    public int KEY_A = 65;
+	public int KEY_A = 65;
 
-    public Battlefield ParentNode { get; private set; }
+	public Battlefield ParentNode { get; private set; }
 
-    public override void _Ready()
-    {
-        base._Ready();
-        this.ParentNode = this.GetNode("/root/Battlefield") as Battlefield;
-    }
+	public override void _Ready()
+	{
+		base._Ready();
+		this.ParentNode = this.GetNode("/root/Battlefield") as Battlefield;
+	}
 
-    public override void _PhysicsProcess(float delta)
-    {
-        base._PhysicsProcess(delta);
+	public override void _PhysicsProcess(float delta)
+	{
+		base._PhysicsProcess(delta);
 
-        HandleMovementAction();
+		HandleMovementAction();
 
-        handleAttackAction();
+		handleAttackAction();
 
-        if (isNavigationButtonReleased())
-        {
-            this.UpdatePosition(this.GetPosition().x, this.GetPosition().y);
-        }
+		if (isNavigationButtonReleased())
+		{
+			this.UpdatePosition(this.GetPosition().x, this.GetPosition().y);
+		}
 
-        // We don't need to multiply velocity by delta because "MoveAndSlide" already takes delta time into account.
+		// We don't need to multiply velocity by delta because "MoveAndSlide" already takes delta time into account.
 
-        // The second parameter of "MoveAndSlide" is the normal pointing up.
-        // In the case of a 2D platformer, in Godot, upward is negative y, which translates to -1 as a normal.
-        MoveAndSlide(velocity, new Vector2(0, -1));
-    }
+		// The second parameter of "MoveAndSlide" is the normal pointing up.
+		// In the case of a 2D platformer, in Godot, upward is negative y, which translates to -1 as a normal.
+		MoveAndSlide(velocity, new Vector2(0, -1));
+	}
 
-    private void handleAttackAction()
-    {
-        if (!Input.IsKeyPressed(KEY_A))
-            return;
+	private void handleAttackAction()
+	{
+		if (!Input.IsKeyPressed(KEY_A))
+			return;
 
-        this.AttackEnemy();
-    }
+		this.AttackEnemy();
+	}
 
 
 
-    private void HandleMovementAction()
-    {
-        if (Input.IsActionPressed("ui_left"))
-        {
-            velocity.x = -walkSpeed;
-        }
-        else if (Input.IsActionPressed("ui_right"))
-        {
-            velocity.x = walkSpeed;
-        }
-        else if (Input.IsActionPressed("ui_up"))
-        {
-            velocity.y = -walkSpeed;
-        }
-        else if (Input.IsActionPressed("ui_down"))
-        {
-            velocity.y = walkSpeed;
+	private void HandleMovementAction()
+	{
+		if (Input.IsActionPressed("ui_left"))
+		{
+			velocity.x = -walkSpeed;
+		}
+		else if (Input.IsActionPressed("ui_right"))
+		{
+			velocity.x = walkSpeed;
+		}
+		else if (Input.IsActionPressed("ui_up"))
+		{
+			velocity.y = -walkSpeed;
+		}
+		else if (Input.IsActionPressed("ui_down"))
+		{
+			velocity.y = walkSpeed;
 
-        }
-        else
-        {
-            velocity.x = 0;
-            velocity.y = 0;
-        }
-    }
+		}
+		else
+		{
+			velocity.x = 0;
+			velocity.y = 0;
+		}
+	}
 
-    private void UpdatePosition(float x, float y)
+	private void UpdatePosition(float x, float y)
 	{
 		using (HttpClient client = new HttpClient())
 		{
@@ -90,24 +90,23 @@ public class PlayerNode : CharacterNode
 	}
 
 
-    private void AttackEnemy()
-    {
-        using (HttpClient client = new HttpClient())
-        {
+	private void AttackEnemy()
+	{
+		using (HttpClient client = new HttpClient())
+		{
+			CharacterNode selectedTarget = this.ParentNode.GetSelectedTarget();
+			if (selectedTarget != null)
+			{
+				long targetId = selectedTarget.character.Id;
+				HttpResponseMessage response = client.GetAsync("http://localhost:8080/api/character/" + this.character.Id + "/attack/" + targetId).Result;
+				string json = response.Content.ReadAsStringAsync().Result;
 
-            CharacterNode selectedTarget = this.ParentNode.GetSelectedTarget();
-            if (selectedTarget != null)
-            {
-                long targetId = selectedTarget.character.Id;
+				selectedTarget.UpdateCharacter();
+			}
+		}
+	}
 
-                HttpResponseMessage response = client.GetAsync("http://localhost:8080/api/character/" + this.character.Id + "/attack/" + targetId).Result;
-
-                string json = response.Content.ReadAsStringAsync().Result;
-            }
-        }
-    }
-
-    private bool isNavigationButtonReleased()
+	private bool isNavigationButtonReleased()
 	{
 		return Input.IsActionJustReleased("ui_left")
 			|| Input.IsActionJustReleased("ui_right")

@@ -156,7 +156,7 @@ class CharacterTest {
         Character paladin = new Paladin(new my.plaground.PaladinTest.PaladinRandomDataMocked());
         Character wizard = new Wizard(new my.plaground.WizardTest.WizardRandomDataMocked());
 
-        paladin.setPosition(at(100,0));
+        paladin.setPosition(at(1500,0));
         wizard.setPosition(at(5,0));
 
         wizard.attack(paladin);
