@@ -49,16 +49,7 @@ public class PlayerNode : CharacterNode
 		this.AttackEnemy();
 	}
 
-	private bool moveActionPressed
-	{
-		get
-		{
-			return Input.IsActionPressed("ui_up")
-				|| Input.IsActionPressed("ui_down")
-				|| Input.IsActionPressed("ui_left")
-				|| Input.IsActionPressed("ui_right");
-		}
-	}
+ 
 
 	private void HandlePlayerAction()
 	{
@@ -67,38 +58,38 @@ public class PlayerNode : CharacterNode
 			playerSprite.Play("walk_up_facing");
 			velocity.y = -walkSpeed;
 		}
-		if (Input.IsActionPressed("ui_down"))
+		else if (Input.IsActionPressed("ui_down"))
 		{
 			playerSprite.Play("walk_down_facing");
 			velocity.y = walkSpeed;
 		}
-		if (Input.IsActionPressed("ui_left"))
+		else if(Input.IsActionPressed("ui_left"))
 		{
 			playerSprite.FlipH = true;
 			playerSprite.Play("walk_horizontal_facing");
 			velocity.x = -walkSpeed;
 		}
-		if (Input.IsActionPressed("ui_right"))
+		else if(Input.IsActionPressed("ui_right"))
 		{
 			playerSprite.FlipH = false;
 			playerSprite.Play("walk_horizontal_facing");
 			velocity.x = walkSpeed;
 		}
-		if(Input.IsKeyPressed(KEY_A))
+		else if(Input.IsKeyPressed(KEY_A))
 		{
 			this.attackStarted = true;			
 		}
-		if(this.attackStarted)
+		else if(this.attackStarted)
 		{
 			playerSprite.Play("attack");
 		}
-
-		if (!this.moveActionPressed)
+		else 
 		{
-			playerSprite.Playing = false;
+			playerSprite.Play("idle");
 			velocity.x = 0;
 			velocity.y = 0;
 		}
+
 	}
 
 	private void UpdatePosition(float x, float y)
