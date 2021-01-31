@@ -1,7 +1,6 @@
 package my.plaground.Domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 
 import static java.lang.Math.*;
 
@@ -11,12 +10,18 @@ public abstract class Character extends Target {
     protected int level;
     protected int resistance;
     protected double maxRange;
+
     @JsonProperty("isPlayer")
     protected boolean isPlayer;
+
     protected Faction faction;
     protected Position position;
+
     @JsonIgnore
     protected RandomDataGeneratorInterface randomDataGenerator;
+
+    @JsonProperty("characterClass")
+    @JsonFormat(shape = JsonFormat.Shape.NUMBER)
     protected CharacterClass characterClass;
 
     public void setIsPlayer(boolean player) {
