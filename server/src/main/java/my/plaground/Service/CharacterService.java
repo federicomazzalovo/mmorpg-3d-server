@@ -13,6 +13,8 @@ import my.plaground.Domain.Character;
 
 import javax.persistence.EntityNotFoundException;
 
+import static javax.swing.text.html.HTML.Tag.S;
+
 @Service
 public class CharacterService {
 
@@ -27,6 +29,11 @@ public class CharacterService {
     public List<Character> getCharacters() {
         return this.repository.findAll().stream()
                     .map(this.characterFactory::getCharacter).collect(Collectors.toList());
+    }
+
+    public List<Character> getCharactersAlive() {
+        return  this.getCharacters().stream()
+                .filter(Character::isAlive).collect(Collectors.toList());
     }
 
     public Optional<Character> getCharacter(int characterId){
@@ -70,5 +77,6 @@ public class CharacterService {
 
         this.updateCharacter(target);
     }
+
 
 }

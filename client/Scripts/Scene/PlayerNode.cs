@@ -65,14 +65,14 @@ public class PlayerNode : CharacterNode
 		}
 		else if(Input.IsActionPressed("ui_left"))
 		{
-			playerSprite.FlipH = true;
-			playerSprite.Play("walk_horizontal_facing");
+			playerSprite.FlipH = false;
+			playerSprite.Play("walk_side_facing");
 			velocity.x = -walkSpeed;
 		}
 		else if(Input.IsActionPressed("ui_right"))
 		{
-			playerSprite.FlipH = false;
-			playerSprite.Play("walk_horizontal_facing");
+			playerSprite.FlipH = true;
+			playerSprite.Play("walk_side_facing");
 			velocity.x = walkSpeed;
 		}
 		else if(Input.IsKeyPressed(KEY_A))

@@ -1,6 +1,7 @@
 package my.plaground.Controller;
 
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import my.plaground.Domain.Character;
 import my.plaground.Domain.Paladin;
@@ -20,10 +21,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static my.plaground.Domain.Position.at;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 
 @ExtendWith(SpringExtension.class)
@@ -92,6 +95,19 @@ public class CharacterIntegrationTest {
         var resultList = this.objectMapper.readValue(jsonResult, List.class);
 
         assertTrue(resultList != null && !resultList.isEmpty());
+    }
+
+    @Test public void
+    ensure_characters_alive_list_is_valid_and_not_empty() throws Exception {
+
+        MvcResult result = this.mockMvc.perform(MockMvcRequestBuilders.get("/api/character/all/alive")).andReturn();
+        String jsonResult = result.getResponse().getContentAsString();
+
+
+        List<Character> resultList = Arrays.asList( this.objectMapper.readValue(jsonResult, Paladin[].class));
+        boolean areAllAlive =  resultList.stream().allMatch(Character::isAlive);
+        assertFalse(resultList.isEmpty());
+        assertTrue(areAllAlive);
     }
 
     @Test public void

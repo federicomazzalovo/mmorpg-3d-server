@@ -12,7 +12,8 @@ INSERT INTO characters (id,level_value, is_player, positionx, positiony, hp, cla
   (1001,2, 0, 5, 5, 150, 1),
   (1002,2, 0, 6, 6, 120, 2),
   --- To attack not in range
-    (1003,2, 0, 5, 5, 150, 1),
-    (1004,2, 0, 300, 300, 120, 2);
-
+  (1003,2, 0, 5, 5, 150, 1),
+  (1004,2, 0, 300, 300, 120, 2),
+  -- Only for test alive dont modify
+  (2001,2, 0, 300, 300, 120, 2);
 

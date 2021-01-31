@@ -1,37 +1,36 @@
-[gd_scene load_steps=414 format=2]
+[gd_scene load_steps=428 format=2]
 
 [ext_resource path="res://Scripts/Scene/Battlefield.cs" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Scene/PlayerNode.cs" type="Script" id=3]
 [ext_resource path="res://Scripts/Scene/NpcNode.cs" type="Script" id=4]
-[ext_resource path="res://Assets/rogue/walk/right_facing/0_Warrior_Walk_001.png" type="Texture" id=5]
-[ext_resource path="res://Assets/rogue/walk/right_facing/0_Warrior_Walk_002.png" type="Texture" id=6]
-[ext_resource path="res://Assets/rogue/walk/right_facing/0_Warrior_Walk_016.png" type="Texture" id=7]
-[ext_resource path="res://Assets/rogue/walk/right_facing/0_Warrior_Walk_013.png" type="Texture" id=8]
-[ext_resource path="res://Assets/rogue/walk/right_facing/0_Warrior_Walk_007.png" type="Texture" id=9]
-[ext_resource path="res://Assets/rogue/walk/right_facing/0_Warrior_Walk_026.png" type="Texture" id=10]
-[ext_resource path="res://Assets/rogue/walk/right_facing/0_Warrior_Walk_011.png" type="Texture" id=11]
-[ext_resource path="res://Assets/rogue/walk/right_facing/0_Warrior_Walk_015.png" type="Texture" id=12]
-[ext_resource path="res://Assets/rogue/walk/right_facing/0_Warrior_Walk_027.png" type="Texture" id=13]
-[ext_resource path="res://Assets/rogue/walk/right_facing/0_Warrior_Walk_008.png" type="Texture" id=14]
-[ext_resource path="res://Assets/rogue/walk/right_facing/0_Warrior_Walk_019.png" type="Texture" id=15]
-[ext_resource path="res://Assets/rogue/walk/right_facing/0_Warrior_Walk_021.png" type="Texture" id=16]
-[ext_resource path="res://Assets/rogue/walk/right_facing/0_Warrior_Walk_010.png" type="Texture" id=17]
-[ext_resource path="res://Assets/rogue/walk/right_facing/0_Warrior_Walk_005.png" type="Texture" id=18]
-[ext_resource path="res://Assets/rogue/walk/right_facing/0_Warrior_Walk_022.png" type="Texture" id=19]
-[ext_resource path="res://Assets/rogue/walk/right_facing/0_Warrior_Walk_009.png" type="Texture" id=20]
-[ext_resource path="res://Assets/rogue/walk/right_facing/0_Warrior_Walk_004.png" type="Texture" id=21]
-[ext_resource path="res://Assets/rogue/walk/right_facing/0_Warrior_Walk_000.png" type="Texture" id=22]
-[ext_resource path="res://Assets/rogue/walk/right_facing/0_Warrior_Walk_003.png" type="Texture" id=23]
-[ext_resource path="res://Assets/rogue/walk/right_facing/0_Warrior_Walk_023.png" type="Texture" id=24]
-[ext_resource path="res://Assets/rogue/walk/right_facing/0_Warrior_Walk_025.png" type="Texture" id=25]
-[ext_resource path="res://Assets/rogue/walk/right_facing/0_Warrior_Walk_014.png" type="Texture" id=26]
-[ext_resource path="res://Assets/rogue/walk/right_facing/0_Warrior_Walk_006.png" type="Texture" id=27]
-[ext_resource path="res://Assets/rogue/walk/right_facing/0_Warrior_Walk_017.png" type="Texture" id=28]
-[ext_resource path="res://Assets/rogue/walk/right_facing/0_Warrior_Walk_024.png" type="Texture" id=29]
-[ext_resource path="res://Assets/rogue/walk/right_facing/0_Warrior_Walk_012.png" type="Texture" id=30]
-[ext_resource path="res://Assets/rogue/walk/right_facing/0_Warrior_Walk_020.png" type="Texture" id=31]
-[ext_resource path="res://Assets/rogue/walk/right_facing/0_Warrior_Walk_018.png" type="Texture" id=32]
+[ext_resource path="res://Assets/rogue/attack/0_Warrior_Attack_1_000.png" type="Texture" id=5]
+[ext_resource path="res://Assets/rogue/walk/side_facing/0_Warrior_Walk_021.png" type="Texture" id=6]
+[ext_resource path="res://Assets/rogue/attack/0_Warrior_Attack_1_013.png" type="Texture" id=7]
+[ext_resource path="res://Assets/rogue/walk/side_facing/0_Warrior_Walk_002.png" type="Texture" id=8]
+[ext_resource path="res://Assets/rogue/attack/0_Warrior_Attack_1_008.png" type="Texture" id=9]
+[ext_resource path="res://Assets/rogue/attack/0_Warrior_Attack_1_006.png" type="Texture" id=10]
+[ext_resource path="res://Assets/rogue/walk/side_facing/0_Warrior_Walk_026.png" type="Texture" id=11]
+[ext_resource path="res://Assets/rogue/walk/side_facing/0_Warrior_Walk_006.png" type="Texture" id=12]
+[ext_resource path="res://Assets/rogue/walk/side_facing/0_Warrior_Walk_004.png" type="Texture" id=13]
+[ext_resource path="res://Assets/rogue/walk/side_facing/0_Warrior_Walk_017.png" type="Texture" id=14]
+[ext_resource path="res://Assets/rogue/walk/side_facing/0_Warrior_Walk_027.png" type="Texture" id=15]
+[ext_resource path="res://Assets/rogue/walk/side_facing/0_Warrior_Walk_005.png" type="Texture" id=16]
+[ext_resource path="res://Assets/rogue/walk/side_facing/0_Warrior_Walk_015.png" type="Texture" id=17]
+[ext_resource path="res://Assets/rogue/walk/side_facing/0_Warrior_Walk_022.png" type="Texture" id=18]
+[ext_resource path="res://Assets/rogue/walk/side_facing/0_Warrior_Walk_019.png" type="Texture" id=19]
+[ext_resource path="res://Assets/rogue/walk/side_facing/0_Warrior_Walk_014.png" type="Texture" id=20]
+[ext_resource path="res://Assets/rogue/walk/side_facing/0_Warrior_Walk_008.png" type="Texture" id=21]
+[ext_resource path="res://Assets/rogue/attack/0_Warrior_Attack_1_010.png" type="Texture" id=22]
+[ext_resource path="res://Assets/rogue/attack/0_Warrior_Attack_1_003.png" type="Texture" id=23]
+[ext_resource path="res://Assets/rogue/walk/side_facing/0_Warrior_Walk_024.png" type="Texture" id=24]
+[ext_resource path="res://Assets/rogue/walk/side_facing/0_Warrior_Walk_000.png" type="Texture" id=25]
+[ext_resource path="res://Assets/rogue/walk/side_facing/0_Warrior_Walk_001.png" type="Texture" id=26]
+[ext_resource path="res://Assets/rogue/attack/0_Warrior_Attack_1_014.png" type="Texture" id=27]
+[ext_resource path="res://Assets/rogue/attack/0_Warrior_Attack_1_002.png" type="Texture" id=28]
+[ext_resource path="res://Assets/rogue/walk/side_facing/0_Warrior_Walk_012.png" type="Texture" id=29]
+[ext_resource path="res://Assets/rogue/attack/0_Warrior_Attack_1_011.png" type="Texture" id=30]
+[ext_resource path="res://Assets/rogue/attack/0_Warrior_Attack_1_009.png" type="Texture" id=31]
+[ext_resource path="res://Assets/rogue/walk/side_facing/0_Warrior_Walk_016.png" type="Texture" id=32]
 [ext_resource path="res://Assets/warrior/walk/down_facing/0_Warrior_Walk_002.png" type="Texture" id=33]
 [ext_resource path="res://Assets/warrior/walk/down_facing/0_Warrior_Walk_000.png" type="Texture" id=34]
 [ext_resource path="res://Assets/warrior/walk/down_facing/0_Warrior_Walk_001.png" type="Texture" id=35]
@@ -404,6 +403,21 @@
 [ext_resource path="res://Assets/wizard/walk/side_facing/0_Citizen_Walk_010.png" type="Texture" id=402]
 [ext_resource path="res://Assets/wizard/walk/side_facing/0_Citizen_Walk_009.png" type="Texture" id=403]
 [ext_resource path="res://Assets/wizard/walk/side_facing/0_Citizen_Walk_004.png" type="Texture" id=404]
+[ext_resource path="res://Assets/rogue/walk/side_facing/0_Warrior_Walk_020.png" type="Texture" id=405]
+[ext_resource path="res://Assets/rogue/walk/side_facing/0_Warrior_Walk_018.png" type="Texture" id=406]
+[ext_resource path="res://Assets/rogue/walk/side_facing/0_Warrior_Walk_025.png" type="Texture" id=407]
+[ext_resource path="res://Assets/rogue/attack/0_Warrior_Attack_1_005.png" type="Texture" id=408]
+[ext_resource path="res://Assets/rogue/walk/side_facing/0_Warrior_Walk_011.png" type="Texture" id=409]
+[ext_resource path="res://Assets/rogue/walk/side_facing/0_Warrior_Walk_010.png" type="Texture" id=410]
+[ext_resource path="res://Assets/rogue/walk/side_facing/0_Warrior_Walk_023.png" type="Texture" id=411]
+[ext_resource path="res://Assets/rogue/attack/0_Warrior_Attack_1_007.png" type="Texture" id=412]
+[ext_resource path="res://Assets/rogue/attack/0_Warrior_Attack_1_004.png" type="Texture" id=413]
+[ext_resource path="res://Assets/rogue/walk/side_facing/0_Warrior_Walk_009.png" type="Texture" id=414]
+[ext_resource path="res://Assets/rogue/attack/0_Warrior_Attack_1_001.png" type="Texture" id=415]
+[ext_resource path="res://Assets/rogue/attack/0_Warrior_Attack_1_012.png" type="Texture" id=416]
+[ext_resource path="res://Assets/rogue/walk/side_facing/0_Warrior_Walk_007.png" type="Texture" id=417]
+[ext_resource path="res://Assets/rogue/walk/side_facing/0_Warrior_Walk_003.png" type="Texture" id=418]
+[ext_resource path="res://Assets/rogue/walk/side_facing/0_Warrior_Walk_013.png" type="Texture" id=419]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 40.0
@@ -421,8 +435,36 @@ bg_color = Color( 0.6, 0.6, 0.6, 0 )
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 
 [sub_resource type="CapsuleShape2D" id=6]
-radius = 63.7574
-height = 66.541
+radius = 55.1798
+height = 46.7503
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ ExtResource( 123 ), ExtResource( 128 ), ExtResource( 248 ), ExtResource( 129 ), ExtResource( 252 ), ExtResource( 254 ), ExtResource( 256 ), ExtResource( 251 ), ExtResource( 253 ), ExtResource( 255 ), ExtResource( 125 ), ExtResource( 110 ), ExtResource( 106 ), ExtResource( 108 ), ExtResource( 120 ), ExtResource( 117 ), ExtResource( 109 ), ExtResource( 118 ), ExtResource( 119 ), ExtResource( 121 ), ExtResource( 116 ), ExtResource( 127 ), ExtResource( 107 ), ExtResource( 112 ), ExtResource( 111 ), ExtResource( 122 ), ExtResource( 135 ), ExtResource( 124 ), ExtResource( 126 ), ExtResource( 131 ) ],
+"loop": true,
+"name": "idle",
+"speed": 30.0
+}, {
+"frames": [ ExtResource( 34 ), ExtResource( 35 ), ExtResource( 33 ), ExtResource( 81 ), ExtResource( 88 ), ExtResource( 85 ), ExtResource( 78 ), ExtResource( 74 ), ExtResource( 69 ), ExtResource( 75 ), ExtResource( 66 ), ExtResource( 86 ), ExtResource( 89 ), ExtResource( 72 ), ExtResource( 71 ), ExtResource( 79 ), ExtResource( 76 ), ExtResource( 90 ), ExtResource( 87 ), ExtResource( 67 ), ExtResource( 73 ), ExtResource( 77 ), ExtResource( 82 ), ExtResource( 83 ), ExtResource( 80 ), ExtResource( 84 ), ExtResource( 68 ), ExtResource( 70 ), ExtResource( 144 ), ExtResource( 146 ) ],
+"loop": true,
+"name": "walk_down_facing",
+"speed": 60.0
+}, {
+"frames": [ ExtResource( 201 ), ExtResource( 202 ), ExtResource( 225 ), ExtResource( 235 ), ExtResource( 220 ), ExtResource( 200 ), ExtResource( 246 ), ExtResource( 232 ), ExtResource( 239 ), ExtResource( 234 ), ExtResource( 203 ), ExtResource( 247 ), ExtResource( 236 ), ExtResource( 238 ), ExtResource( 244 ) ],
+"loop": true,
+"name": "attack",
+"speed": 60.0
+}, {
+"frames": [ ExtResource( 54 ), ExtResource( 55 ), ExtResource( 37 ), ExtResource( 56 ), ExtResource( 57 ), ExtResource( 58 ), ExtResource( 49 ), ExtResource( 50 ), ExtResource( 51 ), ExtResource( 52 ), ExtResource( 46 ), ExtResource( 47 ), ExtResource( 59 ), ExtResource( 38 ), ExtResource( 42 ), ExtResource( 36 ), ExtResource( 53 ), ExtResource( 39 ), ExtResource( 40 ), ExtResource( 41 ), ExtResource( 43 ), ExtResource( 44 ), ExtResource( 45 ), ExtResource( 48 ), ExtResource( 62 ), ExtResource( 65 ), ExtResource( 63 ), ExtResource( 64 ), ExtResource( 60 ), ExtResource( 61 ) ],
+"loop": true,
+"name": "walk_up_facing",
+"speed": 60.0
+}, {
+"frames": [ ExtResource( 148 ), ExtResource( 147 ), ExtResource( 104 ), ExtResource( 149 ), ExtResource( 150 ), ExtResource( 105 ), ExtResource( 137 ), ExtResource( 151 ), ExtResource( 152 ), ExtResource( 153 ), ExtResource( 138 ), ExtResource( 139 ), ExtResource( 140 ), ExtResource( 141 ), ExtResource( 142 ), ExtResource( 143 ), ExtResource( 145 ), ExtResource( 98 ), ExtResource( 99 ), ExtResource( 100 ), ExtResource( 94 ), ExtResource( 101 ), ExtResource( 92 ), ExtResource( 97 ), ExtResource( 102 ), ExtResource( 103 ), ExtResource( 96 ), ExtResource( 91 ), ExtResource( 93 ), ExtResource( 95 ) ],
+"loop": true,
+"name": "walk_side_facing",
+"speed": 60.0
+} ]
 
 [sub_resource type="SpriteFrames" id=7]
 animations = [ {
@@ -431,53 +473,25 @@ animations = [ {
 "name": "idle",
 "speed": 30.0
 }, {
-"frames": [ ExtResource( 22 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 23 ), ExtResource( 21 ), ExtResource( 18 ), ExtResource( 27 ), ExtResource( 9 ), ExtResource( 14 ), ExtResource( 20 ), ExtResource( 17 ), ExtResource( 11 ), ExtResource( 30 ), ExtResource( 8 ), ExtResource( 26 ), ExtResource( 12 ), ExtResource( 7 ), ExtResource( 28 ), ExtResource( 32 ), ExtResource( 15 ), ExtResource( 31 ), ExtResource( 16 ), ExtResource( 19 ), ExtResource( 24 ), ExtResource( 29 ), ExtResource( 25 ), ExtResource( 10 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "walk_side_facing",
-"speed": 60.0
-}, {
 "frames": [ ExtResource( 174 ), ExtResource( 157 ), ExtResource( 163 ), ExtResource( 214 ), ExtResource( 205 ), ExtResource( 250 ), ExtResource( 240 ), ExtResource( 192 ), ExtResource( 156 ), ExtResource( 194 ), ExtResource( 190 ), ExtResource( 227 ), ExtResource( 224 ), ExtResource( 195 ), ExtResource( 196 ), ExtResource( 218 ), ExtResource( 198 ), ExtResource( 223 ), ExtResource( 209 ), ExtResource( 154 ), ExtResource( 191 ), ExtResource( 211 ), ExtResource( 221 ), ExtResource( 207 ), ExtResource( 208 ), ExtResource( 243 ), ExtResource( 155 ), ExtResource( 193 ) ],
 "loop": true,
 "name": "walk_down_facing",
 "speed": 60.0
 }, {
-"frames": [  ],
+"frames": [ ExtResource( 5 ), ExtResource( 415 ), ExtResource( 28 ), ExtResource( 23 ), ExtResource( 413 ), ExtResource( 408 ), ExtResource( 10 ), ExtResource( 412 ), ExtResource( 9 ), ExtResource( 31 ), ExtResource( 22 ), ExtResource( 30 ), ExtResource( 416 ), ExtResource( 7 ), ExtResource( 27 ) ],
 "loop": true,
 "name": "attack",
-"speed": 30.0
+"speed": 60.0
 }, {
 "frames": [ ExtResource( 186 ), ExtResource( 187 ), ExtResource( 185 ), ExtResource( 167 ), ExtResource( 168 ), ExtResource( 161 ), ExtResource( 171 ), ExtResource( 159 ), ExtResource( 158 ), ExtResource( 182 ), ExtResource( 166 ), ExtResource( 181 ), ExtResource( 188 ), ExtResource( 179 ), ExtResource( 178 ), ExtResource( 162 ), ExtResource( 183 ), ExtResource( 184 ), ExtResource( 177 ), ExtResource( 164 ), ExtResource( 170 ), ExtResource( 180 ), ExtResource( 165 ), ExtResource( 160 ), ExtResource( 189 ), ExtResource( 176 ), ExtResource( 173 ), ExtResource( 175 ), ExtResource( 169 ), ExtResource( 172 ) ],
 "loop": true,
 "name": "walk_up_facing",
 "speed": 60.0
-} ]
-
-[sub_resource type="SpriteFrames" id=8]
-animations = [ {
-"frames": [ ExtResource( 123 ), ExtResource( 128 ), ExtResource( 248 ), ExtResource( 129 ), ExtResource( 252 ), ExtResource( 254 ), ExtResource( 256 ), ExtResource( 251 ), ExtResource( 253 ), ExtResource( 255 ), ExtResource( 125 ), ExtResource( 110 ), ExtResource( 106 ), ExtResource( 108 ), ExtResource( 120 ), ExtResource( 117 ), ExtResource( 109 ), ExtResource( 118 ), ExtResource( 119 ), ExtResource( 121 ), ExtResource( 116 ), ExtResource( 127 ), ExtResource( 107 ), ExtResource( 112 ), ExtResource( 111 ), ExtResource( 122 ), ExtResource( 135 ), ExtResource( 124 ), ExtResource( 126 ), ExtResource( 131 ) ],
-"loop": true,
-"name": "idle",
-"speed": 5.0
 }, {
-"frames": [ ExtResource( 148 ), ExtResource( 147 ), ExtResource( 104 ), ExtResource( 149 ), ExtResource( 150 ), ExtResource( 105 ), ExtResource( 137 ), ExtResource( 151 ), ExtResource( 152 ), ExtResource( 153 ), ExtResource( 138 ), ExtResource( 139 ), ExtResource( 140 ), ExtResource( 141 ), ExtResource( 142 ), ExtResource( 143 ), ExtResource( 145 ), ExtResource( 98 ), ExtResource( 99 ), ExtResource( 100 ), ExtResource( 94 ), ExtResource( 101 ), ExtResource( 92 ), ExtResource( 97 ), ExtResource( 102 ), ExtResource( 103 ), ExtResource( 96 ), ExtResource( 91 ), ExtResource( 93 ), ExtResource( 95 ) ],
+"frames": [ ExtResource( 25 ), ExtResource( 26 ), ExtResource( 8 ), ExtResource( 418 ), ExtResource( 13 ), ExtResource( 16 ), ExtResource( 12 ), ExtResource( 417 ), ExtResource( 21 ), ExtResource( 414 ), ExtResource( 410 ), ExtResource( 409 ), ExtResource( 29 ), ExtResource( 419 ), ExtResource( 20 ), ExtResource( 17 ), ExtResource( 32 ), ExtResource( 14 ), ExtResource( 406 ), ExtResource( 19 ), ExtResource( 405 ), ExtResource( 6 ), ExtResource( 18 ), ExtResource( 411 ), ExtResource( 24 ), ExtResource( 407 ), ExtResource( 11 ), ExtResource( 15 ) ],
 "loop": true,
 "name": "walk_side_facing",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 34 ), ExtResource( 35 ), ExtResource( 33 ), ExtResource( 81 ), ExtResource( 88 ), ExtResource( 85 ), ExtResource( 78 ), ExtResource( 74 ), ExtResource( 69 ), ExtResource( 75 ), ExtResource( 66 ), ExtResource( 86 ), ExtResource( 89 ), ExtResource( 72 ), ExtResource( 71 ), ExtResource( 79 ), ExtResource( 76 ), ExtResource( 90 ), ExtResource( 87 ), ExtResource( 67 ), ExtResource( 73 ), ExtResource( 77 ), ExtResource( 82 ), ExtResource( 83 ), ExtResource( 80 ), ExtResource( 84 ), ExtResource( 68 ), ExtResource( 70 ), ExtResource( 144 ), ExtResource( 146 ) ],
-"loop": true,
-"name": "walk_down_facing",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 201 ), ExtResource( 202 ), ExtResource( 225 ), ExtResource( 235 ), ExtResource( 220 ), ExtResource( 200 ), ExtResource( 246 ), ExtResource( 232 ), ExtResource( 239 ), ExtResource( 234 ), ExtResource( 203 ), ExtResource( 247 ), ExtResource( 236 ), ExtResource( 238 ), ExtResource( 244 ) ],
-"loop": true,
-"name": "attack",
-"speed": 30.0
-}, {
-"frames": [ ExtResource( 54 ), ExtResource( 55 ), ExtResource( 37 ), ExtResource( 56 ), ExtResource( 57 ), ExtResource( 58 ), ExtResource( 49 ), ExtResource( 50 ), ExtResource( 51 ), ExtResource( 52 ), ExtResource( 46 ), ExtResource( 47 ), ExtResource( 59 ), ExtResource( 38 ), ExtResource( 42 ), ExtResource( 36 ), ExtResource( 53 ), ExtResource( 39 ), ExtResource( 40 ), ExtResource( 41 ), ExtResource( 43 ), ExtResource( 44 ), ExtResource( 45 ), ExtResource( 48 ), ExtResource( 62 ), ExtResource( 65 ), ExtResource( 63 ), ExtResource( 64 ), ExtResource( 60 ), ExtResource( 61 ) ],
-"loop": true,
-"name": "walk_up_facing",
-"speed": 5.0
+"speed": 60.0
 } ]
 
 [sub_resource type="SpriteFrames" id=9]
@@ -485,27 +499,27 @@ animations = [ {
 "frames": [ ExtResource( 344 ), ExtResource( 342 ), ExtResource( 345 ), ExtResource( 353 ), ExtResource( 361 ), ExtResource( 365 ), ExtResource( 346 ), ExtResource( 378 ), ExtResource( 370 ), ExtResource( 362 ), ExtResource( 332 ), ExtResource( 358 ), ExtResource( 363 ), ExtResource( 366 ), ExtResource( 383 ), ExtResource( 375 ), ExtResource( 385 ), ExtResource( 347 ), ExtResource( 335 ), ExtResource( 376 ), ExtResource( 337 ), ExtResource( 348 ), ExtResource( 338 ), ExtResource( 359 ), ExtResource( 386 ), ExtResource( 364 ), ExtResource( 372 ), ExtResource( 341 ), ExtResource( 356 ), ExtResource( 339 ) ],
 "loop": true,
 "name": "idle",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 393 ), ExtResource( 398 ), ExtResource( 394 ), ExtResource( 401 ), ExtResource( 404 ), ExtResource( 396 ), ExtResource( 400 ), ExtResource( 395 ), ExtResource( 397 ), ExtResource( 403 ), ExtResource( 402 ), ExtResource( 313 ), ExtResource( 314 ), ExtResource( 286 ), ExtResource( 296 ), ExtResource( 295 ), ExtResource( 284 ), ExtResource( 312 ), ExtResource( 315 ), ExtResource( 297 ), ExtResource( 294 ), ExtResource( 290 ), ExtResource( 311 ), ExtResource( 305 ), ExtResource( 285 ), ExtResource( 323 ), ExtResource( 298 ), ExtResource( 317 ), ExtResource( 302 ), ExtResource( 281 ) ],
-"loop": true,
-"name": "walk_side_facing",
-"speed": 5.0
+"speed": 30.0
 }, {
 "frames": [ ExtResource( 354 ), ExtResource( 374 ), ExtResource( 367 ), ExtResource( 377 ), ExtResource( 379 ), ExtResource( 340 ), ExtResource( 360 ), ExtResource( 368 ), ExtResource( 349 ), ExtResource( 387 ), ExtResource( 369 ), ExtResource( 328 ), ExtResource( 389 ), ExtResource( 351 ), ExtResource( 352 ), ExtResource( 390 ), ExtResource( 355 ), ExtResource( 373 ), ExtResource( 391 ), ExtResource( 380 ), ExtResource( 381 ), ExtResource( 334 ), ExtResource( 382 ), ExtResource( 329 ), ExtResource( 330 ), ExtResource( 331 ), ExtResource( 333 ), ExtResource( 336 ), ExtResource( 392 ), ExtResource( 399 ) ],
 "loop": true,
 "name": "walk_down_facing",
-"speed": 5.0
+"speed": 60.0
 }, {
 "frames": [ ExtResource( 257 ), ExtResource( 258 ), ExtResource( 265 ), ExtResource( 260 ), ExtResource( 266 ), ExtResource( 267 ), ExtResource( 259 ), ExtResource( 261 ), ExtResource( 262 ), ExtResource( 263 ), ExtResource( 268 ), ExtResource( 264 ), ExtResource( 270 ), ExtResource( 273 ), ExtResource( 274 ), ExtResource( 271 ), ExtResource( 269 ), ExtResource( 272 ), ExtResource( 276 ), ExtResource( 278 ), ExtResource( 277 ), ExtResource( 275 ), ExtResource( 343 ), ExtResource( 371 ), ExtResource( 357 ), ExtResource( 350 ), ExtResource( 388 ), ExtResource( 384 ) ],
 "loop": true,
 "name": "attack",
-"speed": 5.0
+"speed": 60.0
 }, {
 "frames": [ ExtResource( 288 ), ExtResource( 310 ), ExtResource( 299 ), ExtResource( 291 ), ExtResource( 300 ), ExtResource( 301 ), ExtResource( 283 ), ExtResource( 327 ), ExtResource( 292 ), ExtResource( 293 ), ExtResource( 324 ), ExtResource( 325 ), ExtResource( 279 ), ExtResource( 303 ), ExtResource( 287 ), ExtResource( 289 ), ExtResource( 304 ), ExtResource( 306 ), ExtResource( 280 ), ExtResource( 318 ), ExtResource( 319 ), ExtResource( 316 ), ExtResource( 307 ), ExtResource( 308 ), ExtResource( 309 ), ExtResource( 282 ), ExtResource( 320 ), ExtResource( 321 ), ExtResource( 322 ), ExtResource( 326 ) ],
 "loop": true,
 "name": "walk_up_facing",
-"speed": 5.0
+"speed": 60.0
+}, {
+"frames": [ ExtResource( 393 ), ExtResource( 398 ), ExtResource( 394 ), ExtResource( 401 ), ExtResource( 404 ), ExtResource( 396 ), ExtResource( 400 ), ExtResource( 395 ), ExtResource( 397 ), ExtResource( 403 ), ExtResource( 402 ), ExtResource( 313 ), ExtResource( 314 ), ExtResource( 286 ), ExtResource( 296 ), ExtResource( 295 ), ExtResource( 284 ), ExtResource( 312 ), ExtResource( 315 ), ExtResource( 297 ), ExtResource( 294 ), ExtResource( 290 ), ExtResource( 311 ), ExtResource( 305 ), ExtResource( 285 ), ExtResource( 323 ), ExtResource( 298 ), ExtResource( 317 ), ExtResource( 302 ), ExtResource( 281 ) ],
+"loop": true,
+"name": "walk_side_facing",
+"speed": 60.0
 } ]
 
 [node name="Battlefield" type="Node2D"]
@@ -521,8 +535,10 @@ __meta__ = {
 [node name="TextureRect" type="TextureRect" parent="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 2.37842
+margin_top = -2.37842
+margin_right = 42.3784
+margin_bottom = 37.6216
 texture = ExtResource( 136 )
 stretch_mode = 1
 __meta__ = {
@@ -556,10 +572,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="Sprite" parent="NpcNode"]
-texture = ExtResource( 2 )
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NpcNode"]
+visible = false
 shape = SubResource( 1 )
 
 [node name="SelectedButton" type="Button" parent="NpcNode"]
@@ -593,26 +607,31 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerNode"]
 visible = false
-position = Vector2( 7.41626, 4.23785 )
+position = Vector2( -1.19487, 2.35024 )
 shape = SubResource( 6 )
 
-[node name="RogueSprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 0.25, 0.25 )
-frames = SubResource( 7 )
-animation = "walk_side_facing"
+[node name="Camera2D" type="Camera2D" parent="PlayerNode"]
+current = true
+smoothing_enabled = true
 
 [node name="WarriorSprite" type="AnimatedSprite" parent="."]
 visible = false
 scale = Vector2( 0.25, 0.25 )
 frames = SubResource( 8 )
-animation = "walk_up_facing"
+animation = "idle"
+
+[node name="RogueSprite" type="AnimatedSprite" parent="."]
+visible = false
+scale = Vector2( 0.25, 0.25 )
+frames = SubResource( 7 )
+animation = "idle"
 
 [node name="WizardSprite" type="AnimatedSprite" parent="."]
 visible = false
 scale = Vector2( 0.25, 0.25 )
 frames = SubResource( 9 )
-animation = "walk_up_facing"
+animation = "idle"
 [connection signal="pressed" from="NpcNode/SelectedButton" to="NpcNode" method="_on_SelectedButton_pressed"]
-[connection signal="animation_finished" from="RogueSprite" to="PlayerNode" method="_on_PlayerSprite_animation_finished"]
 [connection signal="animation_finished" from="WarriorSprite" to="PlayerNode" method="_on_PlayerSprite_animation_finished"]
+[connection signal="animation_finished" from="RogueSprite" to="PlayerNode" method="_on_PlayerSprite_animation_finished"]
 [connection signal="animation_finished" from="WizardSprite" to="PlayerNode" method="_on_PlayerSprite_animation_finished"]

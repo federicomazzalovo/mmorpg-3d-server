@@ -104,7 +104,7 @@ public class Battlefield : Node2D
 	{
 		using (HttpClient client = new HttpClient())
 		{
-			HttpResponseMessage response = client.GetAsync("http://localhost:8080/api/character/all").Result;
+			HttpResponseMessage response = client.GetAsync("http://localhost:8080/api/character/all/alive").Result;
 
 			string json = response.Content.ReadAsStringAsync().Result;
 

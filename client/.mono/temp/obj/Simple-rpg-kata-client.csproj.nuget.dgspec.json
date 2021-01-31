@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mazza\\source\\repos\\simple-rpg-kata-client\\Simple-rpg-kata-client.csproj": {}
+    "C:\\Users\\Andrea\\Desktop\\playground\\simple-rpg-kata\\client\\Simple-rpg-kata-client.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mazza\\source\\repos\\simple-rpg-kata-client\\Simple-rpg-kata-client.csproj": {
+    "C:\\Users\\Andrea\\Desktop\\playground\\simple-rpg-kata\\client\\Simple-rpg-kata-client.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mazza\\source\\repos\\simple-rpg-kata-client\\Simple-rpg-kata-client.csproj",
+        "projectUniqueName": "C:\\Users\\Andrea\\Desktop\\playground\\simple-rpg-kata\\client\\Simple-rpg-kata-client.csproj",
         "projectName": "Simple-rpg-kata-client",
-        "projectPath": "C:\\Users\\mazza\\source\\repos\\simple-rpg-kata-client\\Simple-rpg-kata-client.csproj",
-        "packagesPath": "C:\\Users\\mazza\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mazza\\source\\repos\\simple-rpg-kata-client\\.mono\\temp\\obj\\",
+        "projectPath": "C:\\Users\\Andrea\\Desktop\\playground\\simple-rpg-kata\\client\\Simple-rpg-kata-client.csproj",
+        "packagesPath": "C:\\Users\\Andrea\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Andrea\\Desktop\\playground\\simple-rpg-kata\\client\\.mono\\temp\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\mazza\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Andrea\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -42,6 +39,16 @@
       "frameworks": {
         "net472": {
           "targetAlias": "net472",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            },
+            "System.Net.Http": {
+              "target": "Package",
+              "version": "[4.3.4, )"
+            }
+          },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
         }
       }

@@ -580,23 +580,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mazza\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Andrea\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mazza\\source\\repos\\simple-rpg-kata\\client\\Simple-rpg-kata-client.csproj",
+      "projectUniqueName": "C:\\Users\\Andrea\\Desktop\\playground\\simple-rpg-kata\\client\\Simple-rpg-kata-client.csproj",
       "projectName": "Simple-rpg-kata-client",
-      "projectPath": "C:\\Users\\mazza\\source\\repos\\simple-rpg-kata\\client\\Simple-rpg-kata-client.csproj",
-      "packagesPath": "C:\\Users\\mazza\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mazza\\source\\repos\\simple-rpg-kata\\client\\.mono\\temp\\obj\\",
+      "projectPath": "C:\\Users\\Andrea\\Desktop\\playground\\simple-rpg-kata\\client\\Simple-rpg-kata-client.csproj",
+      "packagesPath": "C:\\Users\\Andrea\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Andrea\\Desktop\\playground\\simple-rpg-kata\\client\\.mono\\temp\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\mazza\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Andrea\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
