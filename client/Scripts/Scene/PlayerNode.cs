@@ -20,12 +20,14 @@ public class PlayerNode : CharacterNode
 	{
 		base._Ready();
 		this.ParentNode = this.GetNode("/root/Battlefield") as Battlefield;
-		this.playerSprite = this.GetNode("/root/Battlefield/PlayerNode/PlayerSprite") as AnimatedSprite;
 	}
 
 	public override void _PhysicsProcess(float delta)
 	{
 		base._PhysicsProcess(delta);
+
+		if (this.playerSprite == null)
+			this.playerSprite = this.GetNode("/root/Battlefield/PlayerNode/PlayerSprite") as AnimatedSprite;
 
 		this.HandlePlayerAction();
 
@@ -48,8 +50,6 @@ public class PlayerNode : CharacterNode
 
 		this.AttackEnemy();
 	}
-
- 
 
 	private void HandlePlayerAction()
 	{

@@ -72,7 +72,7 @@ public class Battlefield : Node2D
 
 		this.characters = this.RetrieveCharacters();
 		this.LoadCharacters();
-		this.AddCharactersSprites();
+		this.AddCharactersSprites();		
 	}
 
 
