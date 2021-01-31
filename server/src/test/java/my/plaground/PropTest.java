@@ -1,5 +1,9 @@
 package my.plaground;
 
+import my.plaground.Domain.Character;
+import my.plaground.Domain.Paladin;
+import my.plaground.Domain.Prop;
+import my.plaground.Domain.TreeProp;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,7 +13,7 @@ class PropTest {
     @Test public void
     ensure_that_when_reduced_to_0_health_things_are_destroyed() {
         Prop prop = new TreeProp();
-        prop.defend(prop.hp);
+        prop.defend(prop.getHp());
         assertTrue(prop.isDestroyed());
     }
 
@@ -20,7 +24,7 @@ class PropTest {
 
         paladin.attack(prop);
 
-        assertTrue(prop.hp < prop.initHp);
+        assertTrue(prop.getHp() < prop.getInitHp());
     }
 
 

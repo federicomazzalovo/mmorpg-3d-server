@@ -1,7 +1,7 @@
 package my.plaground.Service;
 
-import my.plaground.*;
-import my.plaground.Character;
+import my.plaground.Domain.*;
+import my.plaground.Domain.Character;
 import my.plaground.Repository.CharacterEntity;
 import org.springframework.stereotype.Service;
 
@@ -12,13 +12,13 @@ public class CharacterFactory {
         Character instance;
 
         switch (entity.getClassId()) {
-            case 1:
+            case Paladin:
                 instance = new Paladin();
                 break;
-            case 2:
+            case Wizard:
                 instance = new Wizard();
                 break;
-            case 3:
+            case Rogue:
                 instance = new Rogue();
                 break;
             default:

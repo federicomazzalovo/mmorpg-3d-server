@@ -2,12 +2,11 @@ package my.plaground.Controller;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import my.plaground.Character;
-import my.plaground.Paladin;
-import my.plaground.Position;
+import my.plaground.Domain.Character;
+import my.plaground.Domain.Paladin;
+import my.plaground.Domain.Position;
 import my.plaground.Service.CharacterService;
-import my.plaground.Wizard;
-import org.junit.jupiter.api.Disabled;
+import my.plaground.Domain.Wizard;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +22,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.List;
 
-import static my.plaground.Position.at;
-import static my.plaground.SimpleRpgKataApplication.getMockedCharacterList;
+import static my.plaground.Domain.Position.at;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 

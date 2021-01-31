@@ -1,5 +1,7 @@
 package my.plaground;
 
+import my.plaground.Domain.*;
+import my.plaground.Domain.Character;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

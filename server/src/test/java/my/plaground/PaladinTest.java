@@ -1,5 +1,8 @@
 package my.plaground;
 
+ import my.plaground.Domain.Paladin;
+ import my.plaground.Domain.RandomDataGeneratorInterface;
+ import my.plaground.Domain.Wizard;
  import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -22,7 +25,7 @@ class PaladinTest {
         }
     }
 
-     private  Paladin character;
+     private Paladin character;
 
      @BeforeEach
      public void init() {

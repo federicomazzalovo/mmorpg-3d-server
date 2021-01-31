@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import my.plaground.Domain.CharacterClass;
 
 import javax.persistence.*;
 
@@ -25,5 +26,6 @@ public class CharacterEntity {
     private double positiony;
     private double hp;
     @Column(name="classId")
-    private int classId;
+    @Enumerated(EnumType.ORDINAL)
+    private CharacterClass classId;
 }

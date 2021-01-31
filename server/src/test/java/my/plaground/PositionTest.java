@@ -1,6 +1,6 @@
 package my.plaground;
 
-import org.junit.jupiter.api.Disabled;
+import my.plaground.Domain.Position;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

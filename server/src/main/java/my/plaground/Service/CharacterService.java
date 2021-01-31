@@ -1,7 +1,7 @@
 package my.plaground.Service;
 
 import my.plaground.Exception.ResourceNotFound;
-import my.plaground.Position;
+import my.plaground.Domain.Position;
 import my.plaground.Repository.CharacterEntity;
 import my.plaground.Repository.CharacterRepository;
 import org.springframework.stereotype.Service;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import my.plaground.Character;
+import my.plaground.Domain.Character;
 
 import javax.persistence.EntityNotFoundException;
 
