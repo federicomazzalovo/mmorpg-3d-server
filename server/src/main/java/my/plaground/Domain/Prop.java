@@ -1,4 +1,4 @@
-package my.plaground;
+package my.plaground.Domain;
 
 public abstract class Prop extends Target {
 

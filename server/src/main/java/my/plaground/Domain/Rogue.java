@@ -1,4 +1,4 @@
-package my.plaground;
+package my.plaground.Domain;
 
 public class Rogue extends Character {
 
@@ -7,6 +7,7 @@ public class Rogue extends Character {
     }
 
     public Rogue(RandomDataGeneratorInterface randomDataGenerator) {
+        this.characterClass = CharacterClass.Rogue;
         this.randomDataGenerator = randomDataGenerator;
         this.hp = 120;
         this.initHp = hp;

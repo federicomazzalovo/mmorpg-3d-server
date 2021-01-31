@@ -2,9 +2,9 @@ package my.plaground.Controller;
 
 
 import lombok.extern.slf4j.Slf4j;
-import my.plaground.Character;
+import my.plaground.Domain.Character;
 import my.plaground.Exception.ResourceNotFound;
-import my.plaground.Position;
+import my.plaground.Domain.Position;
 import my.plaground.Service.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

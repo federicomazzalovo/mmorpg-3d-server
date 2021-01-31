@@ -1,8 +1,7 @@
-package my.plaground;
+package my.plaground.Domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
 
 import static java.lang.Math.*;
 
@@ -18,6 +17,7 @@ public abstract class Character extends Target {
     protected Position position;
     @JsonIgnore
     protected RandomDataGeneratorInterface randomDataGenerator;
+    protected CharacterClass characterClass;
 
     public void setIsPlayer(boolean player) {
         isPlayer = player;
@@ -32,6 +32,10 @@ public abstract class Character extends Target {
             throw new RuntimeException("Invalid power");
 
         this.level = level;
+    }
+
+    public Faction getFaction() {
+        return faction;
     }
 
     public int getResistance() {

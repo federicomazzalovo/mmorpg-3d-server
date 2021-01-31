@@ -1,4 +1,4 @@
-package my.plaground;
+package my.plaground.Domain;
 
 import static java.lang.Math.*;
 

@@ -1,4 +1,4 @@
-package my.plaground;
+package my.plaground.Domain;
 
 public class Paladin extends Character {
 
@@ -7,6 +7,7 @@ public class Paladin extends Character {
     }
 
     public Paladin(RandomDataGeneratorInterface proc) {
+        this.characterClass = CharacterClass.Paladin;
         this.randomDataGenerator = proc;
         this.hp = 150;
         this.initHp = hp;

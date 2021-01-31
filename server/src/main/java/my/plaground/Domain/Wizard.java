@@ -1,4 +1,4 @@
-package my.plaground;
+package my.plaground.Domain;
 
 public class Wizard extends Character {
 
@@ -7,6 +7,7 @@ public class Wizard extends Character {
     }
 
     public Wizard(RandomDataGeneratorInterface proc){
+        this.characterClass = CharacterClass.Wizard;
         this.randomDataGenerator = proc;
         this.hp = 100;
         this.initHp = hp;
@@ -15,7 +16,6 @@ public class Wizard extends Character {
         this.position = Position.at(0,0);
         this.setLevel(1);
     }
-
 
     @Override
     public int attackDamage() {
