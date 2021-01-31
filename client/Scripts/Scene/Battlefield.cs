@@ -5,6 +5,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 
+
+
+public enum CharacterClass
+{
+	Unknown,
+	Paladin,
+	Wizard,
+	Rogue
+}
+
+
 public class Character
 {
 	public long InitHp { get; set; }
@@ -17,6 +28,8 @@ public class Character
 	public bool Dead { get; set; }
 
 	public bool IsPlayer { get; set; }
+
+	public CharacterClass CharacterClass { get; set; }
 }
 
 public class CharacterPosition
