@@ -1,4 +1,4 @@
-[gd_scene load_steps=429 format=2]
+[gd_scene load_steps=435 format=2]
 
 [ext_resource path="res://Scripts/Scene/Battlefield.cs" type="Script" id=1]
 [ext_resource path="res://Assets/props/tombstone.png" type="Texture" id=2]
@@ -419,6 +419,36 @@
 [ext_resource path="res://Assets/rogue/walk/side_facing/0_Warrior_Walk_007.png" type="Texture" id=417]
 [ext_resource path="res://Assets/rogue/walk/side_facing/0_Warrior_Walk_003.png" type="Texture" id=418]
 [ext_resource path="res://Assets/rogue/walk/side_facing/0_Warrior_Walk_013.png" type="Texture" id=419]
+[ext_resource path="res://Assets/background/layers/front_decor.png" type="Texture" id=420]
+[ext_resource path="res://Assets/background/layers/battleground.png" type="Texture" id=421]
+[ext_resource path="res://Assets/background/layers/back_land.png" type="Texture" id=422]
+[ext_resource path="res://Assets/background/layers/ground_decor.png" type="Texture" id=423]
+
+[sub_resource type="ConvexPolygonShape2D" id=11]
+points = PoolVector2Array( 3308.26, 157.779, -528.07, 176.43, -537.028, -149.042, 3308.04, -149.042 )
+
+[sub_resource type="TileSet" id=10]
+0/name = "back_land.png 0"
+0/texture = ExtResource( 422 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 533, 148, 56, 59 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 11 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 11 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 40.0
@@ -461,15 +491,15 @@ animations = [ {
 "name": "attack",
 "speed": 60.0
 }, {
-"frames": [ ExtResource( 148 ), ExtResource( 147 ), ExtResource( 104 ), ExtResource( 149 ), ExtResource( 150 ), ExtResource( 105 ), ExtResource( 137 ), ExtResource( 151 ), ExtResource( 152 ), ExtResource( 153 ), ExtResource( 138 ), ExtResource( 139 ), ExtResource( 140 ), ExtResource( 141 ), ExtResource( 142 ), ExtResource( 143 ), ExtResource( 145 ), ExtResource( 98 ), ExtResource( 99 ), ExtResource( 100 ), ExtResource( 94 ), ExtResource( 101 ), ExtResource( 92 ), ExtResource( 97 ), ExtResource( 102 ), ExtResource( 103 ), ExtResource( 96 ), ExtResource( 91 ), ExtResource( 93 ), ExtResource( 95 ) ],
-"loop": true,
-"name": "walk_side_facing",
-"speed": 60.0
-}, {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "death",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 148 ), ExtResource( 147 ), ExtResource( 104 ), ExtResource( 149 ), ExtResource( 150 ), ExtResource( 105 ), ExtResource( 137 ), ExtResource( 151 ), ExtResource( 152 ), ExtResource( 153 ), ExtResource( 138 ), ExtResource( 139 ), ExtResource( 140 ), ExtResource( 141 ), ExtResource( 142 ), ExtResource( 143 ), ExtResource( 145 ), ExtResource( 98 ), ExtResource( 99 ), ExtResource( 100 ), ExtResource( 94 ), ExtResource( 101 ), ExtResource( 92 ), ExtResource( 97 ), ExtResource( 102 ), ExtResource( 103 ), ExtResource( 96 ), ExtResource( 91 ), ExtResource( 93 ), ExtResource( 95 ) ],
+"loop": true,
+"name": "walk_side_facing",
+"speed": 60.0
 } ]
 
 [sub_resource type="SpriteFrames" id=8]
@@ -494,15 +524,15 @@ animations = [ {
 "name": "attack",
 "speed": 60.0
 }, {
-"frames": [ ExtResource( 25 ), ExtResource( 26 ), ExtResource( 8 ), ExtResource( 418 ), ExtResource( 13 ), ExtResource( 16 ), ExtResource( 12 ), ExtResource( 417 ), ExtResource( 21 ), ExtResource( 414 ), ExtResource( 410 ), ExtResource( 409 ), ExtResource( 29 ), ExtResource( 419 ), ExtResource( 20 ), ExtResource( 17 ), ExtResource( 32 ), ExtResource( 14 ), ExtResource( 406 ), ExtResource( 19 ), ExtResource( 405 ), ExtResource( 6 ), ExtResource( 18 ), ExtResource( 411 ), ExtResource( 24 ), ExtResource( 407 ), ExtResource( 11 ), ExtResource( 15 ) ],
-"loop": true,
-"name": "walk_side_facing",
-"speed": 60.0
-}, {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "death",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 25 ), ExtResource( 26 ), ExtResource( 8 ), ExtResource( 418 ), ExtResource( 13 ), ExtResource( 16 ), ExtResource( 12 ), ExtResource( 417 ), ExtResource( 21 ), ExtResource( 414 ), ExtResource( 410 ), ExtResource( 409 ), ExtResource( 29 ), ExtResource( 419 ), ExtResource( 20 ), ExtResource( 17 ), ExtResource( 32 ), ExtResource( 14 ), ExtResource( 406 ), ExtResource( 19 ), ExtResource( 405 ), ExtResource( 6 ), ExtResource( 18 ), ExtResource( 411 ), ExtResource( 24 ), ExtResource( 407 ), ExtResource( 11 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "walk_side_facing",
+"speed": 60.0
 } ]
 
 [sub_resource type="SpriteFrames" id=9]
@@ -527,21 +557,79 @@ animations = [ {
 "name": "attack",
 "speed": 60.0
 }, {
-"frames": [ ExtResource( 393 ), ExtResource( 398 ), ExtResource( 394 ), ExtResource( 401 ), ExtResource( 404 ), ExtResource( 396 ), ExtResource( 400 ), ExtResource( 395 ), ExtResource( 397 ), ExtResource( 403 ), ExtResource( 402 ), ExtResource( 313 ), ExtResource( 314 ), ExtResource( 286 ), ExtResource( 296 ), ExtResource( 295 ), ExtResource( 284 ), ExtResource( 312 ), ExtResource( 315 ), ExtResource( 297 ), ExtResource( 294 ), ExtResource( 290 ), ExtResource( 311 ), ExtResource( 305 ), ExtResource( 285 ), ExtResource( 323 ), ExtResource( 298 ), ExtResource( 317 ), ExtResource( 302 ), ExtResource( 281 ) ],
-"loop": true,
-"name": "walk_side_facing",
-"speed": 60.0
-}, {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "death",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 393 ), ExtResource( 398 ), ExtResource( 394 ), ExtResource( 401 ), ExtResource( 404 ), ExtResource( 396 ), ExtResource( 400 ), ExtResource( 395 ), ExtResource( 397 ), ExtResource( 403 ), ExtResource( 402 ), ExtResource( 313 ), ExtResource( 314 ), ExtResource( 286 ), ExtResource( 296 ), ExtResource( 295 ), ExtResource( 284 ), ExtResource( 312 ), ExtResource( 315 ), ExtResource( 297 ), ExtResource( 294 ), ExtResource( 290 ), ExtResource( 311 ), ExtResource( 305 ), ExtResource( 285 ), ExtResource( 323 ), ExtResource( 298 ), ExtResource( 317 ), ExtResource( 302 ), ExtResource( 281 ) ],
+"loop": true,
+"name": "walk_side_facing",
+"speed": 60.0
 } ]
 
 [node name="Battlefield" type="Node2D"]
 script = ExtResource( 1 )
 
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 10 )
+collision_use_kinematic = true
+format = 1
+
+[node name="battleground2" type="Sprite" parent="TileMap"]
+position = Vector2( 5166.38, 600 )
+texture = ExtResource( 421 )
+
+[node name="battleground" type="Sprite" parent="TileMap"]
+position = Vector2( 1400, 600 )
+texture = ExtResource( 421 )
+
+[node name="battleground3" type="Sprite" parent="TileMap"]
+position = Vector2( 1400, 2742.41 )
+texture = ExtResource( 421 )
+
+[node name="battleground4" type="Sprite" parent="TileMap"]
+position = Vector2( 5166.9, 2759.98 )
+texture = ExtResource( 421 )
+
+[node name="mountain_2" type="Sprite" parent="TileMap"]
+position = Vector2( 5176.21, 582.032 )
+texture = ExtResource( 422 )
+
+[node name="mountain_1" type="Sprite" parent="TileMap"]
+position = Vector2( 1339.59, 582.382 )
+texture = ExtResource( 422 )
+flip_h = true
+
+[node name="front_decor" type="Sprite" parent="TileMap"]
+position = Vector2( 5168.35, 2768.28 )
+texture = ExtResource( 420 )
+
+[node name="front_decor3" type="Sprite" parent="TileMap"]
+position = Vector2( 6012.33, 1746.41 )
+rotation = -1.5708
+texture = ExtResource( 420 )
+
+[node name="front_decor4" type="Sprite" parent="TileMap"]
+position = Vector2( 514.735, 1734.88 )
+rotation = 1.5708
+texture = ExtResource( 420 )
+
+[node name="front_decor2" type="Sprite" parent="TileMap"]
+position = Vector2( 838.369, 2774.4 )
+texture = ExtResource( 420 )
+offset = Vector2( 498.065, 0 )
+
+[node name="ground_decor" type="Sprite" parent="."]
+position = Vector2( 4548.74, 2177.49 )
+texture = ExtResource( 423 )
+
+[node name="ground_decor2" type="Sprite" parent="."]
+position = Vector2( 1923.96, 582.257 )
+texture = ExtResource( 423 )
+
 [node name="Control" type="Control" parent="."]
+visible = false
 margin_right = 1650.0
 margin_bottom = 1080.0
 __meta__ = {

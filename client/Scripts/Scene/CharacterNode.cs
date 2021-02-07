@@ -5,9 +5,9 @@ using System.Net.Http;
 
 public abstract class CharacterNode : KinematicBody2D
 {
-    private AnimatedSprite animatedSprite;
+	private AnimatedSprite animatedSprite;
 
-    public Character Character { get; private set; }
+	public Character Character { get; private set; }
 	public Label HpLabel { get; private set; }
 
 	public override void _Ready()
@@ -62,13 +62,13 @@ public abstract class CharacterNode : KinematicBody2D
 			this.Kill();
 	}
 
-    private void Kill()
-    {
-        this.animatedSprite.Play("death");
-        this.SetPhysicsProcess(false);
-    }
+	private void Kill()
+	{
+		this.animatedSprite.Play("death");
+		this.SetPhysicsProcess(false);
+	}
 
-    public void UpdateCharacter()
+	public void UpdateCharacter()
 	{
 		using (HttpClient client = new HttpClient())
 		{
