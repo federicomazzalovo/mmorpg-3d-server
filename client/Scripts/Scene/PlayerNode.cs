@@ -27,7 +27,7 @@ public class PlayerNode : CharacterNode
 		base._PhysicsProcess(delta);
 
 		if (this.playerSprite == null)
-			this.playerSprite = this.GetNode("/root/Battlefield/PlayerNode/PlayerSprite") as AnimatedSprite;
+			this.playerSprite = this.GetNode("/root/Battlefield/PlayerNode/CharacterSprite") as AnimatedSprite;
 
 		this.HandlePlayerAction();
 
@@ -97,26 +97,25 @@ public class PlayerNode : CharacterNode
 		using (HttpClient client = new HttpClient())
 		{
 			CharacterPosition newPosition = new CharacterPosition(x, y);
-			this.character.Position = newPosition;
+			this.Character.Position = newPosition;
 			HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(newPosition));
 			httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
 
-			HttpResponseMessage response = client.PutAsync("http://localhost:8080/api/character/"+ this.character.Id + "/position", httpContent).Result;
+			HttpResponseMessage response = client.PutAsync("http://localhost:8080/api/character/"+ this.Character.Id + "/position", httpContent).Result;
 
 			string json = response.Content.ReadAsStringAsync().Result;
 		}
 	}
-
 
 	private void AttackEnemy()
 	{
 		using (HttpClient client = new HttpClient())
 		{
 			CharacterNode selectedTarget = this.ParentNode.GetSelectedTarget();
-			if (selectedTarget != null)
+			if (selectedTarget != null && !selectedTarget.Character.Dead)
 			{
-				long targetId = selectedTarget.character.Id;
-				HttpResponseMessage response = client.GetAsync("http://localhost:8080/api/character/" + this.character.Id + "/attack/" + targetId).Result;
+				long targetId = selectedTarget.Character.Id;
+				HttpResponseMessage response = client.GetAsync("http://localhost:8080/api/character/" + this.Character.Id + "/attack/" + targetId).Result;
 				string json = response.Content.ReadAsStringAsync().Result;
 
 				selectedTarget.UpdateCharacter();

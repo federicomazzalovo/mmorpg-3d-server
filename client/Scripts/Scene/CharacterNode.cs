@@ -5,8 +5,9 @@ using System.Net.Http;
 
 public abstract class CharacterNode : KinematicBody2D
 {
+    private AnimatedSprite animatedSprite;
 
-	public Character character { get; private set; }
+    public Character Character { get; private set; }
 	public Label HpLabel { get; private set; }
 
 	public override void _Ready()
@@ -18,7 +19,7 @@ public abstract class CharacterNode : KinematicBody2D
 
 	public void Initialize(Character character)
 	{
-		this.character = character;
+		this.Character = character;
 		this.RenderCharacter();
 		this.CreatePlayerSprite();
 	}
@@ -27,7 +28,7 @@ public abstract class CharacterNode : KinematicBody2D
 	{
 		AnimatedSprite animatedSprite = null;
 
-		switch (character.CharacterClass)
+		switch (Character.CharacterClass)
 		{
 			case CharacterClass.Paladin:
 
@@ -46,28 +47,37 @@ public abstract class CharacterNode : KinematicBody2D
 		}
 
 		//	this.GetParent().RemoveChild(animatedSprite);
-		AnimatedSprite animatedSpriteCloned = animatedSprite.Duplicate() as AnimatedSprite;
-		animatedSpriteCloned.Name = "PlayerSprite";
-		animatedSpriteCloned.Show();
-		this.AddChild(animatedSpriteCloned);
+		this.animatedSprite = animatedSprite.Duplicate() as AnimatedSprite;
+		this.animatedSprite.Name = "CharacterSprite";
+		this.animatedSprite.Show();
+		this.AddChild(this.animatedSprite);
 	}
 
 	private void RenderCharacter()
 	{
-		this.Position = new Vector2(character.Position.x, character.Position.y);
-		this.HpLabel.Text = character.Hp.ToString();
+		this.Position = new Vector2(Character.Position.x, Character.Position.y);
+		this.HpLabel.Text = Character.Hp.ToString();
+
+		if (this.Character.Dead)
+			this.Kill();
 	}
 
-	public void UpdateCharacter()
+    private void Kill()
+    {
+        this.animatedSprite.Play("death");
+        this.SetPhysicsProcess(false);
+    }
+
+    public void UpdateCharacter()
 	{
 		using (HttpClient client = new HttpClient())
 		{
-			HttpResponseMessage response = client.GetAsync("http://localhost:8080/api/character/" + this.character.Id).Result;
+			HttpResponseMessage response = client.GetAsync("http://localhost:8080/api/character/" + this.Character.Id).Result;
 			string json = response.Content.ReadAsStringAsync().Result;
 
 			Character character = JsonConvert.DeserializeObject<Character>(json);
 
-			this.character = character;
+			this.Character = character;
 			this.RenderCharacter();
 		}
 	}
