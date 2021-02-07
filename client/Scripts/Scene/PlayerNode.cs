@@ -8,7 +8,7 @@ public class PlayerNode : CharacterNode
 	const int walkSpeed = 200;
 	Vector2 velocity;
 
-	public int KEY_A = 65;
+	public int KEY_SPACE = 32;
 	private bool attackStarted;
 	private int counter = 0;
 
@@ -45,7 +45,7 @@ public class PlayerNode : CharacterNode
 
 	private void handleAttackAction()
 	{
-		if (!Input.IsKeyPressed(KEY_A))
+		if (!Input.IsKeyPressed(KEY_SPACE))
 			return;
 
 		this.AttackEnemy();
@@ -75,7 +75,7 @@ public class PlayerNode : CharacterNode
 			playerSprite.Play("walk_side_facing");
 			velocity.x = walkSpeed;
 		}
-		else if(Input.IsKeyPressed(KEY_A))
+		else if(Input.IsKeyPressed(KEY_SPACE))
 		{
 			this.attackStarted = true;			
 		}
