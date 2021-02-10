@@ -50,17 +50,13 @@ public class Battlefield : Node2D
 	private CharacterNode playerNode;
 	private CharacterNode genericNodeToClone;
 
-	public void DeselectAllEnemies()
-	{
-		foreach(Node children in this.GetChildren())
-		{
-			if(children is NpcNode)
-			{
-				NpcNode npc = children as NpcNode;
-				npc.Deselect();
-			}
-		}
-	}
+
+	// The URL we will connect to
+	private string websocketUrl = "ws://localhost:8080/ws-character/app/hello";
+
+	// Our WebSocketClient instance
+	WebSocketClient _client = new WebSocketClient();
+
 
 	private IEnumerable<Character> characters;
 	private Character player;
@@ -72,9 +68,46 @@ public class Battlefield : Node2D
 
 		this.characters = this.RetrieveCharacters();
 		this.LoadCharacters();
-		this.AddCharactersSprites();		
+		this.AddCharactersSprites();
+
+
+		_client.Connect("connection_closed", this, "_closed");
+		_client.Connect("connection_error", this, "_closed");
+		_client.Connect("connection_established", this, "_connected");
+		_client.Connect("data_received", this, "_on_data");
+
+		var err = _client.ConnectToUrl(this.websocketUrl);
+		
+		if(err != Error.Ok)
+		{
+			Console.WriteLine("Unable to connect");
+			SetProcess(false);
+		}
+
 	}
 
+	public override void _Process(float delta)
+	{
+		base._Process(delta);
+		_client.Poll();
+	}
+
+	private void _closed()
+	{
+		Console.WriteLine("Closed, ");
+		SetProcess(false);
+	}
+
+
+	private void _connected(string proto ="")
+	{
+		_client.GetPeer(1).PutPacket("Test packet".ToUTF8());
+	}
+
+	private void _on_data()
+	{
+		Console.WriteLine("Data from server " + _client.GetPeer(1).GetPacket().ToString().ToUTF8());
+	}
 
 	private void LoadCharacters()
 	{
@@ -125,4 +158,18 @@ public class Battlefield : Node2D
 		}
 		return null;
 	}
+
+
+	public void DeselectAllEnemies()
+	{
+		foreach (Node children in this.GetChildren())
+		{
+			if (children is NpcNode)
+			{
+				NpcNode npc = children as NpcNode;
+				npc.Deselect();
+			}
+		}
+	}
+
 }
