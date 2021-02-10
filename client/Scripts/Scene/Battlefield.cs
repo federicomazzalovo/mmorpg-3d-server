@@ -4,8 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-
-
+using System.Text;
 
 public enum CharacterClass
 {
@@ -92,7 +91,7 @@ public class Battlefield : Node2D
 		_client.Poll();
 	}
 
-	private void _closed()
+	private void _closed(bool isClose)
 	{
 		Console.WriteLine("Closed, ");
 		SetProcess(false);
@@ -101,12 +100,18 @@ public class Battlefield : Node2D
 
 	private void _connected(string proto ="")
 	{
+		_client.GetPeer(1).SetWriteMode(WebSocketPeer.WriteMode.Text);
 		_client.GetPeer(1).PutPacket("Test packet".ToUTF8());
 	}
 
 	private void _on_data()
 	{
-		Console.WriteLine("Data from server " + _client.GetPeer(1).GetPacket().ToString().ToUTF8());
+		_client.GetPeer(1).SetWriteMode(WebSocketPeer.WriteMode.Text);
+		_client.GetPeer(1).AllowObjectDecoding = true;
+		byte[] bytes = _client.GetPeer(1).GetPacket();
+		string result = Encoding.UTF8.GetString(bytes, 0, bytes.Length);
+
+		GD.Print("Data from server " + result);
 	}
 
 	private void LoadCharacters()
