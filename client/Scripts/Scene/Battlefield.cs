@@ -52,7 +52,7 @@ public class Battlefield : Node2D
 
 
 	// The URL we will connect to
-	private string websocketUrl = "ws://localhost:8080/ws-character/app/hello";
+	private string websocketUrl = "ws://localhost:8080/my-websocket-endpoint";
 
 	// Our WebSocketClient instance
 	WebSocketClient _client = new WebSocketClient();
