@@ -45,19 +45,10 @@ public class CharacterPosition
 	public float y { get; set; }
 }
 
-public class Battlefield : Node2D, IObserver<Node>
+public class Battlefield : Node2D
 {
 	private CharacterNode playerNode;
 	private CharacterNode genericNodeToClone;
-
-
-	// The URL we will connect to
-	private string websocketUrl = "ws://localhost:8080/my-websocket-endpoint";
-
-	// Our WebSocketClient instance
-	WebSocketClient _client = new WebSocketClient();
-
-
 	private IEnumerable<Character> characters;
 	private Character player;
 
@@ -70,56 +61,42 @@ public class Battlefield : Node2D, IObserver<Node>
 		this.LoadCharacters();
 		this.AddCharactersSprites();
 
-
-		_client.Connect("connection_closed", this, "_closed");
-		_client.Connect("connection_error", this, "_closed");
-		_client.Connect("connection_established", this, "_connected");
-		_client.Connect("data_received", this, "_on_data");
-
-		var err = _client.ConnectToUrl(this.websocketUrl);
-		
-		if(err != Error.Ok)
-		{
-			Console.WriteLine("Unable to connect");
-			SetProcess(false);
-		}
-
-
 		WebSocketService webSocketService = WebSocketService.GetInstance();
-		webSocketService.Connect("");
+		var err = webSocketService.Connect("my-websocket-endpoint");
 
+		if (err != Error.Ok)
+		{
+			GD.Print("Unable to connect");
+			this.SetProcess(false);
+		}			
+		else
+        {
+			webSocketService.ConnectionClosedEvent += this.ConnectionClosed;
+			webSocketService.ConnectionEnstablishedEvent += this.ConnectionEnstablished;
+			webSocketService.DataReceivedEvent += this.DataChanged;
+		}
+			
+	}
 
-		webSocketService.Subscribe(this);
+    private void ConnectionEnstablished(object sender, object e)
+    {
+		GD.Print("Connection enstablished");
+	}
 
+    private void ConnectionClosed(object sender, object e)
+    {
+		GD.Print("Connection closed");
+	}
+
+    private void DataChanged(object sender, object e)
+	{
+		var x = 1;
 	}
 
 	public override void _Process(float delta)
 	{
 		base._Process(delta);
-		_client.Poll();
-	}
-
-	private void _closed(bool isClose)
-	{
-		Console.WriteLine("Closed, ");
-		SetProcess(false);
-	}
-
-
-	private void _connected(string proto ="")
-	{
-		_client.GetPeer(1).SetWriteMode(WebSocketPeer.WriteMode.Text);
-		_client.GetPeer(1).PutPacket("Test packet".ToUTF8());
-	}
-
-	private void _on_data()
-	{
-		_client.GetPeer(1).SetWriteMode(WebSocketPeer.WriteMode.Text);
-		_client.GetPeer(1).AllowObjectDecoding = true;
-		byte[] bytes = _client.GetPeer(1).GetPacket();
-		string result = Encoding.UTF8.GetString(bytes, 0, bytes.Length);
-
-		GD.Print("Data from server " + result);
+		WebSocketService.GetInstance().Poll();
 	}
 
 	private void LoadCharacters()
@@ -185,20 +162,20 @@ public class Battlefield : Node2D, IObserver<Node>
 		}
 	}
 
-    public void OnNext(Node value)
-    {
+	public void OnNext(Node value)
+	{
 		GD.Print(value);
    //     throw new NotImplementedException();
-    }
+	}
 
-    public void OnError(Exception error)
-    {
+	public void OnError(Exception error)
+	{
 		GD.Print(error);
 		//   throw new NotImplementedException();
 	}
 
-    public void OnCompleted()
-    {
+	public void OnCompleted()
+	{
 		GD.Print("on completed");
 		// throw new NotImplementedException();
 	}

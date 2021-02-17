@@ -7,19 +7,20 @@ using System.Threading.Tasks;
 
 namespace Simplerpgkataclient.Network
 {
-    public class WebSocketService : Godot.Object, IObservable<Node> 
+    public class WebSocketService : Godot.Object
     {
         private const string WEB_SOCKET_URL = "ws://localhost:8080/";
 
         private WebSocketClient client;
         private static WebSocketService instance;
 
-        private List<IObserver<Node>> observers;
- 
+        public event EventHandler<object> ConnectionClosedEvent = delegate { };
+        public event EventHandler<object> ConnectionEnstablishedEvent = delegate { };
+        public event EventHandler<object> DataReceivedEvent = delegate { };
+
         private WebSocketService()
         {
             this.client = new WebSocketClient();
-            this.observers = new List<IObserver<Node>>();
         }
 
         public Error Connect(string endpoint)
@@ -45,33 +46,25 @@ namespace Simplerpgkataclient.Network
             this.client.Poll();
         }
 
+        public void SendMessage(string message)
+        {
+            this.client.GetPeer(1).SetWriteMode(WebSocketPeer.WriteMode.Text);
+            this.client.GetPeer(1).PutPacket(message.ToUTF8());
+        }
+
         private void OnConnectionClosed(bool isClose)
         {
-
+            this.ConnectionClosedEvent(this, "aaa");
         }
 
         private void OnConnectedEnstablished(string proto = "")
         {
-
+            this.ConnectionEnstablishedEvent(this, "aaa");
         }
 
         private void OnDataReceived()
         {
-        
-            foreach(var observer in this.observers){
-                observer.OnNext(new Node());
-            }
-            
+            this.DataReceivedEvent(this, "aaa");
         }
-
-        public IDisposable Subscribe(IObserver<Node> observer)
-        {
-            if(!this.observers.Contains(observer))
-                this.observers.Add(observer);
- 
-            return new Subscription(observers, observer);
-        }
-
-
     }
 }
