@@ -1,5 +1,6 @@
 using Godot;
 using Newtonsoft.Json;
+using Simplerpgkataclient.Network;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +45,7 @@ public class CharacterPosition
 	public float y { get; set; }
 }
 
-public class Battlefield : Node2D
+public class Battlefield : Node2D, IObserver<Node>
 {
 	private CharacterNode playerNode;
 	private CharacterNode genericNodeToClone;
@@ -82,6 +83,13 @@ public class Battlefield : Node2D
 			Console.WriteLine("Unable to connect");
 			SetProcess(false);
 		}
+
+
+		WebSocketService webSocketService = WebSocketService.GetInstance();
+		webSocketService.Connect("");
+
+
+		webSocketService.Subscribe(this);
 
 	}
 
@@ -177,4 +185,21 @@ public class Battlefield : Node2D
 		}
 	}
 
+    public void OnNext(Node value)
+    {
+		GD.Print(value);
+   //     throw new NotImplementedException();
+    }
+
+    public void OnError(Exception error)
+    {
+		GD.Print(error);
+		//   throw new NotImplementedException();
+	}
+
+    public void OnCompleted()
+    {
+		GD.Print("on completed");
+		// throw new NotImplementedException();
+	}
 }
