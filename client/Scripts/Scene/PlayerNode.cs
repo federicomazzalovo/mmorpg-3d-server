@@ -1,5 +1,6 @@
 using Godot;
 using Newtonsoft.Json;
+using Simplerpgkataclient.Network;
 using System;
 using System.Net.Http;
 
@@ -20,6 +21,12 @@ public class PlayerNode : CharacterNode
 	{
 		base._Ready();
 		this.ParentNode = this.GetNode("/root/Battlefield") as Battlefield;
+
+		WebSocketService webSocketService = WebSocketService.GetInstance();
+
+		webSocketService.ConnectionClosedEvent += this.ConnectionClosed;
+		webSocketService.ConnectionEnstablishedEvent += this.ConnectionEnstablished;
+		webSocketService.DataReceivedEvent += this.DataChanged;
 	}
 
 	public override void _PhysicsProcess(float delta)
@@ -42,6 +49,30 @@ public class PlayerNode : CharacterNode
 		// In the case of a 2D platformer, in Godot, upward is negative y, which translates to -1 as a normal.
 		MoveAndSlide(velocity, new Vector2(0, -1));
 	}
+
+
+
+	private void ConnectionEnstablished(object sender, object e)
+	{
+		GD.Print("Connection enstablished");
+	}
+
+	private void ConnectionClosed(object sender, object e)
+	{
+		GD.Print("Connection closed");
+	}
+
+	private void DataChanged(object sender, object e)
+	{
+		var x = 1;
+	}
+
+	public override void _Process(float delta)
+	{
+		base._Process(delta);
+		WebSocketService.GetInstance().Poll();
+	}
+
 
 	private void handleAttackAction()
 	{
@@ -94,6 +125,9 @@ public class PlayerNode : CharacterNode
 
 	private void UpdatePosition(float x, float y)
 	{
+		string message = JsonConvert.SerializeObject(new WebSocketParams() { characterId = this.Character.Id, positionX = x, positionY = y });
+		WebSocketService.GetInstance().SendMessage(message);
+
 		using (HttpClient client = new HttpClient())
 		{
 			CharacterPosition newPosition = new CharacterPosition(x, y);

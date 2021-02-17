@@ -54,6 +54,7 @@ namespace Simplerpgkataclient.Network
 
         private void OnConnectionClosed(bool isClose)
         {
+
             this.ConnectionClosedEvent(this, "aaa");
         }
 
@@ -64,7 +65,12 @@ namespace Simplerpgkataclient.Network
 
         private void OnDataReceived()
         {
-            this.DataReceivedEvent(this, "aaa");
+            this.client.GetPeer(1).SetWriteMode(WebSocketPeer.WriteMode.Text);
+           // _client.GetPeer(1).AllowObjectDecoding = true;
+            byte[] bytes = this.client.GetPeer(1).GetPacket();
+            string result = Encoding.UTF8.GetString(bytes, 0, bytes.Length);
+
+            this.DataReceivedEvent(this, result);
         }
     }
 }

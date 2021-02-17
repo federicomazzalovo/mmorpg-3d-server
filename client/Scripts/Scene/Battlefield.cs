@@ -70,7 +70,7 @@ public class Battlefield : Node2D
 			this.SetProcess(false);
 		}			
 		else
-        {
+		{
 			webSocketService.ConnectionClosedEvent += this.ConnectionClosed;
 			webSocketService.ConnectionEnstablishedEvent += this.ConnectionEnstablished;
 			webSocketService.DataReceivedEvent += this.DataChanged;
@@ -78,18 +78,19 @@ public class Battlefield : Node2D
 			
 	}
 
-    private void ConnectionEnstablished(object sender, object e)
-    {
+	private void ConnectionEnstablished(object sender, object e)
+	{
 		GD.Print("Connection enstablished");
 	}
 
-    private void ConnectionClosed(object sender, object e)
-    {
+	private void ConnectionClosed(object sender, object e)
+	{
 		GD.Print("Connection closed");
 	}
 
-    private void DataChanged(object sender, object e)
+	private void DataChanged(object sender, object e)
 	{
+		GD.Print(e);
 		var x = 1;
 	}
 
