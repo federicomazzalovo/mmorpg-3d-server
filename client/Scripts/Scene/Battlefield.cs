@@ -48,6 +48,9 @@ public class CharacterPosition
 public class Battlefield : Node2D
 {
 	private CharacterNode playerNode;
+	// List of character exclude the current player
+	private List<CharacterNode> characterNodes = new List<CharacterNode>();
+	
 	private CharacterNode genericNodeToClone;
 	private IEnumerable<Character> characters;
 	private Character player;
@@ -90,8 +93,22 @@ public class Battlefield : Node2D
 
 	private void DataChanged(object sender, object e)
 	{
+		// For now  this method only receive a list of character position
+		string message = e as string;
+		List<WebSocketParams> webSocketParamsList =  JsonConvert.DeserializeObject<List<WebSocketParams>>(message);
+
+		foreach(var param in webSocketParamsList)
+		{
+			CharacterNode node = this.characterNodes.FirstOrDefault(c => c.Character.Id == param.characterId);
+			if(node != null)
+			{
+				node.Character.Position = new CharacterPosition(param.positionX, param.positionY);
+				// Update the UI 
+				node.Position = new Vector2(param.positionX, param.positionY);
+			}
+		}
+
 		GD.Print(e);
-		var x = 1;
 	}
 
 	public override void _Process(float delta)
@@ -121,7 +138,9 @@ public class Battlefield : Node2D
 
 		characterSprite.Initialize(character);
 
-		characterSprite.Show();		
+		characterSprite.Show();
+
+		this.characterNodes.Add(characterSprite);
 	}
 
 	private List<Character> RetrieveCharacters()

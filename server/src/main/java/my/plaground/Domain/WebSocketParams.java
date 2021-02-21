@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class WebSocketParams {
     private int characterId;
-    private float positionX;
-    private float positionY;
+    private double positionX;
+    private double positionY;
 }
