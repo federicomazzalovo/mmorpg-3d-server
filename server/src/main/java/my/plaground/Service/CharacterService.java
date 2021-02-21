@@ -34,22 +34,30 @@ public class CharacterService {
                 .filter(Character::isAlive).collect(Collectors.toList());
     }
 
-    @Transactional
     public Optional<Character> getCharacter(int characterId){
         try {
-            return Optional.of(this.characterFactory.getCharacter(this.repository.getOne(characterId)));
+            Optional<CharacterEntity> character = this.repository.findById(characterId);
+
+            if(!character.isEmpty())
+                return Optional.of(this.characterFactory.getCharacter(character.get()));
+            else
+                return Optional.empty();
         } catch (EntityNotFoundException e){
             return Optional.empty();
         }
     }
 
-
     public Character updatePosition(int characterId, Position newPosition) {
-        CharacterEntity character = this.repository.getOne(characterId);
-        character.setPositionx(newPosition.getX());
-        character.setPositiony(newPosition.getY());
-        CharacterEntity charSaved = this.repository.save(character);
-        return  this.characterFactory.getCharacter(charSaved);
+        Optional<CharacterEntity> character = this.repository.findById(characterId);
+        if(character.isPresent()) {
+            character.get().setPositionx(newPosition.getX());
+            character.get().setPositiony(newPosition.getY());
+            CharacterEntity charSaved = this.repository.save(character.get());
+
+            return this.characterFactory.getCharacter(charSaved);
+        }
+        else
+            return null;
     }
 
     public Character updateCharacter(Character updatedCharacter) {

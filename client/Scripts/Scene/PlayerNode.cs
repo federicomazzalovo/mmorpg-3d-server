@@ -127,18 +127,6 @@ public class PlayerNode : CharacterNode
 	{
 		string message = JsonConvert.SerializeObject(new WebSocketParams() { characterId = this.Character.Id, positionX = x, positionY = y });
 		WebSocketService.GetInstance().SendMessage(message);
-
-		using (HttpClient client = new HttpClient())
-		{
-			CharacterPosition newPosition = new CharacterPosition(x, y);
-			this.Character.Position = newPosition;
-			HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(newPosition));
-			httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-
-			HttpResponseMessage response = client.PutAsync("http://localhost:8080/api/character/"+ this.Character.Id + "/position", httpContent).Result;
-
-			string json = response.Content.ReadAsStringAsync().Result;
-		}
 	}
 
 	private void AttackEnemy()

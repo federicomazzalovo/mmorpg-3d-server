@@ -1,6 +1,7 @@
 package my.plaground;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import my.plaground.Domain.Position;
 import my.plaground.Domain.WebSocketParams;
 import my.plaground.Service.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,7 @@ public class WebSocketMessageHandler extends TextWebSocketHandler {
     public void afterConnectionEstablished(WebSocketSession session) {
         // The WebSocket has been opened
         // I might save this session object so that I can send messages to it outside of this method
+
     }
 
     @Override
@@ -39,10 +41,10 @@ public class WebSocketMessageHandler extends TextWebSocketHandler {
         // A message has been received
         System.out.println("Message received: " + textMessage.getPayload());
 
-        var x = this.characterService.getCharacter(1);
-
         try {
             WebSocketParams webSocketParams = new ObjectMapper().readValue(textMessage.getPayload(), WebSocketParams.class);
+
+            this.characterService.updatePosition(webSocketParams.getCharacterId(), Position.at(webSocketParams.getPositionX(), webSocketParams.getPositionY()));
 
             session.sendMessage(new TextMessage("Ue quaglio ho ricevuto questo messaggio da te: " + textMessage.getPayload()));
         } catch (IOException e) {
