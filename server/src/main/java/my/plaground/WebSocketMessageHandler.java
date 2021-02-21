@@ -2,15 +2,26 @@ package my.plaground;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import my.plaground.Domain.WebSocketParams;
+import my.plaground.Service.CharacterService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import java.io.IOException;
 
-
+@Component
 public class WebSocketMessageHandler extends TextWebSocketHandler {
+
+    private final CharacterService characterService;
+
+    @Autowired
+    public WebSocketMessageHandler(CharacterService service){
+        this.characterService = service;
+    }
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) {
@@ -27,6 +38,8 @@ public class WebSocketMessageHandler extends TextWebSocketHandler {
     protected void handleTextMessage(WebSocketSession session, TextMessage textMessage) {
         // A message has been received
         System.out.println("Message received: " + textMessage.getPayload());
+
+        var x = this.characterService.getCharacter(1);
 
         try {
             WebSocketParams webSocketParams = new ObjectMapper().readValue(textMessage.getPayload(), WebSocketParams.class);
