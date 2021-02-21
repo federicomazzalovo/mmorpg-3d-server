@@ -4,10 +4,12 @@ import my.plaground.Domain.*;
 import my.plaground.Domain.Character;
 import my.plaground.Repository.CharacterEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class CharacterFactory {
 
+    @Transactional
     public Character getCharacter(CharacterEntity entity) {
         Character instance;
 

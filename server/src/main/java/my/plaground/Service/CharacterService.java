@@ -6,6 +6,7 @@ import my.plaground.Exception.ResourceNotFound;
 import my.plaground.Repository.CharacterEntity;
 import my.plaground.Repository.CharacterRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -33,6 +34,7 @@ public class CharacterService {
                 .filter(Character::isAlive).collect(Collectors.toList());
     }
 
+    @Transactional
     public Optional<Character> getCharacter(int characterId){
         try {
             return Optional.of(this.characterFactory.getCharacter(this.repository.getOne(characterId)));
