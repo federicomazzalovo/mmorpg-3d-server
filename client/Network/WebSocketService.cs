@@ -9,7 +9,7 @@ namespace Simplerpgkataclient.Network
 {
     public class WebSocketService : Godot.Object
     {
-        private const string WEB_SOCKET_URL = "ws://localhost:8080/";
+        private const string WEB_SOCKET_URL = "ws://simple-rpg-kata.herokuapp.com/";
 
         private WebSocketClient client;
         private static WebSocketService instance;

@@ -2,6 +2,7 @@ using Godot;
 using Newtonsoft.Json;
 using Simplerpgkataclient.Network;
 using System;
+using System.Net;
 using System.Net.Http;
 
 public class PlayerNode : CharacterNode
@@ -137,7 +138,7 @@ public class PlayerNode : CharacterNode
 			if (selectedTarget != null && !selectedTarget.Character.Dead)
 			{
 				long targetId = selectedTarget.Character.Id;
-				HttpResponseMessage response = client.GetAsync("http://localhost:8080/api/character/" + this.Character.Id + "/attack/" + targetId).Result;
+				HttpResponseMessage response = client.GetAsync("http://simple-rpg-kata.herokuapp.com/api/character/" + this.Character.Id + "/attack/" + targetId).Result;
 				string json = response.Content.ReadAsStringAsync().Result;
 
 				selectedTarget.UpdateCharacter();

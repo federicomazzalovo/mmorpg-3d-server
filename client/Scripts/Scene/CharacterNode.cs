@@ -1,6 +1,7 @@
 using Godot;
 using Newtonsoft.Json;
 using System;
+using System.Net;
 using System.Net.Http;
 
 public abstract class CharacterNode : KinematicBody2D
@@ -72,7 +73,7 @@ public abstract class CharacterNode : KinematicBody2D
 	{
 		using (HttpClient client = new HttpClient())
 		{
-			HttpResponseMessage response = client.GetAsync("http://localhost:8080/api/character/" + this.Character.Id).Result;
+			HttpResponseMessage response = client.GetAsync("http://simple-rpg-kata.herokuapp.com/api/character/" + this.Character.Id).Result;
 			string json = response.Content.ReadAsStringAsync().Result;
 
 			Character character = JsonConvert.DeserializeObject<Character>(json);

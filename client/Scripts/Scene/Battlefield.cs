@@ -5,6 +5,7 @@ using Simplerpgkataclient.Scripts.Scene;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 
@@ -150,7 +151,7 @@ public class Battlefield : Node2D
 	{
 		using (HttpClient client = new HttpClient())
 		{
-			HttpResponseMessage response = client.GetAsync("http://localhost:8080/api/character/all/alive").Result;
+			HttpResponseMessage response = client.GetAsync("http://simple-rpg-kata.herokuapp.com/api/character/all/alive").Result;
 
 			string json = response.Content.ReadAsStringAsync().Result;
 

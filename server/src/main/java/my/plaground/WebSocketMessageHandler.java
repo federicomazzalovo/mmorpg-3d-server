@@ -55,7 +55,7 @@ public class WebSocketMessageHandler extends TextWebSocketHandler {
                   }
               }
         };
-        new Timer().scheduleAtFixedRate(timer, 0,1000);
+        new Timer().scheduleAtFixedRate(timer, 0,100);
     }
 
     private String getAliveCharacterPositionMessage() throws JsonProcessingException {
