@@ -20,7 +20,7 @@ public class Login : Control
 
 	private void _on_Button_pressed()
 	{
-		LineEdit usernameInput = this.GetNode("VBoxContainer/usernameInput") as LineEdit;
+		LineEdit usernameInput = this.GetNode("usernameInput") as LineEdit;
 		string usernameValue = usernameInput.Text;
 		if (String.IsNullOrWhiteSpace(usernameValue))
 			return;
