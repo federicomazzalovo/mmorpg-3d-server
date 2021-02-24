@@ -1,6 +1,7 @@
 using Godot;
 using Newtonsoft.Json;
 using Simplerpgkataclient.Network;
+using Simplerpgkataclient.Scripts.Scene;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,6 +58,7 @@ public class Battlefield : Node2D
 
 	public override void _Ready()
 	{
+ 
 		this.genericNodeToClone = this.GetNode("NpcNode") as CharacterNode;
 		this.playerNode = this.GetNode("PlayerNode") as CharacterNode;
 
