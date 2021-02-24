@@ -40,7 +40,7 @@ public class PlayerNode : CharacterNode
 
 		this.handleAttackAction();
 
-		if (isNavigationButtonReleased())
+		if (this.velocity.x != 0 || this.velocity.y != 0)
 			this.UpdatePosition(this.Position.x, this.Position.y);
 
 		// We don't need to multiply velocity by delta because "MoveAndSlide" already takes delta time into account.
@@ -143,14 +143,6 @@ public class PlayerNode : CharacterNode
 				selectedTarget.UpdateCharacter();
 			}
 		}
-	}
-
-	private bool isNavigationButtonReleased()
-	{
-		return Input.IsActionJustReleased("ui_left")
-			|| Input.IsActionJustReleased("ui_right")
-			|| Input.IsActionJustReleased("ui_up")
-			|| Input.IsActionJustReleased("ui_down");
 	}
 
 	private void _on_PlayerSprite_animation_finished()
