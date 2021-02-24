@@ -104,6 +104,7 @@
 
 
   <build>
+    <finalName>simple-rpg-kata</finalName>
     <plugins>
       <plugin>
         <groupId>org.springframework.boot</groupId>
