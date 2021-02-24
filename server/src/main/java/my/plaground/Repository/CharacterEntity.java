@@ -28,4 +28,8 @@ public class CharacterEntity {
     @Column(name="classId")
     @Enumerated(EnumType.ORDINAL)
     private CharacterClass classId;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = true)
+    private UserEntity user;
 }
