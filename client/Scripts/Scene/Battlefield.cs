@@ -29,6 +29,7 @@ public class Character
 	public bool Dead { get; set; }
 
 	public bool IsPlayer { get; set; }
+	public string Username { get; set; }
 
 	public CharacterClass CharacterClass { get; set; }
 }
@@ -121,8 +122,8 @@ public class Battlefield : Node2D
 
 	private void LoadCharacters()
 	{
-		this.player = this.characters.SingleOrDefault(character => character.IsPlayer);
-		this.characters = this.characters.Where(character => !character.IsPlayer);        
+		this.player = this.characters.SingleOrDefault(character => character.Username == Session.Username);
+		this.characters = this.characters.Where(character => character.Username != Session.Username);
 	}
 
 	private void AddCharactersSprites()

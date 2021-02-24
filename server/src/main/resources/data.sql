@@ -1,8 +1,8 @@
 
 INSERT INTO Users (username) VALUES
-    ('Player1'),
-    ('Player2'),
-    ('Player3');
+    ('Paladin'),
+    ('Rogue'),
+    ('Wizard');
 
 INSERT INTO Characters (level_value, is_player, positionx, positiony, hp, class_id, user_id) VALUES
   (1, 0, 500, 500, 150, 1, 1),

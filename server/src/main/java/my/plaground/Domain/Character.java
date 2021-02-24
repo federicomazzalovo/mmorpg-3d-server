@@ -14,6 +14,8 @@ public abstract class Character extends Target {
     @JsonProperty("isPlayer")
     protected boolean isPlayer;
 
+    protected String username;
+
     protected Faction faction;
     protected Position position;
 
@@ -23,6 +25,14 @@ public abstract class Character extends Target {
     @JsonProperty("characterClass")
     @JsonFormat(shape = JsonFormat.Shape.NUMBER)
     protected CharacterClass characterClass;
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getUsername() {
+        return username;
+    }
 
     public void setIsPlayer(boolean player) {
         isPlayer = player;
