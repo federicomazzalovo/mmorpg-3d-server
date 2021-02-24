@@ -480,6 +480,16 @@ animations = [ {
 "name": "attack",
 "speed": 60.0
 }, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "death",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 148 ), ExtResource( 147 ), ExtResource( 104 ), ExtResource( 149 ), ExtResource( 150 ), ExtResource( 105 ), ExtResource( 137 ), ExtResource( 151 ), ExtResource( 152 ), ExtResource( 153 ), ExtResource( 138 ), ExtResource( 139 ), ExtResource( 140 ), ExtResource( 141 ), ExtResource( 142 ), ExtResource( 143 ), ExtResource( 145 ), ExtResource( 98 ), ExtResource( 99 ), ExtResource( 100 ), ExtResource( 94 ), ExtResource( 101 ), ExtResource( 92 ), ExtResource( 97 ), ExtResource( 102 ), ExtResource( 103 ), ExtResource( 96 ), ExtResource( 91 ), ExtResource( 93 ), ExtResource( 95 ) ],
+"loop": true,
+"name": "walk_side_facing",
+"speed": 60.0
+}, {
 "frames": [ ExtResource( 54 ), ExtResource( 55 ), ExtResource( 37 ), ExtResource( 56 ), ExtResource( 57 ), ExtResource( 58 ), ExtResource( 49 ), ExtResource( 50 ), ExtResource( 51 ), ExtResource( 52 ), ExtResource( 46 ), ExtResource( 47 ), ExtResource( 59 ), ExtResource( 38 ), ExtResource( 42 ), ExtResource( 36 ), ExtResource( 53 ), ExtResource( 39 ), ExtResource( 40 ), ExtResource( 41 ), ExtResource( 43 ), ExtResource( 44 ), ExtResource( 45 ), ExtResource( 48 ), ExtResource( 62 ), ExtResource( 65 ), ExtResource( 63 ), ExtResource( 64 ), ExtResource( 60 ), ExtResource( 61 ) ],
 "loop": true,
 "name": "walk_up_facing",
@@ -489,16 +499,6 @@ animations = [ {
 "loop": true,
 "name": "walk_down_facing",
 "speed": 60.0
-}, {
-"frames": [ ExtResource( 148 ), ExtResource( 147 ), ExtResource( 104 ), ExtResource( 149 ), ExtResource( 150 ), ExtResource( 105 ), ExtResource( 137 ), ExtResource( 151 ), ExtResource( 152 ), ExtResource( 153 ), ExtResource( 138 ), ExtResource( 139 ), ExtResource( 140 ), ExtResource( 141 ), ExtResource( 142 ), ExtResource( 143 ), ExtResource( 145 ), ExtResource( 98 ), ExtResource( 99 ), ExtResource( 100 ), ExtResource( 94 ), ExtResource( 101 ), ExtResource( 92 ), ExtResource( 97 ), ExtResource( 102 ), ExtResource( 103 ), ExtResource( 96 ), ExtResource( 91 ), ExtResource( 93 ), ExtResource( 95 ) ],
-"loop": true,
-"name": "walk_side_facing",
-"speed": 60.0
-}, {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "death",
-"speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=10]
@@ -513,6 +513,16 @@ animations = [ {
 "name": "attack",
 "speed": 60.0
 }, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "death",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 25 ), ExtResource( 26 ), ExtResource( 8 ), ExtResource( 418 ), ExtResource( 13 ), ExtResource( 16 ), ExtResource( 12 ), ExtResource( 417 ), ExtResource( 21 ), ExtResource( 414 ), ExtResource( 410 ), ExtResource( 409 ), ExtResource( 29 ), ExtResource( 419 ), ExtResource( 20 ), ExtResource( 17 ), ExtResource( 32 ), ExtResource( 14 ), ExtResource( 406 ), ExtResource( 19 ), ExtResource( 405 ), ExtResource( 6 ), ExtResource( 18 ), ExtResource( 411 ), ExtResource( 24 ), ExtResource( 407 ), ExtResource( 11 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "walk_side_facing",
+"speed": 60.0
+}, {
 "frames": [ ExtResource( 186 ), ExtResource( 187 ), ExtResource( 185 ), ExtResource( 167 ), ExtResource( 168 ), ExtResource( 161 ), ExtResource( 171 ), ExtResource( 159 ), ExtResource( 158 ), ExtResource( 182 ), ExtResource( 166 ), ExtResource( 181 ), ExtResource( 188 ), ExtResource( 179 ), ExtResource( 178 ), ExtResource( 162 ), ExtResource( 183 ), ExtResource( 184 ), ExtResource( 177 ), ExtResource( 164 ), ExtResource( 170 ), ExtResource( 180 ), ExtResource( 165 ), ExtResource( 160 ), ExtResource( 189 ), ExtResource( 176 ), ExtResource( 173 ), ExtResource( 175 ), ExtResource( 169 ), ExtResource( 172 ) ],
 "loop": true,
 "name": "walk_up_facing",
@@ -522,16 +532,6 @@ animations = [ {
 "loop": true,
 "name": "walk_down_facing",
 "speed": 60.0
-}, {
-"frames": [ ExtResource( 25 ), ExtResource( 26 ), ExtResource( 8 ), ExtResource( 418 ), ExtResource( 13 ), ExtResource( 16 ), ExtResource( 12 ), ExtResource( 417 ), ExtResource( 21 ), ExtResource( 414 ), ExtResource( 410 ), ExtResource( 409 ), ExtResource( 29 ), ExtResource( 419 ), ExtResource( 20 ), ExtResource( 17 ), ExtResource( 32 ), ExtResource( 14 ), ExtResource( 406 ), ExtResource( 19 ), ExtResource( 405 ), ExtResource( 6 ), ExtResource( 18 ), ExtResource( 411 ), ExtResource( 24 ), ExtResource( 407 ), ExtResource( 11 ), ExtResource( 15 ) ],
-"loop": true,
-"name": "walk_side_facing",
-"speed": 60.0
-}, {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "death",
-"speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=11]
@@ -546,6 +546,16 @@ animations = [ {
 "name": "attack",
 "speed": 60.0
 }, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "death",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 393 ), ExtResource( 398 ), ExtResource( 394 ), ExtResource( 401 ), ExtResource( 404 ), ExtResource( 396 ), ExtResource( 400 ), ExtResource( 395 ), ExtResource( 397 ), ExtResource( 403 ), ExtResource( 402 ), ExtResource( 313 ), ExtResource( 314 ), ExtResource( 286 ), ExtResource( 296 ), ExtResource( 295 ), ExtResource( 284 ), ExtResource( 312 ), ExtResource( 315 ), ExtResource( 297 ), ExtResource( 294 ), ExtResource( 290 ), ExtResource( 311 ), ExtResource( 305 ), ExtResource( 285 ), ExtResource( 323 ), ExtResource( 298 ), ExtResource( 317 ), ExtResource( 302 ), ExtResource( 281 ) ],
+"loop": true,
+"name": "walk_side_facing",
+"speed": 60.0
+}, {
 "frames": [ ExtResource( 288 ), ExtResource( 310 ), ExtResource( 299 ), ExtResource( 291 ), ExtResource( 300 ), ExtResource( 301 ), ExtResource( 283 ), ExtResource( 327 ), ExtResource( 292 ), ExtResource( 293 ), ExtResource( 324 ), ExtResource( 325 ), ExtResource( 279 ), ExtResource( 303 ), ExtResource( 287 ), ExtResource( 289 ), ExtResource( 304 ), ExtResource( 306 ), ExtResource( 280 ), ExtResource( 318 ), ExtResource( 319 ), ExtResource( 316 ), ExtResource( 307 ), ExtResource( 308 ), ExtResource( 309 ), ExtResource( 282 ), ExtResource( 320 ), ExtResource( 321 ), ExtResource( 322 ), ExtResource( 326 ) ],
 "loop": true,
 "name": "walk_up_facing",
@@ -555,16 +565,6 @@ animations = [ {
 "loop": true,
 "name": "walk_down_facing",
 "speed": 60.0
-}, {
-"frames": [ ExtResource( 393 ), ExtResource( 398 ), ExtResource( 394 ), ExtResource( 401 ), ExtResource( 404 ), ExtResource( 396 ), ExtResource( 400 ), ExtResource( 395 ), ExtResource( 397 ), ExtResource( 403 ), ExtResource( 402 ), ExtResource( 313 ), ExtResource( 314 ), ExtResource( 286 ), ExtResource( 296 ), ExtResource( 295 ), ExtResource( 284 ), ExtResource( 312 ), ExtResource( 315 ), ExtResource( 297 ), ExtResource( 294 ), ExtResource( 290 ), ExtResource( 311 ), ExtResource( 305 ), ExtResource( 285 ), ExtResource( 323 ), ExtResource( 298 ), ExtResource( 317 ), ExtResource( 302 ), ExtResource( 281 ) ],
-"loop": true,
-"name": "walk_side_facing",
-"speed": 60.0
-}, {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "death",
-"speed": 5.0
 } ]
 
 [node name="Battlefield" type="Node2D"]

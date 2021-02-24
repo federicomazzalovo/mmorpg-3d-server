@@ -1,5 +1,6 @@
 package my.plaground.Repository;
 
+import my.plaground.Domain.Entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

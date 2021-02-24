@@ -1,4 +1,4 @@
-package my.plaground.Repository;
+package my.plaground.Domain.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

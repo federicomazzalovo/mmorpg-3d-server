@@ -3,10 +3,9 @@ package my.plaground.Service;
 import my.plaground.Domain.Character;
 import my.plaground.Domain.Position;
 import my.plaground.Exception.ResourceNotFound;
-import my.plaground.Repository.CharacterEntity;
+import my.plaground.Domain.Entity.CharacterEntity;
 import my.plaground.Repository.CharacterRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
