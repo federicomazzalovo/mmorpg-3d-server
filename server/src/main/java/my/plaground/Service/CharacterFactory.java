@@ -32,6 +32,8 @@ public class CharacterFactory {
         instance.setIsPlayer(entity.isPlayer());
         instance.setPosition(Position.at(entity.getPositionx(), entity.getPositiony()));
         instance.setHp(entity.getHp());
+        instance.setMoveDirection(entity.getMoveDirection());
+
         if(entity.getUser() != null)
             instance.setUsername(entity.getUser().getUsername());
 
