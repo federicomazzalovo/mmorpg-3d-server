@@ -30,6 +30,7 @@ public class PlayerNode : CharacterNode
 		webSocketService.DataReceivedEvent += this.DataChanged;
 	}
 
+	private bool updatePositionRequired = true;
 	public override void _PhysicsProcess(float delta)
 	{
 		base._PhysicsProcess(delta);
@@ -41,8 +42,10 @@ public class PlayerNode : CharacterNode
 
 		this.handleAttackAction();
 
-		if (this.velocity.x != 0 || this.velocity.y != 0)
+		if (this.updatePositionRequired)
 			this.UpdatePosition(this.Position.x, this.Position.y);
+
+		this.updatePositionRequired = this.velocity.x != 0 || this.velocity.y != 0;
 
 		// We don't need to multiply velocity by delta because "MoveAndSlide" already takes delta time into account.
 
@@ -96,29 +99,29 @@ public class PlayerNode : CharacterNode
 			velocity.y = walkSpeed;
 			this.moveDirection = MoveDirection.Down;
 		}
-		else if(Input.IsActionPressed("ui_left"))
+		else if (Input.IsActionPressed("ui_left"))
 		{
 			playerSprite.FlipH = false;
 			playerSprite.Play("walk_side_facing");
 			velocity.x = -walkSpeed;
 			this.moveDirection = MoveDirection.Left;
 		}
-		else if(Input.IsActionPressed("ui_right"))
+		else if (Input.IsActionPressed("ui_right"))
 		{
 			playerSprite.FlipH = true;
 			playerSprite.Play("walk_side_facing");
 			velocity.x = walkSpeed;
 			this.moveDirection = MoveDirection.Right;
 		}
-		else if(Input.IsKeyPressed(KEY_SPACE))
+		else if (Input.IsKeyPressed(KEY_SPACE))
 		{
-			this.attackStarted = true;			
+			this.attackStarted = true;
 		}
-		else if(this.attackStarted)
+		else if (this.attackStarted)
 		{
 			playerSprite.Play("attack");
 		}
-		else 
+		else
 		{
 			playerSprite.Play("idle");
 			velocity.x = 0;

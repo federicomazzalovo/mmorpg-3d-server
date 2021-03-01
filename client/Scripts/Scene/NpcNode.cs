@@ -4,7 +4,7 @@ using Simplerpgkataclient.Network;
 public class NpcNode : CharacterNode
 {
 	const int walkSpeed = 200;
-	Vector2 velocity;
+	Vector2 velocity = new Vector2(0, 0);
 
 	private AnimatedSprite npcSprite { get; set; }
 
@@ -41,16 +41,16 @@ public class NpcNode : CharacterNode
 	{
 		base._PhysicsProcess(delta);
 
-
+		MoveAndSlide(this.velocity, new Vector2(0, -1));
 	}
 
 	public void UpdateSprite(MoveDirection moveDirection)
-    {
+	{
 		if (this.npcSprite == null)
 			this.npcSprite = this.GetNode("CharacterSprite") as AnimatedSprite;
 
 		switch (moveDirection)
-        {
+		{
 
 			case MoveDirection.Up:
 				velocity.y = -walkSpeed;
@@ -73,10 +73,10 @@ public class NpcNode : CharacterNode
 			case MoveDirection.None:
 			default:
 				this.npcSprite.Play("idle");
+				velocity.x = 0;
+				velocity.y = 0;
 				break;
-
-		}
-		MoveAndSlide(this.velocity, new Vector2(0, -1));
+		}		
 	}
 
 	public void Deselect()
