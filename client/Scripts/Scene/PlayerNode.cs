@@ -48,7 +48,7 @@ public class PlayerNode : CharacterNode
 
 		// The second parameter of "MoveAndSlide" is the normal pointing up.
 		// In the case of a 2D platformer, in Godot, upward is negative y, which translates to -1 as a normal.
-		MoveAndSlide(velocity, new Vector2(0, -1));
+		MoveAndSlide(this.velocity, new Vector2(0, -1));
 	}
 
 
@@ -65,7 +65,6 @@ public class PlayerNode : CharacterNode
 
 	private void DataChanged(object sender, object e)
 	{
-		var x = 1;
 	}
 
 	public override void _Process(float delta)

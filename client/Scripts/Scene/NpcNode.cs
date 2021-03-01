@@ -2,6 +2,11 @@ using Godot;
 
 public class NpcNode : CharacterNode
 {
+	const int walkSpeed = 200;
+	Vector2 velocity;
+
+	private AnimatedSprite npcSprite { get; set; }
+
 	private bool _selected;
 	public bool IsSelected
 	{
@@ -31,7 +36,24 @@ public class NpcNode : CharacterNode
 		this.SelectedBorder = this.GetNode("SelectedBorder") as ColorRect;
 	}
 
-	public void Deselect()
+    public override void _PhysicsProcess(float delta)
+    {
+        base._PhysicsProcess(delta);
+
+		if (this.npcSprite == null)
+			this.npcSprite = this.GetNode("CharacterSprite") as AnimatedSprite;
+
+
+		if (this.npcSprite != null)
+		{
+			npcSprite.FlipH = true;
+			npcSprite.Play("walk_side_facing");
+			velocity.x = walkSpeed;
+			MoveAndSlide(velocity, new Vector2(0, -1));
+		}
+	}
+
+    public void Deselect()
 	{
 		this.IsSelected = false;
 	}
