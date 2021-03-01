@@ -26,7 +26,7 @@ public class CharacterEntity {
     private double positionx;
     private double positiony;
     @Enumerated(EnumType.ORDINAL)
-    private MoveDirection moveDirection;
+    private MoveDirection moveDirection = MoveDirection.None;
     private double hp;
     @Column(name="classId")
     @Enumerated(EnumType.ORDINAL)

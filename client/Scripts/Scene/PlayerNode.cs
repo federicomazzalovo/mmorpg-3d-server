@@ -13,7 +13,6 @@ public class PlayerNode : CharacterNode
 
 	public int KEY_SPACE = 32;
 	private bool attackStarted;
-	private int counter = 0;
 
 	public Battlefield ParentNode { get; private set; }
 

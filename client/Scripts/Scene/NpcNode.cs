@@ -41,40 +41,43 @@ public class NpcNode : CharacterNode
 	{
 		base._PhysicsProcess(delta);
 
-		if (this.npcSprite == null)
-			this.npcSprite = this.GetNode("CharacterSprite") as AnimatedSprite;
 
-
-		if (this.npcSprite != null)
-		{
-			velocity.x = walkSpeed;
-			MoveAndSlide(velocity, new Vector2(0, -1));
-		}
 	}
 
 	public void UpdateSprite(MoveDirection moveDirection)
     {
+		if (this.npcSprite == null)
+			this.npcSprite = this.GetNode("CharacterSprite") as AnimatedSprite;
+
 		switch (moveDirection)
         {
-			case MoveDirection.None:
-				this.npcSprite.Play("idle");
-				break;
+
 			case MoveDirection.Up:
+				velocity.y = -walkSpeed;
 				this.npcSprite.Play("walk_up_facing");
 				break;
 			case MoveDirection.Right:
+				velocity.x = walkSpeed;
 				this.npcSprite.FlipH = true;
 				this.npcSprite.Play("walk_side_facing");
 				break;
 			case MoveDirection.Down:
+				velocity.y = walkSpeed;
 				this.npcSprite.Play("walk_down_facing");
 				break;
 			case MoveDirection.Left:
+				velocity.x = -walkSpeed;
 				this.npcSprite.FlipH = false;
 				this.npcSprite.Play("walk_side_facing");
 				break;
+			case MoveDirection.None:
+			default:
+				this.npcSprite.Play("idle");
+				break;
+
 		}
-    }
+		MoveAndSlide(this.velocity, new Vector2(0, -1));
+	}
 
 	public void Deselect()
 	{

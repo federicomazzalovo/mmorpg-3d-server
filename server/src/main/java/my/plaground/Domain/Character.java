@@ -20,7 +20,10 @@ public abstract class Character extends Target {
 
     protected Faction faction;
     protected Position position;
-    protected MoveDirection moveDirection;
+
+    @JsonProperty("moveDirection")
+    @JsonFormat(shape = JsonFormat.Shape.NUMBER_INT)
+    protected MoveDirection moveDirection = MoveDirection.None;
 
     @JsonIgnore
     protected RandomDataGeneratorInterface randomDataGenerator;
