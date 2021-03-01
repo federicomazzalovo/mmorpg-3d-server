@@ -1,9 +1,11 @@
 package my.plaground.Domain;
 
 import com.fasterxml.jackson.annotation.*;
+import lombok.Data;
 
 import static java.lang.Math.*;
 
+@Data
 public abstract class Character extends Target {
 
     protected int id;
@@ -18,6 +20,7 @@ public abstract class Character extends Target {
 
     protected Faction faction;
     protected Position position;
+    protected MoveDirection moveDirection;
 
     @JsonIgnore
     protected RandomDataGeneratorInterface randomDataGenerator;

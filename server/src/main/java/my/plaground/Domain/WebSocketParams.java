@@ -11,4 +11,5 @@ public class WebSocketParams {
     private int characterId;
     private double positionX;
     private double positionY;
+    private MoveDirection moveDirection;
 }

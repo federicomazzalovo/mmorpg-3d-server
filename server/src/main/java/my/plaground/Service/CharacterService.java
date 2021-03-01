@@ -1,6 +1,7 @@
 package my.plaground.Service;
 
 import my.plaground.Domain.Character;
+import my.plaground.Domain.MoveDirection;
 import my.plaground.Domain.Position;
 import my.plaground.Exception.ResourceNotFound;
 import my.plaground.Domain.Entity.CharacterEntity;
@@ -46,11 +47,12 @@ public class CharacterService {
         }
     }
 
-    public Character updatePosition(int characterId, Position newPosition) {
+    public Character updatePosition(int characterId, Position newPosition, MoveDirection moveDirection) {
         Optional<CharacterEntity> character = this.repository.findById(characterId);
         if(character.isPresent()) {
             character.get().setPositionx(newPosition.getX());
             character.get().setPositiony(newPosition.getY());
+            character.get().setMoveDirection(moveDirection);
             CharacterEntity charSaved = this.repository.save(character.get());
 
             return this.characterFactory.getCharacter(charSaved);

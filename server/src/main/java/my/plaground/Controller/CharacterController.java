@@ -37,11 +37,11 @@ public class CharacterController {
         return ResponseEntity.ok(character.getPosition());
     }
 
-    @PutMapping("/{characterId}/position")
-    public ResponseEntity<Position> updateCharacterPosition(@PathVariable Integer characterId, @RequestBody Position newPosition) throws Exception {
-        Character character = characterService.updatePosition(characterId, newPosition);
-        return ResponseEntity.ok(character.getPosition());
-    }
+//    @PutMapping("/{characterId}/position")
+//    public ResponseEntity<Position> updateCharacterPosition(@PathVariable Integer characterId, @RequestBody Position newPosition) throws Exception {
+//        Character character = characterService.updatePosition(characterId, newPosition, );
+//        return ResponseEntity.ok(character.getPosition());
+//    }
 
     @GetMapping("/all")
     public ResponseEntity<List<Character>> getCharacterList() throws Exception {

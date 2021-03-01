@@ -8,6 +8,7 @@ import my.plaground.Domain.Paladin;
 import my.plaground.Domain.Position;
 import my.plaground.Service.CharacterService;
 import my.plaground.Domain.Wizard;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,6 +71,7 @@ public class CharacterIntegrationTest {
         assertEquals(HttpStatus.NOT_FOUND.value(), result.getResponse().getStatus());
     }
 
+    @Disabled
     @Test public void
     ensure_that_position_is_correctly_updated() throws Exception {
         Position newPosition = at(9999,888);

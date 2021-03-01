@@ -8,7 +8,8 @@ using System.Net.Http;
 public class PlayerNode : CharacterNode
 {
 	const int walkSpeed = 200;
-	Vector2 velocity;
+	private Vector2 velocity;
+	private MoveDirection moveDirection = MoveDirection.None;
 
 	public int KEY_SPACE = 32;
 	private bool attackStarted;
@@ -88,23 +89,27 @@ public class PlayerNode : CharacterNode
 		{
 			playerSprite.Play("walk_up_facing");
 			velocity.y = -walkSpeed;
+			this.moveDirection = MoveDirection.Up;
 		}
 		else if (Input.IsActionPressed("ui_down"))
 		{
 			playerSprite.Play("walk_down_facing");
 			velocity.y = walkSpeed;
+			this.moveDirection = MoveDirection.Down;
 		}
 		else if(Input.IsActionPressed("ui_left"))
 		{
 			playerSprite.FlipH = false;
 			playerSprite.Play("walk_side_facing");
 			velocity.x = -walkSpeed;
+			this.moveDirection = MoveDirection.Left;
 		}
 		else if(Input.IsActionPressed("ui_right"))
 		{
 			playerSprite.FlipH = true;
 			playerSprite.Play("walk_side_facing");
 			velocity.x = walkSpeed;
+			this.moveDirection = MoveDirection.Right;
 		}
 		else if(Input.IsKeyPressed(KEY_SPACE))
 		{
@@ -119,13 +124,14 @@ public class PlayerNode : CharacterNode
 			playerSprite.Play("idle");
 			velocity.x = 0;
 			velocity.y = 0;
+			this.moveDirection = MoveDirection.None;
 		}
 
 	}
 
 	private void UpdatePosition(float x, float y)
 	{
-		string message = JsonConvert.SerializeObject(new WebSocketParams() { characterId = this.Character.Id, positionX = x, positionY = y });
+		string message = JsonConvert.SerializeObject(new WebSocketParams() { characterId = this.Character.Id, positionX = x, positionY = y, moveDirection = (int)this.moveDirection });
 		WebSocketService.GetInstance().SendMessage(message);
 	}
 

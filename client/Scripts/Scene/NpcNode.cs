@@ -1,4 +1,5 @@
 using Godot;
+using Simplerpgkataclient.Network;
 
 public class NpcNode : CharacterNode
 {
@@ -36,9 +37,9 @@ public class NpcNode : CharacterNode
 		this.SelectedBorder = this.GetNode("SelectedBorder") as ColorRect;
 	}
 
-    public override void _PhysicsProcess(float delta)
-    {
-        base._PhysicsProcess(delta);
+	public override void _PhysicsProcess(float delta)
+	{
+		base._PhysicsProcess(delta);
 
 		if (this.npcSprite == null)
 			this.npcSprite = this.GetNode("CharacterSprite") as AnimatedSprite;
@@ -46,14 +47,36 @@ public class NpcNode : CharacterNode
 
 		if (this.npcSprite != null)
 		{
-			npcSprite.FlipH = true;
-			npcSprite.Play("walk_side_facing");
 			velocity.x = walkSpeed;
 			MoveAndSlide(velocity, new Vector2(0, -1));
 		}
 	}
 
-    public void Deselect()
+	public void UpdateSprite(MoveDirection moveDirection)
+    {
+		switch (moveDirection)
+        {
+			case MoveDirection.None:
+				this.npcSprite.Play("idle");
+				break;
+			case MoveDirection.Up:
+				this.npcSprite.Play("walk_up_facing");
+				break;
+			case MoveDirection.Right:
+				this.npcSprite.FlipH = true;
+				this.npcSprite.Play("walk_side_facing");
+				break;
+			case MoveDirection.Down:
+				this.npcSprite.Play("walk_down_facing");
+				break;
+			case MoveDirection.Left:
+				this.npcSprite.FlipH = false;
+				this.npcSprite.Play("walk_side_facing");
+				break;
+		}
+    }
+
+	public void Deselect()
 	{
 		this.IsSelected = false;
 	}

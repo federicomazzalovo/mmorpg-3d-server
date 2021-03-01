@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import my.plaground.Domain.CharacterClass;
+import my.plaground.Domain.MoveDirection;
 
 import javax.persistence.*;
 
@@ -24,6 +25,8 @@ public class CharacterEntity {
     private boolean isPlayer;
     private double positionx;
     private double positiony;
+    @Enumerated(EnumType.ORDINAL)
+    private MoveDirection moveDirection;
     private double hp;
     @Column(name="classId")
     @Enumerated(EnumType.ORDINAL)

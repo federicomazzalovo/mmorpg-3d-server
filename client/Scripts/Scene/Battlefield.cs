@@ -109,7 +109,8 @@ public class Battlefield : Node2D
 				node.Character.Position = new CharacterPosition(param.positionX, param.positionY);
 				// Update the UI 
 				node.Position = new Vector2(param.positionX, param.positionY);
-				 
+
+				(node as NpcNode).UpdateSprite((MoveDirection)param.moveDirection);
 			}
 		}
 
