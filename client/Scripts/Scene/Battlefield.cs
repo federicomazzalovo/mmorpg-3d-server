@@ -54,7 +54,7 @@ public class Battlefield : Node2D
 	private List<CharacterNode> characterNodes = new List<CharacterNode>();
 	
 	private CharacterNode genericNodeToClone;
-	private IEnumerable<Character> characters;
+	private IEnumerable<Character> enemies;
 	private Character player;
 
 	public override void _Ready()
@@ -63,8 +63,8 @@ public class Battlefield : Node2D
 		this.genericNodeToClone = this.GetNode("NpcNode") as CharacterNode;
 		this.playerNode = this.GetNode("PlayerNode") as CharacterNode;
 
-		this.characters = this.RetrieveCharacters();
-		this.LoadCharacters();
+		var characters  = this.RetrieveCharacters();
+		this.LoadCharacters(characters);
 		this.AddCharactersSprites();
 
 		WebSocketService webSocketService = WebSocketService.GetInstance();
@@ -107,11 +107,16 @@ public class Battlefield : Node2D
 			{
 				node.Character.Position = new CharacterPosition(param.positionX, param.positionY);
 				node.Character.Hp = param.hp;
-				// Update the UI 
-				//node.Position = new Vector2(param.positionX, param.positionY);
 
 				node.RenderLifeStatus();
-				(node as NpcNode).UpdateSprite((MoveDirection)param.moveDirection);
+
+				MoveDirection moveDirection = (MoveDirection)param.moveDirection;
+				if (moveDirection == MoveDirection.None)
+					node.Position = new Vector2(param.positionX, param.positionY);
+
+				if(node is NpcNode)
+					(node as NpcNode).UpdateSprite(moveDirection);
+
 			}
 		}
 
@@ -123,18 +128,20 @@ public class Battlefield : Node2D
 		WebSocketService.GetInstance().Poll();
 	}
 
-	private void LoadCharacters()
+	private void LoadCharacters(IEnumerable<Character> characters)
 	{
-		this.player = this.characters.SingleOrDefault(character => character.Username == Session.Username);
-		this.characters = this.characters.Where(character => character.Username != Session.Username);
+		this.player = characters.SingleOrDefault(character => character.Username == Session.Username);
+		this.enemies = characters.Where(character => character.Username != Session.Username);
 	}
 
 	private void AddCharactersSprites()
 	{
 		this.playerNode.Initialize(this.player);
+		this.characterNodes.Add(this.playerNode);
 
-		foreach (Character character in this.characters)
+		foreach (Character character in this.enemies)
 			this.AddCharacterSprite(character);
+
 	}
 
 	private void AddCharacterSprite(Character character)

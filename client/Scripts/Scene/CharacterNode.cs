@@ -55,20 +55,20 @@ public abstract class CharacterNode : KinematicBody2D
 	}
 
 	private void RenderCharacter()
-    {
-        this.Position = new Vector2(Character.Position.x, Character.Position.y);
-        this.RenderLifeStatus();
-    }
+	{
+		this.Position = new Vector2(Character.Position.x, Character.Position.y);
+		this.RenderLifeStatus();
+	}
 
-    public void RenderLifeStatus()
-    {
-        this.HpLabel.Text = Character.Hp.ToString();
+	public void RenderLifeStatus()
+	{
+		this.HpLabel.Text = Character.Hp.ToString();
 
-        if (this.Character.Dead)
-            this.Kill();
-    }
+		if (this.Character.Dead)
+			this.Kill();
+	}
 
-    private void Kill()
+	private void Kill()
 	{
 		this.animatedSprite.Play("death");
 		this.SetPhysicsProcess(false);

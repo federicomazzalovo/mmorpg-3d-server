@@ -22,6 +22,6 @@ namespace Simplerpgkataclient.Network
         public float positionY { get; set; }
         public int moveDirection { get; set; }
         public double hp { get; set; }
-        public bool Dead { get; set; }
+   
     }
 }
