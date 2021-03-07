@@ -148,7 +148,7 @@ public class PlayerNode : CharacterNode
 				HttpResponseMessage response = client.GetAsync("http://simple-rpg-kata.herokuapp.com/api/character/" + this.Character.Id + "/attack/" + targetId).Result;
 				string json = response.Content.ReadAsStringAsync().Result;
 
-				selectedTarget.UpdateCharacter();
+				//selectedTarget.UpdateCharacter();
 			}
 		}
 	}

@@ -20,14 +20,13 @@ public enum CharacterClass
 
 public class Character
 {
-	public long InitHp { get; set; }
-	public long Hp { get; set; }
-	public long Id { get; set; }
-	public long Level { get; set; }
-	public long Resistance { get; set; }
+	public double InitHp { get; set; }
+	public double Hp { get; set; }
+	public int Id { get; set; }
+	public int Level { get; set; }
+	public double Resistance { get; set; }
 	public CharacterPosition Position { get; set; }
-	public bool Alive { get; set; }
-	public bool Dead { get; set; }
+	public bool Dead { get { return this.Hp == 0; } }
 
 	public bool IsPlayer { get; set; }
 	public string Username { get; set; }
@@ -107,9 +106,11 @@ public class Battlefield : Node2D
 			if(node != null)
 			{
 				node.Character.Position = new CharacterPosition(param.positionX, param.positionY);
+				node.Character.Hp = param.hp;
 				// Update the UI 
 				//node.Position = new Vector2(param.positionX, param.positionY);
 
+				node.RenderLifeStatus();
 				(node as NpcNode).UpdateSprite((MoveDirection)param.moveDirection);
 			}
 		}
