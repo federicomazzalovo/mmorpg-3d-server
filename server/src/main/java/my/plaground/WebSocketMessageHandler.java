@@ -88,12 +88,10 @@ public class WebSocketMessageHandler extends TextWebSocketHandler {
                 case Attack:
                     this.characterService.attack(webSocketParams.getCharacterId(), webSocketParams.getTargetId());
                     break;
-                default:
-                    throw new IllegalStateException("Unexpected value: " + webSocketParams.getActionType());
             }
 
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

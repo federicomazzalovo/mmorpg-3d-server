@@ -62,13 +62,21 @@ public class CharacterService {
     }
 
     public Character updateCharacter(Character updatedCharacter) {
-        CharacterEntity character = this.repository.getOne(updatedCharacter.getId());
-        character.setPositionx(updatedCharacter.getPosition().getX());
-        character.setPositiony(updatedCharacter.getPosition().getY());
-        character.setHp(updatedCharacter.getHp());
-        character.setLevelValue(updatedCharacter.getLevel());
-        CharacterEntity charSaved = this.repository.save(character);
-        return  this.characterFactory.getCharacter(charSaved);
+        Optional<CharacterEntity> characterFromDb = this.repository.findById(updatedCharacter.getId());
+
+        if(characterFromDb.isPresent()) {
+            CharacterEntity character = characterFromDb.get();
+
+            character.setPositionx(updatedCharacter.getPosition().getX());
+            character.setPositiony(updatedCharacter.getPosition().getY());
+            character.setHp(updatedCharacter.getHp());
+            character.setLevelValue(updatedCharacter.getLevel());
+            CharacterEntity charSaved = this.repository.save(character);
+
+            return this.characterFactory.getCharacter(charSaved);
+        }
+
+        return null;
     }
 
     public void attack(int characterId, int targetId) {
