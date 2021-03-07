@@ -19,5 +19,7 @@ public class WebSocketParams {
     private double hp;
 
     private int targetId;
+    @JsonProperty("actionType")
+    @JsonFormat(shape = JsonFormat.Shape.NUMBER_INT)
     private ActionType actionType;
 }
