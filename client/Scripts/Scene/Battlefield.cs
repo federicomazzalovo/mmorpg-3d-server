@@ -63,7 +63,7 @@ public class Battlefield : Node2D
 		this.genericNodeToClone = this.GetNode("NpcNode") as CharacterNode;
 		this.playerNode = this.GetNode("PlayerNode") as CharacterNode;
 
-		var characters  = this.RetrieveCharacters();
+		var characters  = this.RetrieveAliveCharacters();
 		this.LoadCharacters(characters);
 		this.AddCharactersSprites();
 
@@ -102,7 +102,7 @@ public class Battlefield : Node2D
 
 		foreach(var param in webSocketParamsList)
 		{
-			CharacterNode node = this.characterNodes.FirstOrDefault(c => c.Character.Id == param.characterId);
+			CharacterNode node = this.characterNodes.FirstOrDefault(n => n.Character.Id == param.characterId && !n.Character.Dead);
 
 			if(node != null)
 				node.UpdateCharacter(param);
@@ -143,7 +143,7 @@ public class Battlefield : Node2D
 		this.characterNodes.Add(characterSprite);
 	}
 
-	private List<Character> RetrieveCharacters()
+	private List<Character> RetrieveAliveCharacters()
 	{
 		using (HttpClient client = new HttpClient())
 		{

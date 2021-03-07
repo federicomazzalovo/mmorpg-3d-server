@@ -140,8 +140,10 @@ public class PlayerNode : CharacterNode
 	private void AttackEnemy()
 	{
 		CharacterNode selectedTarget = this.ParentNode.GetSelectedTarget();
-		int targetId = selectedTarget.Character.Id;
+		if (selectedTarget.Character.Dead)
+			return;
 
+		int targetId = selectedTarget.Character.Id;
 		string message = JsonConvert.SerializeObject(new WebSocketParams() { characterId = this.Character.Id, targetId = targetId, actionType = (int)ActionType.Attack });
 		WebSocketService.GetInstance().SendMessage(message);
 	}

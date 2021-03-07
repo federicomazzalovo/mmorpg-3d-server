@@ -2,7 +2,6 @@ package my.plaground;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import my.plaground.Domain.ActionType;
 import my.plaground.Domain.Character;
 import my.plaground.Domain.Position;
 import my.plaground.Domain.WebSocketParams;
@@ -48,7 +47,7 @@ public class WebSocketMessageHandler extends TextWebSocketHandler {
               public void run() {
                   if(session.isOpen()) {
                       try {
-                          String messageToSend = getAliveCharacterPositionMessage();
+                          String messageToSend = getCharacterPositionMessage();
                           session.sendMessage(new TextMessage(messageToSend));
                       } catch (IOException e) {
                           e.printStackTrace();
@@ -61,8 +60,8 @@ public class WebSocketMessageHandler extends TextWebSocketHandler {
         new Timer().scheduleAtFixedRate(timer, 0,100);
     }
 
-    private String getAliveCharacterPositionMessage() throws JsonProcessingException {
-        List<Character> charactersAlive = this.characterService.getCharactersAlive();
+    private String getCharacterPositionMessage() throws JsonProcessingException {
+        List<Character> charactersAlive = this.characterService.getCharacters();
         List<WebSocketParams> webSocketResponse = charactersAlive.stream()
                 .map(c -> new WebSocketParams(c.getId(), c.getPosition().getX(), c.getPosition().getY(), c.getMoveDirection(), c.getHp(), -1, None))
                 .collect(Collectors.toList());

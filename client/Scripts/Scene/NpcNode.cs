@@ -44,8 +44,11 @@ public class NpcNode : CharacterNode
 		MoveAndSlide(this.velocity, new Vector2(0, -1));
 	}
 
-	public void UpdateSprite(MoveDirection moveDirection)
+	public void UpdateMovementSprite(MoveDirection moveDirection)
 	{
+		if (this.Character.Dead)
+			return;
+
 		if (this.npcSprite == null)
 			this.npcSprite = this.GetNode("CharacterSprite") as AnimatedSprite;
 
@@ -95,6 +98,6 @@ public class NpcNode : CharacterNode
 		base.UpdateCharacter(param);
 
 		MoveDirection moveDirection = (MoveDirection)param.moveDirection;
-		this.UpdateSprite(moveDirection);
+		this.UpdateMovementSprite(moveDirection);
 	}
 }
