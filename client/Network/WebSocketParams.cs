@@ -15,6 +15,13 @@ namespace Simplerpgkataclient.Network
         Left = 4
     }
 
+    public enum ActionType
+    {
+        None = 0,
+        Movement = 1,
+        Attack = 2
+    }
+
     public class WebSocketParams
     {
         public long characterId { get; set; }
@@ -22,6 +29,7 @@ namespace Simplerpgkataclient.Network
         public float positionY { get; set; }
         public int moveDirection { get; set; }
         public double hp { get; set; }
-   
+        public int targetId { get; set; }
+        public int actionType { get; set; }
     }
 }

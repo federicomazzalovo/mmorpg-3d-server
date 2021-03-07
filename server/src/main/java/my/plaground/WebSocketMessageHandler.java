@@ -2,6 +2,7 @@ package my.plaground;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import my.plaground.Domain.ActionType;
 import my.plaground.Domain.Character;
 import my.plaground.Domain.Position;
 import my.plaground.Domain.WebSocketParams;
@@ -18,6 +19,8 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.stream.Collectors;
+
+import static my.plaground.Domain.ActionType.*;
 
 @Component
 public class WebSocketMessageHandler extends TextWebSocketHandler {
@@ -61,7 +64,7 @@ public class WebSocketMessageHandler extends TextWebSocketHandler {
     private String getAliveCharacterPositionMessage() throws JsonProcessingException {
         List<Character> charactersAlive = this.characterService.getCharactersAlive();
         List<WebSocketParams> webSocketResponse = charactersAlive.stream()
-                .map(c -> new WebSocketParams(c.getId(), c.getPosition().getX(), c.getPosition().getY(), c.getMoveDirection(), c.getHp()))
+                .map(c -> new WebSocketParams(c.getId(), c.getPosition().getX(), c.getPosition().getY(), c.getMoveDirection(), c.getHp(), -1, None))
                 .collect(Collectors.toList());
 
         return new ObjectMapper().writeValueAsString(webSocketResponse);
@@ -75,7 +78,20 @@ public class WebSocketMessageHandler extends TextWebSocketHandler {
         try {
             WebSocketParams webSocketParams = new ObjectMapper().readValue(textMessage.getPayload(), WebSocketParams.class);
 
-            this.characterService.updatePosition(webSocketParams.getCharacterId(), Position.at(webSocketParams.getPositionX(), webSocketParams.getPositionY()), webSocketParams.getMoveDirection());
+            switch(webSocketParams.getActionType())
+            {
+                case None:
+                    break;
+                case Movement:
+                    this.characterService.updatePosition(webSocketParams.getCharacterId(), Position.at(webSocketParams.getPositionX(), webSocketParams.getPositionY()), webSocketParams.getMoveDirection());
+                    break;
+                case Attack:
+                    this.characterService.attack(webSocketParams.getCharacterId(), webSocketParams.getTargetId());
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + webSocketParams.getActionType());
+            }
+
 
         } catch (IOException e) {
             e.printStackTrace();

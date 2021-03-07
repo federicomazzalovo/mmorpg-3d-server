@@ -17,4 +17,7 @@ public class WebSocketParams {
     @JsonFormat(shape = JsonFormat.Shape.NUMBER_INT)
     private MoveDirection moveDirection;
     private double hp;
+
+    private int targetId;
+    private ActionType actionType;
 }

@@ -103,23 +103,10 @@ public class Battlefield : Node2D
 		foreach(var param in webSocketParamsList)
 		{
 			CharacterNode node = this.characterNodes.FirstOrDefault(c => c.Character.Id == param.characterId);
+
 			if(node != null)
-			{
-				node.Character.Position = new CharacterPosition(param.positionX, param.positionY);
-				node.Character.Hp = param.hp;
-
-				node.RenderLifeStatus();
-
-				MoveDirection moveDirection = (MoveDirection)param.moveDirection;
-				if (moveDirection == MoveDirection.None)
-					node.Position = new Vector2(param.positionX, param.positionY);
-
-				if(node is NpcNode)
-					(node as NpcNode).UpdateSprite(moveDirection);
-
-			}
+				node.UpdateCharacter(param);
 		}
-
 	}
 
 	public override void _Process(float delta)

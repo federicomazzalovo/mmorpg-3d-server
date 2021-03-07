@@ -1,5 +1,6 @@
 using Godot;
 using Newtonsoft.Json;
+using Simplerpgkataclient.Network;
 using System;
 using System.Net;
 using System.Net.Http;
@@ -74,17 +75,15 @@ public abstract class CharacterNode : KinematicBody2D
 		this.SetPhysicsProcess(false);
 	}
 
-	public void UpdateCharacter()
+	public virtual void UpdateCharacter(WebSocketParams param)
 	{
-		using (HttpClient client = new HttpClient())
-		{
-			HttpResponseMessage response = client.GetAsync("http://simple-rpg-kata.herokuapp.com/api/character/" + this.Character.Id).Result;
-			string json = response.Content.ReadAsStringAsync().Result;
+		this.Character.Position = new CharacterPosition(param.positionX, param.positionY);
+		this.Character.Hp = param.hp;
 
-			Character character = JsonConvert.DeserializeObject<Character>(json);
+		this.RenderLifeStatus();
 
-			this.Character = character;
-			this.RenderCharacter();
-		}
+		MoveDirection moveDirection = (MoveDirection)param.moveDirection;
+		if (moveDirection == MoveDirection.None)
+			this.Position = new Vector2(param.positionX, param.positionY);
 	}
 }

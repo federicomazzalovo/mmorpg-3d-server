@@ -89,4 +89,12 @@ public class NpcNode : CharacterNode
 		this.ParentNode.DeselectAllEnemies();
 		this.IsSelected = true;
 	}
+
+	public override void UpdateCharacter(WebSocketParams param)
+	{
+		base.UpdateCharacter(param);
+
+		MoveDirection moveDirection = (MoveDirection)param.moveDirection;
+		this.UpdateSprite(moveDirection);
+	}
 }

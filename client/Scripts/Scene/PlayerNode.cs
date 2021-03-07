@@ -133,24 +133,17 @@ public class PlayerNode : CharacterNode
 
 	private void UpdatePosition(float x, float y)
 	{
-		string message = JsonConvert.SerializeObject(new WebSocketParams() { characterId = this.Character.Id, positionX = x, positionY = y, moveDirection = (int)this.moveDirection });
+		string message = JsonConvert.SerializeObject(new WebSocketParams() { characterId = this.Character.Id, positionX = x, positionY = y, moveDirection = (int)this.moveDirection, actionType = (int)ActionType.Movement });
 		WebSocketService.GetInstance().SendMessage(message);
 	}
 
 	private void AttackEnemy()
 	{
-		using (HttpClient client = new HttpClient())
-		{
-			CharacterNode selectedTarget = this.ParentNode.GetSelectedTarget();
-			if (selectedTarget != null && !selectedTarget.Character.Dead)
-			{
-				long targetId = selectedTarget.Character.Id;
-				HttpResponseMessage response = client.GetAsync("http://simple-rpg-kata.herokuapp.com/api/character/" + this.Character.Id + "/attack/" + targetId).Result;
-				string json = response.Content.ReadAsStringAsync().Result;
+		CharacterNode selectedTarget = this.ParentNode.GetSelectedTarget();
+		int targetId = selectedTarget.Character.Id;
 
-				//selectedTarget.UpdateCharacter();
-			}
-		}
+		string message = JsonConvert.SerializeObject(new WebSocketParams() { characterId = this.Character.Id, targetId = targetId, actionType = (int)ActionType.Attack });
+		WebSocketService.GetInstance().SendMessage(message);
 	}
 
 	private void _on_PlayerSprite_animation_finished()
