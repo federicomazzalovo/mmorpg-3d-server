@@ -3,6 +3,7 @@ package my.plaground.Domain.DTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import my.plaground.Domain.CharacterClass;
 
 @Data
 @AllArgsConstructor
@@ -10,6 +11,6 @@ import lombok.NoArgsConstructor;
 public class LoginRequest {
 
     private String username;
-    private int classId;
+    private CharacterClass characterClass;
 
 }

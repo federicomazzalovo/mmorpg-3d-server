@@ -1,6 +1,7 @@
 package my.plaground.Controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import my.plaground.Domain.CharacterClass;
 import my.plaground.Domain.DTO.LoginRequest;
 import my.plaground.Service.CharacterService;
 import my.plaground.Service.UserService;
@@ -40,7 +41,7 @@ public class UserIntegrationTest {
 
     @Test
     public void ensure_that_login_succeed_with_existing_username_and_class_id() throws Exception {
-        LoginRequest body = new LoginRequest("PippoFranco", 2);
+        LoginRequest body = new LoginRequest("PippoFranco", CharacterClass.Wizard);
         var request = post("/api/user/login")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(this.objectMapper.writeValueAsBytes(body));

@@ -94,4 +94,9 @@ public class CharacterService {
 
         this.updateCharacter(target);
     }
+
+    public List<Character> getCharactersByUser(int userId) {
+        List<CharacterEntity> characters = this.repository.findByUserId(userId);
+        return characters.stream().map(this.characterFactory::getCharacter).collect(Collectors.toList());
+    }
 }
