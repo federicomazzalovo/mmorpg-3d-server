@@ -53,6 +53,11 @@ public class CharacterController {
         return ResponseEntity.ok(this.characterService.getCharactersAlive());
     }
 
+    @GetMapping("/all/connected")
+    public ResponseEntity<List<Character>> getCharacterConnectedList() throws Exception {
+        return ResponseEntity.ok(this.characterService.getCharactersConnected());
+    }
+
     @GetMapping("/{characterId}/attack/{targetId}")
     public ResponseEntity<Void> attackCharacter(@PathVariable Integer characterId, @PathVariable Integer targetId){
         characterService.attack(characterId, targetId);

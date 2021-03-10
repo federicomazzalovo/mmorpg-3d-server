@@ -3,6 +3,7 @@ package my.plaground.Controller;
 
 import lombok.extern.slf4j.Slf4j;
 import my.plaground.Domain.Character;
+import my.plaground.Domain.DTO.LoginRequest;
 import my.plaground.Exception.ResourceNotFound;
 import my.plaground.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Slf4j
@@ -24,8 +26,10 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/{username}/character/{classId}")
-    public ResponseEntity<Character> getUserCharacterByClassId(@PathVariable String username, @PathVariable int classId) throws Exception {
-        return null;
+    @PostMapping("/login")
+    public ResponseEntity<Void> login(@RequestBody LoginRequest request) throws Exception {
+        boolean result =  userService.login(request.getUsername(), request.getClassId());
+
+        return ResponseEntity.ok().build();
     }
 }

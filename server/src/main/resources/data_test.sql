@@ -2,7 +2,7 @@
 
 
 
-INSERT INTO characters (id,level_value, is_player, positionx, positiony, hp, class_id) VALUES
+INSERT INTO characters (id,level_value, is_connected, positionx, positiony, hp, class_id) VALUES
   (100,1, 1, 8, 2, 150, 1),
   (200,2, 0, 7, 3, 100, 2),
   (300,2, 0, 11, 11, 120, 3),
@@ -17,3 +17,8 @@ INSERT INTO characters (id,level_value, is_player, positionx, positiony, hp, cla
   -- Only for test alive dont modify
   (2001,2, 0, 300, 300, 120, 2);
 
+ -- Only for test alive dont modify
+INSERT INTO user (id,username) VALUES
+    (1,'PippoFranco')
+INSERT INTO characters (id,level_value, is_connected, positionx, positiony, hp, class_id, user_id) VALUES
+  (3001,2, 0, 300, 300, 120, 2,1);

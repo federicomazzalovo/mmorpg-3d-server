@@ -34,14 +34,15 @@ public class CharacterService {
                 .filter(Character::isAlive).collect(Collectors.toList());
     }
 
+    public List<Character> getCharactersConnected() {
+        return  this.getCharacters().stream()
+                .filter(Character::isConnected).collect(Collectors.toList());
+    }
+
     public Optional<Character> getCharacter(int characterId){
         try {
             Optional<CharacterEntity> character = this.repository.findById(characterId);
-
-            if(!character.isEmpty())
-                return Optional.of(this.characterFactory.getCharacter(character.get()));
-            else
-                return Optional.empty();
+            return character.map(this.characterFactory::getCharacter);
         } catch (EntityNotFoundException e){
             return Optional.empty();
         }

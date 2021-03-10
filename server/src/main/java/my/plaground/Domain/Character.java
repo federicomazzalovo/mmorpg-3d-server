@@ -13,8 +13,8 @@ public abstract class Character extends Target {
     protected int resistance;
     protected double maxRange;
 
-    @JsonProperty("isPlayer")
-    protected boolean isPlayer;
+    @JsonProperty("isConnected")
+    protected boolean isConnected;
 
     protected String username;
 
@@ -36,13 +36,6 @@ public abstract class Character extends Target {
         this.username = username;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setIsPlayer(boolean player) {
-        isPlayer = player;
-    }
 
     public int getLevel() {
         return level;

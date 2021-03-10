@@ -22,7 +22,7 @@ public class CharacterEntity {
     @Column(unique = true, nullable = false)
     private int id;
     private int levelValue;
-    private boolean isPlayer;
+    private boolean isConnected;
     private double positionx;
     private double positiony;
     @Enumerated(EnumType.ORDINAL)

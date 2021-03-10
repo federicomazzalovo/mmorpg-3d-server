@@ -20,7 +20,25 @@ public class UserService {
         this.repository = repository;
     }
 
-    public Character getUserCharacterByClassId(String username, int classId){
+
+
+    public boolean login(String username, int classId) {
+        Optional<Character> optionalCharacter = getCharacterByUsernameAndClassId(username, classId);
+        if(optionalCharacter.isEmpty()){
+            Character character = createCharacterByUsernameAndClassId();
+            return character != null;
+        }
+
+        return true;
+    }
+
+
+    public Optional<Character> getCharacterByUsernameAndClassId(String username, int classId){
         return null;
     }
+
+    private Character createCharacterByUsernameAndClassId() {
+        return null;
+    }
+
 }

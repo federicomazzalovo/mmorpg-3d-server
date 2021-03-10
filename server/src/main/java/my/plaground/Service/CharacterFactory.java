@@ -29,7 +29,7 @@ public class CharacterFactory {
 
         instance.setId(entity.getId());
         instance.setLevel(entity.getLevelValue());
-        instance.setIsPlayer(entity.isPlayer());
+        instance.setConnected(entity.isConnected());
         instance.setPosition(Position.at(entity.getPositionx(), entity.getPositiony()));
         instance.setHp(entity.getHp());
 
