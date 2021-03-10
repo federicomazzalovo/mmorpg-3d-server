@@ -140,7 +140,8 @@ public class PlayerNode : CharacterNode
 	private void AttackEnemy()
 	{
 		CharacterNode selectedTarget = this.ParentNode.GetSelectedTarget();
-		if (selectedTarget.Character.Dead)
+
+		if (selectedTarget == null || selectedTarget.Character.Dead)
 			return;
 
 		int targetId = selectedTarget.Character.Id;
