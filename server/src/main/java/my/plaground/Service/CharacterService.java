@@ -1,6 +1,8 @@
 package my.plaground.Service;
 
 import my.plaground.Domain.Character;
+import my.plaground.Domain.CharacterClass;
+import my.plaground.Domain.Entity.UserEntity;
 import my.plaground.Domain.MoveDirection;
 import my.plaground.Domain.Position;
 import my.plaground.Exception.ResourceNotFound;
@@ -80,6 +82,7 @@ public class CharacterService {
         return null;
     }
 
+
     public void attack(int characterId, int targetId) {
         Optional<Character> attackerFromDB = this.getCharacter(characterId);
         Optional<Character> targetFromDB = this.getCharacter(targetId);
@@ -95,8 +98,25 @@ public class CharacterService {
         this.updateCharacter(target);
     }
 
-    public List<Character> getCharactersByUser(int userId) {
-        List<CharacterEntity> characters = this.repository.findByUserId(userId);
+    public List<Character> getCharactersByUser(UserEntity user) {
+        List<CharacterEntity> characters = this.repository.findByUser(user);
         return characters.stream().map(this.characterFactory::getCharacter).collect(Collectors.toList());
+    }
+
+
+    public Character createCharacter(UserEntity user, CharacterClass characterClass) {
+        Character newChar = this.characterFactory.getCharacterByClass(characterClass);
+
+        CharacterEntity entity = new CharacterEntity();
+        entity.setClassId(characterClass);
+        entity.setUser(user);
+        entity.setHp(newChar.getHp());
+        entity.setLevelValue(newChar.getLevel());
+        entity.setPositionx(0);
+        entity.setPositiony(0);
+
+        this.repository.save(entity);
+
+        return this.characterFactory.getCharacter(entity);
     }
 }

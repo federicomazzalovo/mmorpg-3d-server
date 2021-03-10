@@ -48,7 +48,34 @@ public class UserIntegrationTest {
 
         MvcResult result = this.mockMvc.perform(request).andReturn();
 
-        assertEquals( result.getResponse().getStatus(), HttpStatus.OK.value());
+        assertEquals(HttpStatus.OK.value(), result.getResponse().getStatus());
+
+    }
+
+    @Test
+    public void ensure_that_login_succeed_with_existing_username_but_not_class_id() throws Exception {
+        LoginRequest body = new LoginRequest("PippoFranco", CharacterClass.Rogue);
+        var request = post("/api/user/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(this.objectMapper.writeValueAsBytes(body));
+
+        MvcResult result = this.mockMvc.perform(request).andReturn();
+
+        assertEquals( HttpStatus.OK.value(),result.getResponse().getStatus() );
+
+    }
+
+
+    @Test
+    public void ensure_that_login_fail_with_not_existing_username() throws Exception {
+        LoginRequest body = new LoginRequest("NOT_EXIST", CharacterClass.Wizard);
+        var request = post("/api/user/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(this.objectMapper.writeValueAsBytes(body));
+
+        MvcResult result = this.mockMvc.perform(request).andReturn();
+
+        assertEquals( HttpStatus.BAD_REQUEST.value(), result.getResponse().getStatus());
 
     }
 
