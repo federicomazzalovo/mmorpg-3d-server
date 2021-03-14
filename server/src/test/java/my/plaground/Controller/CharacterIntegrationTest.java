@@ -16,11 +16,13 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.Arrays;
 import java.util.List;
@@ -146,5 +148,16 @@ public class CharacterIntegrationTest {
 
         assertEquals(paladin.getHp(),150);
         assertEquals(wizard.getHp(), 120);
+    }
+
+    @Test public void
+    ensure_dead_character_is_respawned() throws Exception {
+        MvcResult respawnRequest = this.mockMvc.perform(MockMvcRequestBuilders.get("/api/character/respawn/2002")).andReturn();
+        MvcResult respawnedCharacterRequest = this.mockMvc.perform(MockMvcRequestBuilders.get("/api/character/2002")).andReturn();
+
+        Wizard wizard = this.objectMapper.readValue(respawnedCharacterRequest.getResponse().getContentAsString(), Wizard.class);
+
+        assertEquals(HttpStatus.OK.value(), respawnRequest.getResponse().getStatus());
+        assertNotEquals(0, wizard.getHp());
     }
 }

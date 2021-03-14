@@ -119,4 +119,15 @@ public class CharacterService {
 
         return this.characterFactory.getCharacter(entity);
     }
+
+    public Boolean respawn(Integer characterId) {
+        return this.getCharacter(characterId)
+                        .map(c ->{
+                                    c.setHp(c.getInitHp());
+                                    c.setPosition(Position.at(50, 100));
+                                    updateCharacter(c);
+                                    return true;
+                                })
+                        .orElseGet(() -> false);
+    }
 }

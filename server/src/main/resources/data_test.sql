@@ -15,7 +15,9 @@ INSERT INTO characters (id,level_value, is_connected, positionx, positiony, hp, 
   (1003,2, 0, 5, 5, 150, 1),
   (1004,2, 0, 300, 300, 120, 2),
   -- Only for test alive dont modify
-  (2001,2, 0, 300, 300, 120, 2);
+  (2001,2, 0, 300, 300, 120, 2),
+  -- Only for test dead dont modify
+  (2002,2, 0, 300, 300, 0, 2);
 
  -- Only for test alive dont modify
 INSERT INTO users (id,username) VALUES

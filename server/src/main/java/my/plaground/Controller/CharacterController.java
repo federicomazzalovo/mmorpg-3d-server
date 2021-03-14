@@ -64,4 +64,12 @@ public class CharacterController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/respawn/{characterId}")
+    public ResponseEntity<Void> respawn(@PathVariable Integer characterId){
+        if(this.characterService.respawn(characterId))
+            return ResponseEntity.ok().build();
+
+        return ResponseEntity.badRequest().build();
+    }
+
 }
