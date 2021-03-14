@@ -102,7 +102,7 @@ public class Battlefield : Node2D
 
 		foreach(var param in webSocketParamsList)
 		{
-			CharacterNode node = this.characterNodes.FirstOrDefault(n => n.Character.Id == param.characterId && !n.Character.Dead);
+			CharacterNode node = this.characterNodes.FirstOrDefault(n => n.Character.Id == param.characterId); // && !n.Character.Dead);
 
 			if(node != null)
 				node.UpdateCharacter(param);

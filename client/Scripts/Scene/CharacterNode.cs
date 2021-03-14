@@ -12,11 +12,14 @@ public abstract class CharacterNode : KinematicBody2D
 	public Character Character { get; private set; }
 	public Label HpLabel { get; private set; }
 
+
+
 	public override void _Ready()
 	{
 		base._Ready();
 
 		this.HpLabel = this.GetNode("Hp") as Label;
+	
 	}
 
 	public void Initialize(Character character)
@@ -67,13 +70,20 @@ public abstract class CharacterNode : KinematicBody2D
 
 		if (this.Character.Dead)
 			this.Kill();
+ 
 	}
+
+
 
 	private void Kill()
 	{
 		this.animatedSprite.Play("death");
 		this.SetPhysicsProcess(false);
+		this.Killed();
 	}
+
+
+	protected virtual void Killed() { }
 
 	public virtual void UpdateCharacter(WebSocketParams param)
 	{

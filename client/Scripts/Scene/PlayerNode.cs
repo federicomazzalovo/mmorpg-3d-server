@@ -17,12 +17,14 @@ public class PlayerNode : CharacterNode
 	public Battlefield ParentNode { get; private set; }
 
 	private AnimatedSprite playerSprite { get; set; }
-
+	public Button respawnButton;
+	
 	public override void _Ready()
 	{
 		base._Ready();
 		this.ParentNode = this.GetNode("/root/Battlefield") as Battlefield;
 
+		this.respawnButton = this.GetNode("/root/Battlefield/PlayerNode/RespawnButton") as Button;
 		WebSocketService webSocketService = WebSocketService.GetInstance();
 
 		webSocketService.ConnectionClosedEvent += this.ConnectionClosed;
@@ -149,8 +151,42 @@ public class PlayerNode : CharacterNode
 		WebSocketService.GetInstance().SendMessage(message);
 	}
 
+	private void ShowRespawnButton()
+	{
+		this.respawnButton.Show();
+	}
+
+
 	private void _on_PlayerSprite_animation_finished()
 	{
 		this.attackStarted = false;
 	}
+
+
+	protected override void Killed()
+	{
+		base.Killed();
+		this.respawnButton.Show();
+	}
+
+	private void _on_RespawnButton_pressed()
+	{
+		this.Respawn();
+	}
+
+	private void Respawn()
+	{
+		using (HttpClient client = new HttpClient())
+		{
+			HttpResponseMessage response = client.GetAsync("http://simple-rpg-kata.herokuapp.com/api/character/respawn/" + this.Character.Id).Result;
+
+			string json = response.Content.ReadAsStringAsync().Result;
+			this.SetPhysicsProcess(true);
+			this.respawnButton.Hide();
+			this.playerSprite.Play("idle");
+		}
+	}
 }
+
+
+

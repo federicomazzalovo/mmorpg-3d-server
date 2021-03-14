@@ -475,10 +475,15 @@ animations = [ {
 "name": "idle",
 "speed": 30.0
 }, {
-"frames": [ ExtResource( 201 ), ExtResource( 202 ), ExtResource( 225 ), ExtResource( 235 ), ExtResource( 220 ), ExtResource( 200 ), ExtResource( 246 ), ExtResource( 232 ), ExtResource( 239 ), ExtResource( 234 ), ExtResource( 203 ), ExtResource( 247 ), ExtResource( 236 ), ExtResource( 238 ), ExtResource( 244 ) ],
+"frames": [ ExtResource( 54 ), ExtResource( 55 ), ExtResource( 37 ), ExtResource( 56 ), ExtResource( 57 ), ExtResource( 58 ), ExtResource( 49 ), ExtResource( 50 ), ExtResource( 51 ), ExtResource( 52 ), ExtResource( 46 ), ExtResource( 47 ), ExtResource( 59 ), ExtResource( 38 ), ExtResource( 42 ), ExtResource( 36 ), ExtResource( 53 ), ExtResource( 39 ), ExtResource( 40 ), ExtResource( 41 ), ExtResource( 43 ), ExtResource( 44 ), ExtResource( 45 ), ExtResource( 48 ), ExtResource( 62 ), ExtResource( 65 ), ExtResource( 63 ), ExtResource( 64 ), ExtResource( 60 ), ExtResource( 61 ) ],
 "loop": true,
-"name": "attack",
-"speed": 28.0
+"name": "walk_up_facing",
+"speed": 60.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "death",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 34 ), ExtResource( 35 ), ExtResource( 33 ), ExtResource( 81 ), ExtResource( 88 ), ExtResource( 85 ), ExtResource( 78 ), ExtResource( 74 ), ExtResource( 69 ), ExtResource( 75 ), ExtResource( 66 ), ExtResource( 86 ), ExtResource( 89 ), ExtResource( 72 ), ExtResource( 71 ), ExtResource( 79 ), ExtResource( 76 ), ExtResource( 90 ), ExtResource( 87 ), ExtResource( 67 ), ExtResource( 73 ), ExtResource( 77 ), ExtResource( 82 ), ExtResource( 83 ), ExtResource( 80 ), ExtResource( 84 ), ExtResource( 68 ), ExtResource( 70 ), ExtResource( 144 ), ExtResource( 146 ) ],
 "loop": true,
@@ -490,15 +495,10 @@ animations = [ {
 "name": "walk_side_facing",
 "speed": 60.0
 }, {
-"frames": [ ExtResource( 54 ), ExtResource( 55 ), ExtResource( 37 ), ExtResource( 56 ), ExtResource( 57 ), ExtResource( 58 ), ExtResource( 49 ), ExtResource( 50 ), ExtResource( 51 ), ExtResource( 52 ), ExtResource( 46 ), ExtResource( 47 ), ExtResource( 59 ), ExtResource( 38 ), ExtResource( 42 ), ExtResource( 36 ), ExtResource( 53 ), ExtResource( 39 ), ExtResource( 40 ), ExtResource( 41 ), ExtResource( 43 ), ExtResource( 44 ), ExtResource( 45 ), ExtResource( 48 ), ExtResource( 62 ), ExtResource( 65 ), ExtResource( 63 ), ExtResource( 64 ), ExtResource( 60 ), ExtResource( 61 ) ],
+"frames": [ ExtResource( 201 ), ExtResource( 202 ), ExtResource( 225 ), ExtResource( 235 ), ExtResource( 220 ), ExtResource( 200 ), ExtResource( 246 ), ExtResource( 232 ), ExtResource( 239 ), ExtResource( 234 ), ExtResource( 203 ), ExtResource( 247 ), ExtResource( 236 ), ExtResource( 238 ), ExtResource( 244 ) ],
 "loop": true,
-"name": "walk_up_facing",
-"speed": 60.0
-}, {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "death",
-"speed": 5.0
+"name": "attack",
+"speed": 28.0
 } ]
 
 [sub_resource type="SpriteFrames" id=10]
@@ -508,10 +508,15 @@ animations = [ {
 "name": "idle",
 "speed": 30.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 415 ), ExtResource( 28 ), ExtResource( 23 ), ExtResource( 413 ), ExtResource( 408 ), ExtResource( 10 ), ExtResource( 412 ), ExtResource( 9 ), ExtResource( 31 ), ExtResource( 22 ), ExtResource( 30 ), ExtResource( 416 ), ExtResource( 7 ), ExtResource( 27 ) ],
+"frames": [ ExtResource( 186 ), ExtResource( 187 ), ExtResource( 185 ), ExtResource( 167 ), ExtResource( 168 ), ExtResource( 161 ), ExtResource( 171 ), ExtResource( 159 ), ExtResource( 158 ), ExtResource( 182 ), ExtResource( 166 ), ExtResource( 181 ), ExtResource( 188 ), ExtResource( 179 ), ExtResource( 178 ), ExtResource( 162 ), ExtResource( 183 ), ExtResource( 184 ), ExtResource( 177 ), ExtResource( 164 ), ExtResource( 170 ), ExtResource( 180 ), ExtResource( 165 ), ExtResource( 160 ), ExtResource( 189 ), ExtResource( 176 ), ExtResource( 173 ), ExtResource( 175 ), ExtResource( 169 ), ExtResource( 172 ) ],
 "loop": true,
-"name": "attack",
-"speed": 28.0
+"name": "walk_up_facing",
+"speed": 60.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "death",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 174 ), ExtResource( 157 ), ExtResource( 163 ), ExtResource( 214 ), ExtResource( 205 ), ExtResource( 250 ), ExtResource( 240 ), ExtResource( 192 ), ExtResource( 156 ), ExtResource( 194 ), ExtResource( 190 ), ExtResource( 227 ), ExtResource( 224 ), ExtResource( 195 ), ExtResource( 196 ), ExtResource( 218 ), ExtResource( 198 ), ExtResource( 223 ), ExtResource( 209 ), ExtResource( 154 ), ExtResource( 191 ), ExtResource( 211 ), ExtResource( 221 ), ExtResource( 207 ), ExtResource( 208 ), ExtResource( 243 ), ExtResource( 155 ), ExtResource( 193 ) ],
 "loop": true,
@@ -523,15 +528,10 @@ animations = [ {
 "name": "walk_side_facing",
 "speed": 60.0
 }, {
-"frames": [ ExtResource( 186 ), ExtResource( 187 ), ExtResource( 185 ), ExtResource( 167 ), ExtResource( 168 ), ExtResource( 161 ), ExtResource( 171 ), ExtResource( 159 ), ExtResource( 158 ), ExtResource( 182 ), ExtResource( 166 ), ExtResource( 181 ), ExtResource( 188 ), ExtResource( 179 ), ExtResource( 178 ), ExtResource( 162 ), ExtResource( 183 ), ExtResource( 184 ), ExtResource( 177 ), ExtResource( 164 ), ExtResource( 170 ), ExtResource( 180 ), ExtResource( 165 ), ExtResource( 160 ), ExtResource( 189 ), ExtResource( 176 ), ExtResource( 173 ), ExtResource( 175 ), ExtResource( 169 ), ExtResource( 172 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 415 ), ExtResource( 28 ), ExtResource( 23 ), ExtResource( 413 ), ExtResource( 408 ), ExtResource( 10 ), ExtResource( 412 ), ExtResource( 9 ), ExtResource( 31 ), ExtResource( 22 ), ExtResource( 30 ), ExtResource( 416 ), ExtResource( 7 ), ExtResource( 27 ) ],
 "loop": true,
-"name": "walk_up_facing",
-"speed": 60.0
-}, {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "death",
-"speed": 5.0
+"name": "attack",
+"speed": 28.0
 } ]
 
 [sub_resource type="SpriteFrames" id=11]
@@ -541,10 +541,15 @@ animations = [ {
 "name": "idle",
 "speed": 30.0
 }, {
-"frames": [ ExtResource( 257 ), ExtResource( 258 ), ExtResource( 265 ), ExtResource( 260 ), ExtResource( 266 ), ExtResource( 267 ), ExtResource( 259 ), ExtResource( 261 ), ExtResource( 262 ), ExtResource( 263 ), ExtResource( 268 ), ExtResource( 264 ), ExtResource( 270 ), ExtResource( 273 ), ExtResource( 274 ), ExtResource( 271 ), ExtResource( 269 ), ExtResource( 272 ), ExtResource( 276 ), ExtResource( 278 ), ExtResource( 277 ), ExtResource( 275 ), ExtResource( 343 ), ExtResource( 371 ), ExtResource( 357 ), ExtResource( 350 ), ExtResource( 388 ), ExtResource( 384 ) ],
+"frames": [ ExtResource( 288 ), ExtResource( 310 ), ExtResource( 299 ), ExtResource( 291 ), ExtResource( 300 ), ExtResource( 301 ), ExtResource( 283 ), ExtResource( 327 ), ExtResource( 292 ), ExtResource( 293 ), ExtResource( 324 ), ExtResource( 325 ), ExtResource( 279 ), ExtResource( 303 ), ExtResource( 287 ), ExtResource( 289 ), ExtResource( 304 ), ExtResource( 306 ), ExtResource( 280 ), ExtResource( 318 ), ExtResource( 319 ), ExtResource( 316 ), ExtResource( 307 ), ExtResource( 308 ), ExtResource( 309 ), ExtResource( 282 ), ExtResource( 320 ), ExtResource( 321 ), ExtResource( 322 ), ExtResource( 326 ) ],
 "loop": true,
-"name": "attack",
-"speed": 28.0
+"name": "walk_up_facing",
+"speed": 60.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "death",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 354 ), ExtResource( 374 ), ExtResource( 367 ), ExtResource( 377 ), ExtResource( 379 ), ExtResource( 340 ), ExtResource( 360 ), ExtResource( 368 ), ExtResource( 349 ), ExtResource( 387 ), ExtResource( 369 ), ExtResource( 328 ), ExtResource( 389 ), ExtResource( 351 ), ExtResource( 352 ), ExtResource( 390 ), ExtResource( 355 ), ExtResource( 373 ), ExtResource( 391 ), ExtResource( 380 ), ExtResource( 381 ), ExtResource( 334 ), ExtResource( 382 ), ExtResource( 329 ), ExtResource( 330 ), ExtResource( 331 ), ExtResource( 333 ), ExtResource( 336 ), ExtResource( 392 ), ExtResource( 399 ) ],
 "loop": true,
@@ -556,15 +561,10 @@ animations = [ {
 "name": "walk_side_facing",
 "speed": 60.0
 }, {
-"frames": [ ExtResource( 288 ), ExtResource( 310 ), ExtResource( 299 ), ExtResource( 291 ), ExtResource( 300 ), ExtResource( 301 ), ExtResource( 283 ), ExtResource( 327 ), ExtResource( 292 ), ExtResource( 293 ), ExtResource( 324 ), ExtResource( 325 ), ExtResource( 279 ), ExtResource( 303 ), ExtResource( 287 ), ExtResource( 289 ), ExtResource( 304 ), ExtResource( 306 ), ExtResource( 280 ), ExtResource( 318 ), ExtResource( 319 ), ExtResource( 316 ), ExtResource( 307 ), ExtResource( 308 ), ExtResource( 309 ), ExtResource( 282 ), ExtResource( 320 ), ExtResource( 321 ), ExtResource( 322 ), ExtResource( 326 ) ],
+"frames": [ ExtResource( 257 ), ExtResource( 258 ), ExtResource( 265 ), ExtResource( 260 ), ExtResource( 266 ), ExtResource( 267 ), ExtResource( 259 ), ExtResource( 261 ), ExtResource( 262 ), ExtResource( 263 ), ExtResource( 268 ), ExtResource( 264 ), ExtResource( 270 ), ExtResource( 273 ), ExtResource( 274 ), ExtResource( 271 ), ExtResource( 269 ), ExtResource( 272 ), ExtResource( 276 ), ExtResource( 278 ), ExtResource( 277 ), ExtResource( 275 ), ExtResource( 343 ), ExtResource( 371 ), ExtResource( 357 ), ExtResource( 350 ), ExtResource( 388 ), ExtResource( 384 ) ],
 "loop": true,
-"name": "walk_up_facing",
-"speed": 60.0
-}, {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "death",
-"speed": 5.0
+"name": "attack",
+"speed": 28.0
 } ]
 
 [node name="Battlefield" type="Node2D"]
@@ -580,7 +580,7 @@ position = Vector2( 5166.38, 600 )
 texture = ExtResource( 421 )
 
 [node name="battleground" type="Sprite" parent="TileMap"]
-position = Vector2( 1398, 600 )
+position = Vector2( 1405.76, 652.287 )
 texture = ExtResource( 421 )
 
 [node name="battleground3" type="Sprite" parent="TileMap"]
@@ -675,6 +675,17 @@ __meta__ = {
 [node name="PlayerNode" type="KinematicBody2D" parent="."]
 script = ExtResource( 3 )
 
+[node name="RespawnButton" type="Button" parent="PlayerNode"]
+visible = false
+margin_left = -43.8226
+margin_top = -126.805
+margin_right = 41.1774
+margin_bottom = -103.805
+text = "Respawn"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Hp" type="Label" parent="PlayerNode"]
 anchor_left = 0.5
 anchor_right = 0.5
@@ -729,6 +740,7 @@ polygon = PoolVector2Array( 6784.07, 3862.48, 6766.11, -510.628, 7089.38, -492.6
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PoolVector2Array( -588.265, -519.608, -579.285, -196.339, 7098.36, -187.359, 7107.34, -519.608 )
 [connection signal="pressed" from="NpcNode/SelectedButton" to="NpcNode" method="_on_SelectedButton_pressed"]
+[connection signal="pressed" from="PlayerNode/RespawnButton" to="PlayerNode" method="_on_RespawnButton_pressed"]
 [connection signal="animation_finished" from="WarriorSprite" to="PlayerNode" method="_on_PlayerSprite_animation_finished"]
 [connection signal="animation_finished" from="RogueSprite" to="PlayerNode" method="_on_PlayerSprite_animation_finished"]
 [connection signal="animation_finished" from="WizardSprite" to="PlayerNode" method="_on_PlayerSprite_animation_finished"]
