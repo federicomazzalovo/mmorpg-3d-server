@@ -63,12 +63,12 @@ public class Battlefield : Node2D
 		this.genericNodeToClone = this.GetNode("NpcNode") as CharacterNode;
 		this.playerNode = this.GetNode("PlayerNode") as CharacterNode;
 
-		var characters  = this.RetrieveAliveCharacters();
+		var characters  = this.RetrieveConnectedCharacters();
 		this.LoadCharacters(characters);
 		this.AddCharactersSprites();
 
 		WebSocketService webSocketService = WebSocketService.GetInstance();
-		var err = webSocketService.Connect("my-websocket-endpoint");
+		var err = webSocketService.Connect("simple-rpg-kata-ws");
 
 		if (err != Error.Ok)
 		{
@@ -117,8 +117,8 @@ public class Battlefield : Node2D
 
 	private void LoadCharacters(IEnumerable<Character> characters)
 	{
-		this.player = characters.SingleOrDefault(character => character.Username == Session.Username);
-		this.enemies = characters.Where(character => character.Username != Session.Username);
+		this.player = characters.SingleOrDefault(character => character.Username == Session.Username && (int)character.CharacterClass == Session.ClassId);
+		this.enemies = characters.Where(character => character != this.player);
 	}
 
 	private void AddCharactersSprites()
@@ -143,11 +143,11 @@ public class Battlefield : Node2D
 		this.characterNodes.Add(characterSprite);
 	}
 
-	private List<Character> RetrieveAliveCharacters()
+	private List<Character> RetrieveConnectedCharacters()
 	{
 		using (HttpClient client = new HttpClient())
 		{
-			HttpResponseMessage response = client.GetAsync("http://simple-rpg-kata.herokuapp.com/api/character/all/alive").Result;
+			HttpResponseMessage response = client.GetAsync("http://simple-rpg-kata.herokuapp.com/api/character/all/connected").Result;
 
 			string json = response.Content.ReadAsStringAsync().Result;
 

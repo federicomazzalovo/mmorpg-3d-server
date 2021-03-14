@@ -44,7 +44,7 @@ public class Login : Control
 
 		using (HttpClient client = new HttpClient())
 		{
-			HttpResponseMessage response = client.PostAsync("http://localhost:8080/api/user/login", content).Result;
+			HttpResponseMessage response = client.PostAsync("http://simple-rpg-kata.herokuapp.com/api/user/login", content).Result;
 
 			if (response.IsSuccessStatusCode)
 				this.GetTree().ChangeScene("res://Scene/Battlefield.tscn");

@@ -74,6 +74,7 @@ public class CharacterService {
             character.setPositiony(updatedCharacter.getPosition().getY());
             character.setHp(updatedCharacter.getHp());
             character.setLevelValue(updatedCharacter.getLevel());
+            character.setConnected(updatedCharacter.isConnected());
             CharacterEntity charSaved = this.repository.save(character);
 
             return this.characterFactory.getCharacter(charSaved);
@@ -81,7 +82,7 @@ public class CharacterService {
 
         return null;
     }
-
+    
 
     public void attack(int characterId, int targetId) {
         Optional<Character> attackerFromDB = this.getCharacter(characterId);
@@ -118,5 +119,17 @@ public class CharacterService {
         this.repository.save(entity);
 
         return this.characterFactory.getCharacter(entity);
+    }
+
+
+
+    public void connect(Character character) {
+        character.setConnected(true);
+        this.updateCharacter(character);
+    }
+
+    public void disconnect(Character character) {
+        character.setConnected(false);
+        this.updateCharacter(character);
     }
 }

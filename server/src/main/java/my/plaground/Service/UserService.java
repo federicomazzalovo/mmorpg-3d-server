@@ -36,7 +36,7 @@ public class UserService {
         if(character == null)
             return false;
 
-        character.setConnected(true);
+        this.characterService.connect(character);
         return true;
     }
 
