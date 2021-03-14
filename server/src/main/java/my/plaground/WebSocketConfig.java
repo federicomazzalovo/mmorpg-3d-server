@@ -28,7 +28,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(this.wsHandler, "/my-websocket-endpoint")
+        registry.addHandler(this.wsHandler, "/simple-rpg-kata-ws")
                // .setHandshakeHandler(new DefaultHandshakeHandler(new TomcatRequestUpgradeStrategy()))
                 .setAllowedOrigins("*");
 

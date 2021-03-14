@@ -36,6 +36,7 @@ public class WebSocketMessageHandler extends TextWebSocketHandler {
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) {
         // The WebSocket has been closed
+
     }
 
     @Override
