@@ -11,10 +11,10 @@ using System.Text;
 
 public enum CharacterClass
 {
-	Unknown,
-	Paladin,
-	Wizard,
-	Rogue
+	Unknown = 0,
+	Paladin = 1,
+	Wizard = 2,
+	Rogue = 3
 }
 
 
