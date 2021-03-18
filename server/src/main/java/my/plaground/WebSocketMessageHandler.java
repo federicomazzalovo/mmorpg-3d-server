@@ -64,10 +64,25 @@ public class WebSocketMessageHandler extends TextWebSocketHandler {
     private String getCharacterPositionMessage() throws JsonProcessingException {
         List<Character> charactersAlive = this.characterService.getCharacters();
         List<WebSocketParams> webSocketResponse = charactersAlive.stream()
-                .map(c -> new WebSocketParams(c.getId(), c.getPosition().getX(), c.getPosition().getY(), c.getMoveDirection(), c.getHp(), -1, None))
+                .map(c -> toWebSocketParam(c))
                 .collect(Collectors.toList());
 
         return new ObjectMapper().writeValueAsString(webSocketResponse);
+    }
+
+    private WebSocketParams toWebSocketParam(Character c) {
+        return new WebSocketParams(
+                                c.getId(),
+                                c.getPosition().getX(),
+                                c.getPosition().getY(),
+                                c.getMoveDirection(),
+                                c.getHp(),
+                                -1,
+                                None,
+                                c.getInitHp(),
+                                c.getLevel(),
+                                c.isConnected(),
+                                c.getCharacterClass());
     }
 
     @Override

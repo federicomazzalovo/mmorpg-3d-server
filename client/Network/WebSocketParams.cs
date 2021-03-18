@@ -24,11 +24,15 @@ namespace Simplerpgkataclient.Network
 
     public class WebSocketParams
     {
-        public long characterId { get; set; }
+        public int characterId { get; set; }
         public float positionX { get; set; } 
         public float positionY { get; set; }
         public int moveDirection { get; set; }
         public double hp { get; set; }
+        public double initHp { get; set; }
+        public int level { get; set; }
+        public int classId { get; set; }
+        public bool isConnected { get; set; }
         public int targetId { get; set; }
         public int actionType { get; set; }
     }

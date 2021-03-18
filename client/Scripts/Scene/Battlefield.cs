@@ -105,7 +105,15 @@ public class Battlefield : Node2D
 			CharacterNode node = this.characterNodes.FirstOrDefault(n => n.Character.Id == param.characterId); // && !n.Character.Dead);
 
 			if(node != null)
-				node.UpdateCharacter(param);
+            {
+				if (param.isConnected)
+					node.UpdateCharacter(param);
+				else
+					this.RemoveChild(node);
+			}
+            else if(param.isConnected)
+				this.AddCharacterSprite(new Character() { Id = param.characterId, Hp = param.hp, InitHp = param.initHp, Level = param.level, Position = new CharacterPosition(param.positionX, param.positionY), CharacterClass = (CharacterClass)param.classId });
+
 		}
 	}
 

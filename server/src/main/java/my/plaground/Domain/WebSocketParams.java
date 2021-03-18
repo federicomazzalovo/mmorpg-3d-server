@@ -22,4 +22,11 @@ public class WebSocketParams {
     @JsonProperty("actionType")
     @JsonFormat(shape = JsonFormat.Shape.NUMBER_INT)
     private ActionType actionType;
+
+    private double initHp;
+    private int level;
+    private boolean isConnected;
+    @JsonProperty("classId")
+    @JsonFormat(shape = JsonFormat.Shape.NUMBER_INT)
+    private CharacterClass classId;
 }
