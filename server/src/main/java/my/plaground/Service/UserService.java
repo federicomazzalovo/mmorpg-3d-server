@@ -56,4 +56,17 @@ public class UserService {
         return this.characterService.createCharacter(user, characterClass);
     }
 
+    public boolean logout(String username) {
+        UserEntity user = this.repository.findByUsername(username);
+        if(user == null)
+            return false;
+
+        List<Character> characters = this.characterService.getCharactersByUser(user);
+
+        if(characters == null || characters.size() == 0)
+            return false;
+
+        characters.forEach(this.characterService::disconnect);
+        return true;
+    }
 }

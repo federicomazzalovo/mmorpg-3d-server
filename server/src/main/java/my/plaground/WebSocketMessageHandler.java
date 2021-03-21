@@ -7,6 +7,7 @@ import my.plaground.Domain.DTO.WebSocketHandshake;
 import my.plaground.Domain.Position;
 import my.plaground.Domain.DTO.WebSocketParams;
 import my.plaground.Service.CharacterService;
+import my.plaground.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
@@ -27,18 +28,21 @@ import static my.plaground.Domain.ActionType.*;
 public class WebSocketMessageHandler extends TextWebSocketHandler {
 
     private final CharacterService characterService;
+    private final UserService userService;
     private ConcurrentHashMap<String, String> connectedUsers;
 
     @Autowired
-    public WebSocketMessageHandler(CharacterService service){
-        this.characterService = service;
+    public WebSocketMessageHandler(CharacterService characterService, UserService userService){
+        this.characterService = characterService;
+        this.userService = userService;
         this.connectedUsers = new ConcurrentHashMap<>();
     }
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) {
         // The WebSocket has been closed
-
+        String usernameToDisconnect =  this.connectedUsers.get(session.getId());
+        this.userService.logout(usernameToDisconnect);
     }
 
     @Override
@@ -46,9 +50,12 @@ public class WebSocketMessageHandler extends TextWebSocketHandler {
 
         if(session.isOpen()) {
             try {
-                session.sendMessage(new TextMessage("SESSION:" + session.getId()));
+                WebSocketHandshake handshake = new WebSocketHandshake();
+                handshake.setSessionId(session.getId());
+                String messageToSend =  new ObjectMapper().writeValueAsString(handshake);
+                session.sendMessage(new TextMessage(messageToSend));
             } catch (IOException e) {
-                e.printStackTrace();
+                return;
             }
         }
 
@@ -77,9 +84,9 @@ public class WebSocketMessageHandler extends TextWebSocketHandler {
 
         try{
             WebSocketHandshake handshake = new ObjectMapper().readValue(textMessage.getPayload(), WebSocketHandshake.class);
+            this.connectedUsers.putIfAbsent(handshake.getSessionId(), handshake.getUsername());
         }
         catch(Exception e){
-
         }
 
         try {
@@ -96,8 +103,6 @@ public class WebSocketMessageHandler extends TextWebSocketHandler {
                     this.characterService.attack(webSocketParams.getCharacterId(), webSocketParams.getTargetId());
                     break;
             }
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -10,5 +10,6 @@ namespace Simplerpgkataclient.Scripts.Scene
     {
         public static string Username { get; set; }
         public static int ClassId { get; internal set; }
+        public static string WSSessionId { get; internal set; }
     }
 }
