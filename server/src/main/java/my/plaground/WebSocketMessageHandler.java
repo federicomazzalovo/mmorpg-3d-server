@@ -54,9 +54,7 @@ public class WebSocketMessageHandler extends TextWebSocketHandler {
                 handshake.setSessionId(session.getId());
                 String messageToSend =  new ObjectMapper().writeValueAsString(handshake);
                 session.sendMessage(new TextMessage(messageToSend));
-            } catch (IOException e) {
-                return;
-            }
+            } catch (IOException e) { }
         }
 
         // The WebSocket has been opened
@@ -69,7 +67,6 @@ public class WebSocketMessageHandler extends TextWebSocketHandler {
                           String messageToSend = getConnectedCharactersMessage(session.getId());
                           session.sendMessage(new TextMessage(messageToSend));
                       } catch (IOException e) {
-                          e.printStackTrace();
                       }
                   }else {
                     this.cancel();
@@ -104,7 +101,6 @@ public class WebSocketMessageHandler extends TextWebSocketHandler {
                     break;
             }
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 

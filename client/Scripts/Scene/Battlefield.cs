@@ -110,35 +110,35 @@ public class Battlefield : Node2D
 		}
 		catch (Exception)
 		{
-			return;
+			try
+			{
+
+				List<WebSocketParams> webSocketParamsList = JsonConvert.DeserializeObject<List<WebSocketParams>>(message);
+
+				List<CharacterNode> toUpdate = this.characterNodes.Where(x => webSocketParamsList.Select(w => w.characterId).Contains(x.Character.Id)).ToList();
+				List<CharacterNode> toDelete = this.characterNodes.Where(x => !webSocketParamsList.Select(w => w.characterId).Contains(x.Character.Id)).ToList();
+				List<WebSocketParams> toAdd = webSocketParamsList.Where(x => !this.characterNodes.Select(w => w.Character.Id).Contains(x.characterId)).ToList();
+
+
+				foreach (CharacterNode node in toUpdate)
+				{
+					WebSocketParams param = webSocketParamsList.SingleOrDefault(x => x.characterId == node.Character.Id);
+					node.UpdateCharacter(param);
+				}
+
+				foreach (WebSocketParams param in toAdd)
+					this.AddCharacterSprite(new Character() { Id = param.characterId, Hp = param.hp, InitHp = param.initHp, Level = param.level, Position = new CharacterPosition(param.positionX, param.positionY), CharacterClass = (CharacterClass)param.classId });
+
+				foreach (CharacterNode node in toDelete)
+				{
+					this.RemoveChild(node);
+					this.characterNodes.Remove(node);
+				}
+			}
+			catch (Exception) { }
 		}
 
-		try
-		{
 
-			List<WebSocketParams> webSocketParamsList = JsonConvert.DeserializeObject<List<WebSocketParams>>(message);
-
-			List<CharacterNode> toUpdate = this.characterNodes.Where(x => webSocketParamsList.Select(w => w.characterId).Contains(x.Character.Id)).ToList();
-			List<CharacterNode> toDelete = this.characterNodes.Where(x => !webSocketParamsList.Select(w => w.characterId).Contains(x.Character.Id)).ToList();
-			List<WebSocketParams> toAdd = webSocketParamsList.Where(x => !this.characterNodes.Select(w => w.Character.Id).Contains(x.characterId)).ToList();
-
-
-			foreach (CharacterNode node in toUpdate)
-			{
-				WebSocketParams param = webSocketParamsList.SingleOrDefault(x => x.characterId == node.Character.Id);
-				node.UpdateCharacter(param);
-			}
-
-			foreach (WebSocketParams param in toAdd)
-				this.AddCharacterSprite(new Character() { Id = param.characterId, Hp = param.hp, InitHp = param.initHp, Level = param.level, Position = new CharacterPosition(param.positionX, param.positionY), CharacterClass = (CharacterClass)param.classId });
-
-			foreach (CharacterNode node in toDelete)
-			{
-				this.RemoveChild(node);
-				this.characterNodes.Remove(node);
-			}
-		}
-		catch (Exception) { }
 	}
 
 	public override void _Process(float delta)
