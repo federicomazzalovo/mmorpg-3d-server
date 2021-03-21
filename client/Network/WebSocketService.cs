@@ -1,4 +1,5 @@
 ﻿using Godot;
+using Simplerpgkataclient.Scripts.Scene;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,6 @@ namespace Simplerpgkataclient.Network
 {
     public class WebSocketService : Godot.Object
     {
-        private const string WEB_SOCKET_URL = "ws://simple-rpg-kata.herokuapp.com/";
 
         private WebSocketClient client;
         private static WebSocketService instance;
@@ -30,7 +30,7 @@ namespace Simplerpgkataclient.Network
             this.client.Connect("connection_established", this, "OnConnectedEnstablished");
             this.client.Connect("data_received", this, "OnDataReceived");
 
-            return this.client.ConnectToUrl(WEB_SOCKET_URL + endpoint);
+            return this.client.ConnectToUrl($"ws://{Constants.ENDPOINT_URL}/" + endpoint);
         }
 
         public static WebSocketService GetInstance()
@@ -54,16 +54,17 @@ namespace Simplerpgkataclient.Network
 
         private void OnConnectionClosed(bool isClose)
         {
-
+            GD.Print($"Client closed:  {isClose}");
             this.ConnectionClosedEvent(this, "aaa");
         }
 
-        private void OnConnectedEnstablished(string proto = "")
+        private void OnConnectedEnstablished(string id, string proto = "")
         {
+            GD.Print($"Client {id} connected with protocol: {proto}");
             this.ConnectionEnstablishedEvent(this, "aaa");
         }
 
-        private void OnDataReceived()
+        private void OnDataReceived(string id)
         {
             this.client.GetPeer(1).SetWriteMode(WebSocketPeer.WriteMode.Text);
            // _client.GetPeer(1).AllowObjectDecoding = true;

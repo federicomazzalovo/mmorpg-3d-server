@@ -161,7 +161,7 @@ public class Battlefield : Node2D
 	{
 		using (HttpClient client = new HttpClient())
 		{
-			HttpResponseMessage response = client.GetAsync("http://simple-rpg-kata.herokuapp.com/api/character/all/connected").Result;
+			HttpResponseMessage response = client.GetAsync($"http://{Constants.ENDPOINT_URL}/api/character/all/connected").Result;
 
 			string json = response.Content.ReadAsStringAsync().Result;
 

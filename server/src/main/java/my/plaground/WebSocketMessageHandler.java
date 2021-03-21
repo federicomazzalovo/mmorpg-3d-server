@@ -26,8 +26,6 @@ public class WebSocketMessageHandler extends TextWebSocketHandler {
 
     private final CharacterService characterService;
 
-    private static Object monitor = new Object();
-
     @Autowired
     public WebSocketMessageHandler(CharacterService service){
         this.characterService = service;
@@ -61,6 +59,30 @@ public class WebSocketMessageHandler extends TextWebSocketHandler {
         new Timer().scheduleAtFixedRate(timer, 0,100);
     }
 
+    @Override
+    protected void handleTextMessage(WebSocketSession session, TextMessage textMessage) {
+
+        try {
+            WebSocketParams webSocketParams = new ObjectMapper().readValue(textMessage.getPayload(), WebSocketParams.class);
+
+            switch(webSocketParams.getActionType())
+            {
+                case None:
+                    break;
+                case Movement:
+                    this.characterService.updatePosition(webSocketParams.getCharacterId(), Position.at(webSocketParams.getPositionX(), webSocketParams.getPositionY()), webSocketParams.getMoveDirection());
+                    break;
+                case Attack:
+                    this.characterService.attack(webSocketParams.getCharacterId(), webSocketParams.getTargetId());
+                    break;
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private String getCharacterPositionMessage() throws JsonProcessingException {
         List<Character> characters = this.characterService.getCharactersConnected();
         List<WebSocketParams> webSocketResponse = characters.stream()
@@ -85,27 +107,5 @@ public class WebSocketMessageHandler extends TextWebSocketHandler {
                                 c.getCharacterClass());
     }
 
-    @Override
-    protected void handleTextMessage(WebSocketSession session, TextMessage textMessage) {
 
-        try {
-            WebSocketParams webSocketParams = new ObjectMapper().readValue(textMessage.getPayload(), WebSocketParams.class);
-
-            switch(webSocketParams.getActionType())
-            {
-                case None:
-                    break;
-                case Movement:
-                    this.characterService.updatePosition(webSocketParams.getCharacterId(), Position.at(webSocketParams.getPositionX(), webSocketParams.getPositionY()), webSocketParams.getMoveDirection());
-                    break;
-                case Attack:
-                    this.characterService.attack(webSocketParams.getCharacterId(), webSocketParams.getTargetId());
-                    break;
-            }
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 }

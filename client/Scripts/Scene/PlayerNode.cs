@@ -1,6 +1,7 @@
 using Godot;
 using Newtonsoft.Json;
 using Simplerpgkataclient.Network;
+using Simplerpgkataclient.Scripts.Scene;
 using System;
 using System.Net;
 using System.Net.Http;
@@ -178,7 +179,7 @@ public class PlayerNode : CharacterNode
 	{
 		using (HttpClient client = new HttpClient())
 		{
-			HttpResponseMessage response = client.GetAsync("http://simple-rpg-kata.herokuapp.com/api/character/respawn/" + this.Character.Id).Result;
+			HttpResponseMessage response = client.GetAsync($"http://{Constants.ENDPOINT_URL}/api/character/respawn/" + this.Character.Id).Result;
 
 			string json = response.Content.ReadAsStringAsync().Result;
 			this.SetPhysicsProcess(true);

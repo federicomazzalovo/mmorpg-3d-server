@@ -14,8 +14,8 @@ public class Login : Control
 	{
 		this.classesDropDownList = this.GetNode("VBoxContainer/ClassesDropDownList") as OptionButton;
 		classesDropDownList.AddItem(CharacterClass.Paladin.ToString());
-		classesDropDownList.AddItem(CharacterClass.Rogue.ToString());
 		classesDropDownList.AddItem(CharacterClass.Wizard.ToString());
+		classesDropDownList.AddItem(CharacterClass.Rogue.ToString());
 	}
 
 	//  // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,7 +31,7 @@ public class Login : Control
 		if (String.IsNullOrWhiteSpace(usernameValue))
 			return;
 
-		int selectedClassId = this.classesDropDownList.Selected + 1;
+		int selectedClassId = this.classesDropDownList.Selected + 1 ;
 		if (selectedClassId < 1 || selectedClassId > 3)
 			return;
 
@@ -44,7 +44,7 @@ public class Login : Control
 
 		using (HttpClient client = new HttpClient())
 		{
-			HttpResponseMessage response = client.PostAsync("http://simple-rpg-kata.herokuapp.com/api/user/login", content).Result;
+			HttpResponseMessage response = client.PostAsync($"http://{Constants.ENDPOINT_URL}/api/user/login", content).Result;
 
 			if (response.IsSuccessStatusCode)
 				this.GetTree().ChangeScene("res://Scene/Battlefield.tscn");
