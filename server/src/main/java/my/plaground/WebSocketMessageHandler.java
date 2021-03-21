@@ -3,8 +3,9 @@ package my.plaground;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import my.plaground.Domain.Character;
+import my.plaground.Domain.DTO.WebSocketHandshake;
 import my.plaground.Domain.Position;
-import my.plaground.Domain.WebSocketParams;
+import my.plaground.Domain.DTO.WebSocketParams;
 import my.plaground.Service.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,6 +18,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 import static my.plaground.Domain.ActionType.*;
@@ -25,10 +27,12 @@ import static my.plaground.Domain.ActionType.*;
 public class WebSocketMessageHandler extends TextWebSocketHandler {
 
     private final CharacterService characterService;
+    private ConcurrentHashMap<String, String> connectedUsers;
 
     @Autowired
     public WebSocketMessageHandler(CharacterService service){
         this.characterService = service;
+        this.connectedUsers = new ConcurrentHashMap<>();
     }
 
     @Override
@@ -39,6 +43,15 @@ public class WebSocketMessageHandler extends TextWebSocketHandler {
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws InterruptedException, IOException {
+
+        if(session.isOpen()) {
+            try {
+                session.sendMessage(new TextMessage("SESSION:" + session.getId()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         // The WebSocket has been opened
         // I might save this session object so that I can send messages to it outside of this method
         TimerTask timer  = new TimerTask() {
@@ -46,7 +59,7 @@ public class WebSocketMessageHandler extends TextWebSocketHandler {
               public void run() {
                   if(session.isOpen()) {
                       try {
-                          String messageToSend = getCharacterPositionMessage();
+                          String messageToSend = getConnectedCharactersMessage(session.getId());
                           session.sendMessage(new TextMessage(messageToSend));
                       } catch (IOException e) {
                           e.printStackTrace();
@@ -61,6 +74,13 @@ public class WebSocketMessageHandler extends TextWebSocketHandler {
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage textMessage) {
+
+        try{
+            WebSocketHandshake handshake = new ObjectMapper().readValue(textMessage.getPayload(), WebSocketHandshake.class);
+        }
+        catch(Exception e){
+
+        }
 
         try {
             WebSocketParams webSocketParams = new ObjectMapper().readValue(textMessage.getPayload(), WebSocketParams.class);
@@ -83,17 +103,18 @@ public class WebSocketMessageHandler extends TextWebSocketHandler {
         }
     }
 
-    private String getCharacterPositionMessage() throws JsonProcessingException {
+    private String getConnectedCharactersMessage(String sessionId) throws JsonProcessingException {
         List<Character> characters = this.characterService.getCharactersConnected();
         List<WebSocketParams> webSocketResponse = characters.stream()
-                .map(this::toWebSocketParam)
+                .map(c -> this.toWebSocketParam(sessionId, c))
                 .collect(Collectors.toList());
 
         return new ObjectMapper().writeValueAsString(webSocketResponse);
     }
 
-    private WebSocketParams toWebSocketParam(Character c) {
+    private WebSocketParams toWebSocketParam(String sessionId, Character c) {
         return new WebSocketParams(
+                                sessionId,
                                 c.getId(),
                                 c.getPosition().getX(),
                                 c.getPosition().getY(),

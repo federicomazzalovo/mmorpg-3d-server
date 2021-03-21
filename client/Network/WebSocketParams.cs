@@ -24,6 +24,7 @@ namespace Simplerpgkataclient.Network
 
     public class WebSocketParams
     {
+        public string sessionId { get; set; }
         public int characterId { get; set; }
         public float positionX { get; set; } 
         public float positionY { get; set; }

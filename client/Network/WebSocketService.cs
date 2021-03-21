@@ -58,13 +58,13 @@ namespace Simplerpgkataclient.Network
             this.ConnectionClosedEvent(this, "aaa");
         }
 
-        private void OnConnectedEnstablished(string id, string proto = "")
+        private void OnConnectedEnstablished(string proto = "")
         {
-            GD.Print($"Client {id} connected with protocol: {proto}");
+            //GD.Print($"Client {id} connected with protocol: {proto}");
             this.ConnectionEnstablishedEvent(this, "aaa");
         }
 
-        private void OnDataReceived(string id)
+        private void OnDataReceived()
         {
             this.client.GetPeer(1).SetWriteMode(WebSocketPeer.WriteMode.Text);
            // _client.GetPeer(1).AllowObjectDecoding = true;
