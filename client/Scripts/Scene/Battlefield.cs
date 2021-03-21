@@ -102,7 +102,7 @@ public class Battlefield : Node2D
 
 		List<CharacterNode> toUpdate = this.characterNodes.Where(x => webSocketParamsList.Select(w => w.characterId).Contains(x.Character.Id)).ToList();
 		List<CharacterNode> toDelete = this.characterNodes.Where(x => !webSocketParamsList.Select(w => w.characterId).Contains(x.Character.Id)).ToList();
-		List<WebSocketParams> toAdd = webSocketParamsList.Where(x => this.characterNodes.Select(w => w.Character.Id).Contains(x.characterId)).ToList();
+		List<WebSocketParams> toAdd = webSocketParamsList.Where(x => !this.characterNodes.Select(w => w.Character.Id).Contains(x.characterId)).ToList();
 
 
 		foreach (CharacterNode node in toUpdate)
@@ -113,14 +113,12 @@ public class Battlefield : Node2D
 
 		foreach (WebSocketParams param in toAdd)
 			this.AddCharacterSprite(new Character() { Id = param.characterId, Hp = param.hp, InitHp = param.initHp, Level = param.level, Position = new CharacterPosition(param.positionX, param.positionY), CharacterClass = (CharacterClass)param.classId });
-		
+
 		foreach (CharacterNode node in toDelete)
 		{
 			this.RemoveChild(node);
 			this.characterNodes.Remove(node);
 		}
-
-
 	}
 
 	public override void _Process(float delta)

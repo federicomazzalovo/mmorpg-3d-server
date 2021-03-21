@@ -25,6 +25,8 @@ public class WebSocketParams {
 
     private double initHp;
     private int level;
+
+    @JsonProperty("isConnected")
     private boolean isConnected;
     @JsonProperty("classId")
     @JsonFormat(shape = JsonFormat.Shape.NUMBER_INT)

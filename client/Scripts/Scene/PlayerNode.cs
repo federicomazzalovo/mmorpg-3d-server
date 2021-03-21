@@ -135,7 +135,7 @@ public class PlayerNode : CharacterNode
 
 	private void UpdatePosition(float x, float y)
 	{
-		string message = JsonConvert.SerializeObject(new WebSocketParams() { characterId = this.Character.Id, positionX = x, positionY = y, moveDirection = (int)this.moveDirection, actionType = (int)ActionType.Movement });
+		string message = JsonConvert.SerializeObject(new WebSocketParams() { characterId = this.Character.Id, positionX = x, positionY = y, moveDirection = (int)this.moveDirection, actionType = (int)ActionType.Movement, isConnected = true });
 		WebSocketService.GetInstance().SendMessage(message);
 	}
 
@@ -147,7 +147,7 @@ public class PlayerNode : CharacterNode
 			return;
 
 		int targetId = selectedTarget.Character.Id;
-		string message = JsonConvert.SerializeObject(new WebSocketParams() { characterId = this.Character.Id, targetId = targetId, actionType = (int)ActionType.Attack });
+		string message = JsonConvert.SerializeObject(new WebSocketParams() { characterId = this.Character.Id, targetId = targetId, actionType = (int)ActionType.Attack, isConnected = true });
 		WebSocketService.GetInstance().SendMessage(message);
 	}
 

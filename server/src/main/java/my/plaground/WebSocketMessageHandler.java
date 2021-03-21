@@ -87,8 +87,6 @@ public class WebSocketMessageHandler extends TextWebSocketHandler {
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage textMessage) {
-        // A message has been received
-        System.out.println("Message received: " + textMessage.getPayload());
 
         try {
             WebSocketParams webSocketParams = new ObjectMapper().readValue(textMessage.getPayload(), WebSocketParams.class);
