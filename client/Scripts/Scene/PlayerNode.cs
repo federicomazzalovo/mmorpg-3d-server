@@ -182,7 +182,7 @@ public class PlayerNode : CharacterNode
 			HttpResponseMessage response = client.GetAsync($"http://{Constants.ENDPOINT_URL}/api/character/respawn/" + this.Character.Id).Result;
 
 			string json = response.Content.ReadAsStringAsync().Result;
-			this.SetPhysicsProcess(true);
+			
 			this.respawnButton.Hide();
 			this.playerSprite.Play("idle");
 		}

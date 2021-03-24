@@ -93,6 +93,9 @@ public abstract class CharacterNode : KinematicBody2D
 		if (this.Character.Hp > 0 && param.hp == 0)
 			this.Kill();
 
+		if(param.hp > 0 && !this.IsPhysicsProcessing())
+			this.SetPhysicsProcess(true);
+
 		this.Character.Position = new CharacterPosition(param.positionX, param.positionY);
 		this.Character.Hp = param.hp;
 
