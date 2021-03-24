@@ -51,12 +51,13 @@ public class CharacterService {
     }
 
     public Character updatePosition(int characterId, Position newPosition, MoveDirection moveDirection) {
-        Optional<CharacterEntity> character = this.repository.findById(characterId);
-        if(character.isPresent()) {
-            character.get().setPositionx(newPosition.getX());
-            character.get().setPositiony(newPosition.getY());
-            character.get().setMoveDirection(moveDirection);
-            CharacterEntity charSaved = this.repository.save(character.get());
+        Optional<CharacterEntity> characterOptional = this.repository.findById(characterId);
+        if(characterOptional.isPresent()) {
+            CharacterEntity character = characterOptional.get();
+            character.setPositionx(newPosition.getX());
+            character.setPositiony(newPosition.getY());
+            character.setMoveDirection(moveDirection);
+            CharacterEntity charSaved = this.repository.save(character);
 
             return this.characterFactory.getCharacter(charSaved);
         }

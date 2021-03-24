@@ -1,17 +1,13 @@
 package my.plaground.Service;
 
+import my.plaground.Domain.*;
 import my.plaground.Domain.Character;
-import my.plaground.Domain.CharacterClass;
 import my.plaground.Domain.Entity.CharacterEntity;
-import my.plaground.Domain.Rogue;
 import my.plaground.Repository.CharacterRepository;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.Spy;
+import org.mockito.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -43,6 +39,8 @@ public class CharacterServiceTest {
         CharacterEntity c3 = CharacterEntity.builder().id(3).hp(150).isConnected(true).levelValue(1).classId(CharacterClass.Rogue).build();
         when(repository.findAll()).thenReturn(List.of(c1,c2,c3));
         when(repository.findById(3)).thenReturn(Optional.of(c3));
+        when(repository.findById(999)).thenReturn(Optional.empty());
+        when(repository.save(Mockito.any(CharacterEntity.class))).then(AdditionalAnswers.returnsFirstArg());
     }
 
     @Test public void
@@ -70,7 +68,7 @@ public class CharacterServiceTest {
     }
 
     @Test public void
-    ensure_get_character_of_existing_character_returns_correct_data() {
+    ensure_get_character_of_existing_character_returns_character_data() {
         Optional<Character> characterOptional = this.service.getCharacter(3);
 
         assertTrue(characterOptional.isPresent());
@@ -82,5 +80,26 @@ public class CharacterServiceTest {
         assertEquals(1, character.getLevel());
         assertEquals(CharacterClass.Rogue, character.getCharacterClass());
         assertTrue(character.isConnected());
+    }
+
+    @Test public void
+    ensure_get_character_of_not_existing_character_returns_empty(){
+        Optional<Character> characterOptional = this.service.getCharacter(999);
+        assertTrue(characterOptional.isEmpty());
+    }
+
+    @Test public void
+    ensure_update_position_of_not_existing_character_returns_null(){
+        Character character = this.service.updatePosition(999, Position.at(0,0), MoveDirection.Down);
+        assertNull(character);
+    }
+
+    @Test public void
+    ensure_update_position_of_existing_character_returns_character_data(){
+        Character character = this.service.updatePosition(3, Position.at(99,55), MoveDirection.Down);
+
+        assertEquals(99, character.getPosition().getX());
+        assertEquals(55, character.getPosition().getY());
+        assertEquals(MoveDirection.Down, character.getMoveDirection());
     }
 }
