@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import my.plaground.Domain.Character;
 import my.plaground.Domain.DTO.WebSocketHandshake;
 import my.plaground.Domain.Position;
+import my.plaground.Domain.Rotation;
 import my.plaground.Domain.DTO.WebSocketParams;
 import my.plaground.Service.CharacterService;
 import my.plaground.Service.UserService;
@@ -73,7 +74,7 @@ public class WebSocketMessageHandler extends TextWebSocketHandler {
                   }
               }
         };
-        new Timer().scheduleAtFixedRate(timer, 0,100);
+        new Timer().scheduleAtFixedRate(timer, 0,600);
     }
 
     @Override
@@ -94,7 +95,8 @@ public class WebSocketMessageHandler extends TextWebSocketHandler {
                 case None:
                     break;
                 case Movement:
-                    this.characterService.updatePosition(webSocketParams.getCharacterId(), Position.at(webSocketParams.getPositionX(), webSocketParams.getPositionY()), webSocketParams.getMoveDirection());
+                    this.characterService.updatePosition(webSocketParams.getCharacterId(), Position.at(webSocketParams.getPositionX(), webSocketParams.getPositionY(), webSocketParams.getPositionZ()), webSocketParams.getMoveDirection());
+                    this.characterService.updateRotation(webSocketParams.getCharacterId(), Rotation.at(webSocketParams.getRotationX(), webSocketParams.getRotationY(), webSocketParams.getRotationZ()));
                     break;
                 case Attack:
                     this.characterService.attack(webSocketParams.getCharacterId(), webSocketParams.getTargetId());
@@ -119,6 +121,10 @@ public class WebSocketMessageHandler extends TextWebSocketHandler {
                                 c.getId(),
                                 c.getPosition().getX(),
                                 c.getPosition().getY(),
+                                c.getPosition().getZ(),
+                                c.getRotation().getX(),
+                                c.getRotation().getY(),
+                                c.getRotation().getZ(),
                                 c.getMoveDirection(),
                                 c.getHp(),
                                 -1,

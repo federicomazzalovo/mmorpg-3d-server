@@ -20,6 +20,7 @@ public abstract class Character extends Target {
 
     protected Faction faction;
     protected Position position;
+    protected Rotation rotation;
 
     @JsonProperty("moveDirection")
     @JsonFormat(shape = JsonFormat.Shape.NUMBER_INT)
@@ -58,6 +59,9 @@ public abstract class Character extends Target {
 
     public Position getPosition() {
         return position;
+    }
+    public Rotation getRotation() {
+        return rotation;
     }
 
     public void setId(int id) {
@@ -140,6 +144,10 @@ public abstract class Character extends Target {
 
     public void setPosition(Position position) {
         this.position = position;
+    }
+
+    public void setRotation(Rotation rotation) {
+        this.rotation = rotation;
     }
 
     public void joinFaction(Faction faction){

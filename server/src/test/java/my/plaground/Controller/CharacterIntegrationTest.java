@@ -53,7 +53,7 @@ public class CharacterIntegrationTest {
     public void
     ensure_that_position_is_correct_for_specific_char() throws Exception {
         Character characterToFind = new Paladin();
-        characterToFind.setPosition(at(8,2));
+        characterToFind.setPosition(at(8,2, 0));
         characterToFind.setId(100);
 
         MvcResult result = this.mockMvc.perform(MockMvcRequestBuilders.get("/api/character/100/position")).andReturn();
@@ -72,23 +72,6 @@ public class CharacterIntegrationTest {
 
         assertEquals(HttpStatus.NOT_FOUND.value(), result.getResponse().getStatus());
     }
-
-    @Disabled
-    @Test public void
-    ensure_that_position_is_correctly_updated() throws Exception {
-        Position newPosition = at(9999,888);
-
-        var request = put("/api/character/999/position")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(this.objectMapper.writeValueAsBytes(newPosition));
-        MvcResult result = this.mockMvc.perform(request).andReturn();
-
-        String jsonResult = result.getResponse().getContentAsString();
-
-        assertEquals(objectMapper.writeValueAsString(newPosition), jsonResult);
-        assertEquals(HttpStatus.OK.value(), result.getResponse().getStatus());
-    }
-
 
     @Test public void
     ensure_characters_list_is_valid_and_not_empty() throws Exception {

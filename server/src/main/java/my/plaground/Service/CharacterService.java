@@ -5,6 +5,7 @@ import my.plaground.Domain.CharacterClass;
 import my.plaground.Domain.Entity.UserEntity;
 import my.plaground.Domain.MoveDirection;
 import my.plaground.Domain.Position;
+import my.plaground.Domain.Rotation;
 import my.plaground.Exception.ResourceNotFound;
 import my.plaground.Domain.Entity.CharacterEntity;
 import my.plaground.Repository.CharacterRepository;
@@ -56,7 +57,23 @@ public class CharacterService {
             CharacterEntity character = characterOptional.get();
             character.setPositionx(newPosition.getX());
             character.setPositiony(newPosition.getY());
+            character.setPositionz(newPosition.getZ());
             character.setMoveDirection(moveDirection);
+            CharacterEntity charSaved = this.repository.save(character);
+
+            return this.characterFactory.getCharacter(charSaved);
+        }
+        else
+            return null;
+    }
+
+    public Character updateRotation(int characterId, Rotation newRotation) {
+        Optional<CharacterEntity> characterOptional = this.repository.findById(characterId);
+        if(characterOptional.isPresent()) {
+            CharacterEntity character = characterOptional.get();
+            character.setRotationx(newRotation.getX());
+            character.setRotationy(newRotation.getY());
+            character.setRotationz(newRotation.getZ());
             CharacterEntity charSaved = this.repository.save(character);
 
             return this.characterFactory.getCharacter(charSaved);
@@ -73,6 +90,7 @@ public class CharacterService {
 
             character.setPositionx(updatedCharacter.getPosition().getX());
             character.setPositiony(updatedCharacter.getPosition().getY());
+            character.setPositionz(updatedCharacter.getPosition().getZ());
             character.setHp(updatedCharacter.getHp());
             character.setLevelValue(updatedCharacter.getLevel());
             character.setConnected(updatedCharacter.isConnected());
@@ -107,6 +125,9 @@ public class CharacterService {
 
 
     public Character createCharacter(UserEntity user, CharacterClass characterClass) {
+        if(user == null || user.getUsername() == null)
+            throw new ResourceNotFound();
+
         Character newChar = this.characterFactory.getCharacterByClass(characterClass);
 
         CharacterEntity entity = new CharacterEntity();
@@ -116,6 +137,7 @@ public class CharacterService {
         entity.setLevelValue(newChar.getLevel());
         entity.setPositionx(0);
         entity.setPositiony(0);
+        entity.setPositionz(0);
 
         this.repository.save(entity);
 
@@ -124,21 +146,27 @@ public class CharacterService {
 
 
 
-    public void connect(Character character) {
+    public boolean connect(Character character) {
         character.setConnected(true);
         this.updateCharacter(character);
+        return character.isConnected();
     }
 
-    public void disconnect(Character character) {
+    public boolean disconnect(Character character) {
         character.setConnected(false);
         this.updateCharacter(character);
+        return character.isConnected();
     }
 
     public Boolean respawn(Integer characterId) {
         return this.getCharacter(characterId)
                         .map(c ->{
+                                    if(c.getHp() > 0)
+                                        return false;
+
                                     c.setHp(c.getInitHp());
-                                    c.setPosition(Position.at(50, 100));
+                                    c.setPosition(Position.at(50, 100, 0));
+                                    c.setRotation(Rotation.at(50, 100, 0));
                                     updateCharacter(c);
                                     return true;
                                 })

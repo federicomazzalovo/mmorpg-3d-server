@@ -19,7 +19,8 @@ public class CharacterFactory {
         instance.setId(entity.getId());
         instance.setLevel(entity.getLevelValue());
         instance.setConnected(entity.isConnected());
-        instance.setPosition(Position.at(entity.getPositionx(), entity.getPositiony()));
+        instance.setPosition(Position.at(entity.getPositionx(), entity.getPositiony(), entity.getPositionz()));
+        instance.setRotation(Rotation.at(entity.getRotationx(), entity.getRotationy(), entity.getRotationz()));
         instance.setHp(entity.getHp());
 
         MoveDirection moveDirection = entity.getMoveDirection();

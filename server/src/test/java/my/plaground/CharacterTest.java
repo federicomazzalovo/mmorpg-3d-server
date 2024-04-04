@@ -147,8 +147,8 @@ class CharacterTest {
         my.plaground.Domain.Character paladin = new Paladin(new my.plaground.PaladinTest.PaladinRandomDataMocked());
         my.plaground.Domain.Character wizard = new Wizard(new my.plaground.WizardTest.WizardRandomDataMocked());
 
-        paladin.setPosition(at(10,0));
-        wizard.setPosition(at(5,0));
+        paladin.setPosition(at(10,0, 0));
+        wizard.setPosition(at(5,0, 0));
 
 
         wizard.attack(paladin);
@@ -161,8 +161,8 @@ class CharacterTest {
         my.plaground.Domain.Character paladin = new Paladin(new my.plaground.PaladinTest.PaladinRandomDataMocked());
         my.plaground.Domain.Character wizard = new Wizard(new my.plaground.WizardTest.WizardRandomDataMocked());
 
-        paladin.setPosition(at(1500,0));
-        wizard.setPosition(at(5,0));
+        paladin.setPosition(at(1500,0, 0));
+        wizard.setPosition(at(5,0, 0));
 
         wizard.attack(paladin);
 
