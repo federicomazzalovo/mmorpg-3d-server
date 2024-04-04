@@ -26,6 +26,12 @@ jobs:
         username: ${{ secrets.AzureAppService_ContainerUsername_4895fead2f304bc9bcdea1eb11430185 }}
         password: ${{ secrets.AzureAppService_ContainerPassword_a6db13f42aad4670a9cee81c13b48ca0 }}
 
+    - name: Change directory to server
+      run: | 
+        cd server
+        mvn clean package
+        ls -l
+
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
