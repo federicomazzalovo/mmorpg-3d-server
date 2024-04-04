@@ -53,7 +53,7 @@ public class CharacterIntegrationTest {
     public void
     ensure_that_position_is_correct_for_specific_char() throws Exception {
         Character characterToFind = new Paladin();
-        characterToFind.setPosition(at(8,2, 0));
+        characterToFind.setPosition(at(8,2, 1));
         characterToFind.setId(100);
 
         MvcResult result = this.mockMvc.perform(MockMvcRequestBuilders.get("/api/character/100/position")).andReturn();
