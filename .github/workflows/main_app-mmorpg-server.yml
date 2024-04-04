@@ -29,6 +29,7 @@ jobs:
     - name: Change directory to server
       run: | 
         cd server
+        mvn clean package
         ls -l
 
     - name: Build and push container image to registry
