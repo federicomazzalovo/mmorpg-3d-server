@@ -40,9 +40,8 @@ jobs:
       with:
         push: true
         tags: acrvtg2qpsec2kju.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_4895fead2f304bc9bcdea1eb11430185 }}/myflyff:${{ github.sha }}
-        file: ./Dockerfile
-        context: ./server
-
+        file: ./server/Dockerfile
+        
   deploy:
     runs-on: ubuntu-latest
     needs: build
