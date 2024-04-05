@@ -31,6 +31,7 @@ jobs:
     - name: Change directory to server
       run: | 
         cd server
+        ls -l
         mvn clean package
         ls -l
 
