@@ -67,13 +67,14 @@ public class CharacterService {
             return null;
     }
 
-    public Character updateRotation(int characterId, Rotation newRotation) {
+    public Character updateRotation(int characterId, Rotation newRotation, double rotationAmount) {
         Optional<CharacterEntity> characterOptional = this.repository.findById(characterId);
         if(characterOptional.isPresent()) {
             CharacterEntity character = characterOptional.get();
             character.setRotationx(newRotation.getX());
             character.setRotationy(newRotation.getY());
             character.setRotationz(newRotation.getZ());
+            character.setRotationAmount(rotationAmount);
             CharacterEntity charSaved = this.repository.save(character);
 
             return this.characterFactory.getCharacter(charSaved);
@@ -91,6 +92,8 @@ public class CharacterService {
             character.setPositionx(updatedCharacter.getPosition().getX());
             character.setPositiony(updatedCharacter.getPosition().getY());
             character.setPositionz(updatedCharacter.getPosition().getZ());
+            character.setRotationAmount(updatedCharacter.getRotationAmount());
+            character.setMoveDirection(updatedCharacter.getMoveDirection());
             character.setHp(updatedCharacter.getHp());
             character.setLevelValue(updatedCharacter.getLevel());
             character.setConnected(updatedCharacter.isConnected());
@@ -138,6 +141,8 @@ public class CharacterService {
         entity.setPositionx(0);
         entity.setPositiony(0);
         entity.setPositionz(0);
+        entity.setRotationAmount(0);
+        entity.setMoveDirection(MoveDirection.None);
 
         this.repository.save(entity);
 

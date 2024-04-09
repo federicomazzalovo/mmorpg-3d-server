@@ -37,6 +37,7 @@ public class CharacterEntity {
     private double rotationy;
 
     private double rotationz;
+    private double rotationAmount;
 
     @Enumerated(EnumType.ORDINAL)
     private MoveDirection moveDirection = MoveDirection.None;

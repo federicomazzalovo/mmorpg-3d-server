@@ -124,13 +124,13 @@ public class CharacterServiceTest {
 
     @Test public void
     ensure_update_rotation_of_not_existing_character_returns_null(){
-        Character character = this.service.updateRotation(999, Rotation.at(0,0, 0));
+        Character character = this.service.updateRotation(999, Rotation.at(0,0, 0), 0);
         assertNull(character);
     }
 
     @Test public void
     ensure_update_rotation_of_existing_character_returns_character_updated_data(){
-        Character character = this.service.updateRotation(3, Rotation.at(99,55, 0));
+        Character character = this.service.updateRotation(3, Rotation.at(99,55, 0), 0);
 
         assertEquals(99, character.getRotation().getX());
         assertEquals(55, character.getRotation().getY());

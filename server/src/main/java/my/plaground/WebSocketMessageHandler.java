@@ -74,7 +74,7 @@ public class WebSocketMessageHandler extends TextWebSocketHandler {
                   }
               }
         };
-        new Timer().scheduleAtFixedRate(timer, 0,600);
+        new Timer().scheduleAtFixedRate(timer, 0,10);
     }
 
     @Override
@@ -95,8 +95,9 @@ public class WebSocketMessageHandler extends TextWebSocketHandler {
                 case None:
                     break;
                 case Movement:
+                    System.out.println(webSocketParams.getRotationAmount());
                     this.characterService.updatePosition(webSocketParams.getCharacterId(), Position.at(webSocketParams.getPositionX(), webSocketParams.getPositionY(), webSocketParams.getPositionZ()), webSocketParams.getMoveDirection());
-                    this.characterService.updateRotation(webSocketParams.getCharacterId(), Rotation.at(webSocketParams.getRotationX(), webSocketParams.getRotationY(), webSocketParams.getRotationZ()));
+                    this.characterService.updateRotation(webSocketParams.getCharacterId(), Rotation.at(webSocketParams.getRotationX(), webSocketParams.getRotationY(), webSocketParams.getRotationZ()), webSocketParams.getRotationAmount());
                     break;
                 case Attack:
                     this.characterService.attack(webSocketParams.getCharacterId(), webSocketParams.getTargetId());
@@ -125,6 +126,7 @@ public class WebSocketMessageHandler extends TextWebSocketHandler {
                                 c.getRotation().getX(),
                                 c.getRotation().getY(),
                                 c.getRotation().getZ(),
+                                c.getRotationAmount(),
                                 c.getMoveDirection(),
                                 c.getHp(),
                                 -1,
